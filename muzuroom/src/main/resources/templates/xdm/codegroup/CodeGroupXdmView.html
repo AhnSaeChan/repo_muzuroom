@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>seq</td>
+		<td>photoRegistration</td>
+		
+	</tr>
+	<tr> 
+		<td th:text = "${item.seq}"></td>
+		<td th:text = "${item.photoRegistration}"></td>
+		
+	</tr>		
+</table>
+<a href="/addnaveraddress/addnaveraddressXdmList">목록</a>
+<a th:href="@{/addnaveraddress/addnaveraddressXdmDele(seq=${item.seq})}" id="delete">삭제</a>
+<a th:href="@{/addnaveraddress/addnaveraddressXdmMform(seq=${item.seq})}">수정</a>
+<a th:href="@{/addnaveraddress/addnaveraddressXdmUele(seq=${item.seq})}" id="uelete">업제</a>
