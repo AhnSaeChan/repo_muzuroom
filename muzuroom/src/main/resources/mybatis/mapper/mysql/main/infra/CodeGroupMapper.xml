@@ -13,10 +13,31 @@
 		FROM
 			codegroup
 		WHERE 1=1
-			AND seq =1
 		ORDER BY seq DESC
 	</select>
- 
- 
- 	  
+<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			seq,
+		    cgName
+		FROM
+			codegroup
+		WHERE 1=1
+			AND seq =#{seq}
+		ORDER BY seq DESC
+		
+	</select>
+<insert id="insert">
+	INSERT INTO codegroup(
+		
+		cgName,
+		cgDelNY
+	)VALUES(
+		
+		#{cgName},
+		#{cgDelNY}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 </mapper>

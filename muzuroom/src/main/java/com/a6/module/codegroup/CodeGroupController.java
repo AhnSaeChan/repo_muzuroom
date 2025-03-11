@@ -15,6 +15,23 @@ public class CodeGroupController {
 		model.addAttribute("list",codeGroupService.selectList());
 		return "xdm/codegroup/CodeGroupXdmList";
 	}
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmView")
+	public String CodeGroupXdmView(Model model, CodeGroupDto codeGroupDto) {
+		model.addAttribute("item",codeGroupService.selectOne(codeGroupDto));
+		return "xdm/codegroup/CodeGroupXdmView";
+	}
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmForm")
+	public String CodeGroupXdmForm() {
+		
+		return "xdm/codegroup/CodeGroupXdmForm";
+	}
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmInst")
+	public String emailaddressXdmInst(CodeGroupDto codeGroupDto) {
+		
+		codeGroupService.insert(codeGroupDto);
+		
+		return "redirect:/xdm/codegroup/CodeGroupXdmList";
+	}
 	
 	
 }
