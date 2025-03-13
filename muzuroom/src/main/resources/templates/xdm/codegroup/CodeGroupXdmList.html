@@ -46,21 +46,21 @@ License: For each use you must have a valid license purchased only from above li
 							
 							<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-4 ms-20" >
 								<div class="dropdown d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
-								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-width: 0;" aria-label="Default select example">N</span>
 								<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">N</option>
 								<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
 								<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
 								</select>
 								</div>
 								<div class="dropdown d-flex flex-column align-items-start justify-content-center flex-wrap ms-18" >
-								<select class="d-flex flex-start mt-n1  form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+								<select class="d-flex flex-start mt-n1  form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-width: 0;" aria-label="Default select example">N</span>
 								<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">Y</option>
 								<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
 								<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
 								</select>
 								</div>
 								<div class="dropdown d-flex flex-column align-items-start justify-content-center flex-wrap ms-18" >
-								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-width: 0;" aria-label="Default select example">N</span>
 								<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">날짜</option>
 								<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">등록일</option>
 								<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">수정일</option>
@@ -74,7 +74,7 @@ License: For each use you must have a valid license purchased only from above li
 								
                                 <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
 									<div class="dropdown d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
-								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+								<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-width: 0;" aria-label="Default select example">N</span>
 								<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">검색구분</option>
 								<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">코드그룹 코드</option>
 								<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">코드그룹 이름</option>
@@ -164,8 +164,7 @@ License: For each use you must have a valid license purchased only from above li
 													<td>
 														<div class="d-flex align-items-center">
 															<!--begin::Thumbnail-->
-															<a href="apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
-																<span class="symbol-label" style="background-image:url(xdm/template/craft_html_v1.1.6/assets/media//stock/ecommerce/1.png);"></span>
+															<a th:text ="${list.seq}">
 															</a>
 															<!--end::Thumbnail-->
 															<div class="ms-5">
