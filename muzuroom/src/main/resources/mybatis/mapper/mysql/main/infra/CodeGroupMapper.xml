@@ -5,15 +5,30 @@
 
  <resultMap id="resultMapObj" type="com.a6.module.codegroup.CodeGroupDto"></resultMap>
  
+ <sql id="selectCommon" >
+ 		FROM
+			codegroup
+		WHERE 1=1
+</sql>
+ 
+ 
+ 
+ <select id="selectOneCount" resultType="Integer">
+	SELECT COUNT(*)
+ 	<include refid="selectCommon"/>
+ </select>
+ 
  <select id="selectList" resultMap="resultMapObj">
-		SELECT
+ 	select codegroup.* from(
+ 		SELECT
 			seq,
 		    cgName,
 		    cgDelNY
-		FROM
-			codegroup
-		WHERE 1=1
-		ORDER BY seq DESC
+					
+		<include refid="selectCommon"/>
+		ORDER BY seq 
+	) codegroup
+	limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 <select id="selectOne" resultMap="resultMapObj">
 		SELECT
@@ -40,4 +55,10 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<update id="update">
+	UPDATE codegroup SET
+		cgName = #{cgName}
+	WHERE seq = #{seq}
+;
+	</update>
 </mapper>

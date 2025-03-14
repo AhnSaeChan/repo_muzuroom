@@ -3272,7 +3272,9 @@ License: For each use you must have a valid license purchased only from above li
 											</form>
 											<!--end::Preferences-->
 											<!--begin::Preferences-->
-											<form data-kt-search-element="preferences" class="pt-1 d-none">
+											<form name="formList" id="formList" method="post" autocomplete="off"  data-kt-search-element="preferences" class="pt-1 d-none">
+												<input type = "hidden" name = "thisPage" th:value="${vo.thisPage}" default="1"/>
+												<input type = "hidden" id = "rowNumToShow" name = "rowNumToShow" th:value = "${vo.rowNumToShow}"/>
 												<!--begin::Heading-->
 												<h3 class="fw-semibold text-gray-900 mb-7">Search Preferences</h3>
 												<!--end::Heading-->
