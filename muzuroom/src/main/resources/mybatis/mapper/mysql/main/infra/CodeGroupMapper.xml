@@ -26,7 +26,7 @@
 		    cgDelNY
 					
 		<include refid="selectCommon"/>
-		ORDER BY seq 
+		ORDER BY seq DESC
 	) codegroup
 	limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>

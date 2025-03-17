@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.code.CodeDao">
+
+ <resultMap id="resultMapObj" type="com.a6.module.code.CodeDto"></resultMap>
+ 
+ <sql id="selectCommon" >
+ 		FROM
+			code
+		WHERE 1=1
+</sql>
+
+<select id="selectOneCount" resultType="Integer">
+	SELECT COUNT(*)
+ 	<include refid="selectCommon"/>
+ </select>
+ 
+ <select id="selectList" resultMap="resultMapObj">
+ select code.* from(
+ 
+ SELECT
+			seq,
+            cdDelNY,
+		    codeUsedNY,
+		    codeGroupCd,
+			codeGroupName,
+            codeCD,
+            codeAlt,
+            cdName,
+            codeNameEng,
+            codeOrder,
+            codeRegDate,
+            codeCorrectDate,
+            codeGroup_seq
+            <include refid="selectCommon"/>
+           ORDER BY seq DESC
+		) code
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+ </select>
+
+ </mapper>
