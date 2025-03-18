@@ -16,6 +16,17 @@
  	<include refid="selectCommon"/>
  </select>
  
+<select id="listCodeGroup">
+
+(select count(codegroup.ifcdSeq)
+	from 
+		cgName codegroup 
+	where 1=1 
+	and codegroup.cdDelNY = 0 and codegroup.ifcgSeq = code.ifcgSeq) 
+	as xifcdSeqCount
+
+</select> 
+ 
  <select id="selectList" resultMap="resultMapObj">
  select code.* from(
  
@@ -38,5 +49,53 @@
 		) code
 		limit #{rowNumToShow} offset #{startRnumForMysql}
  </select>
+ 
+ <select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			seq,
+		    cdName
+		FROM
+			code
+		WHERE 1=1
+			AND seq =#{seq}
+		ORDER BY seq DESC
+ </select>
+ 
+ <insert id="insert">
+	 INSERT INTO code(
+		
+		cdDelNY,
+		codeUsedNY,
+		codeGroupCd,
+		codeGroupName,
+		codeCD,
+		codeAlt,
+		cdName,
+		codeNameEng,
+		codeOrder,
+		codeRegDate,
+		codeCorrectDate,
+		codeGroup_seq
+	)VALUES(
+		
+		#{cdDelNY},
+		#{codeUsedNY},
+		#{codeGroupCd},
+		#{codeGroupName},
+		#{codeCD},
+		#{codeAlt},
+		#{cdName},
+		#{codeNameEng},
+		#{codeOrder},
+		#{codeRegDate},
+		#{codeCorrectDate},
+		#{codeGroup_seq},
+	)
+ 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+ 	</insert>
+ 	
+ 	
 
  </mapper>

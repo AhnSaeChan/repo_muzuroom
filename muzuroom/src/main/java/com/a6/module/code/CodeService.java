@@ -14,8 +14,8 @@ public class CodeService {
 	@Autowired
 	CodeDao codeDao;
 	
-	public int selectRaw(CodeVo codeVo) {
-		return codeDao.selectOneCount(codeVo);
+	public int selectListWithoutPaging(CodeVo codeVo) {
+		return codeDao.selectListWithoutPaging(codeVo);
 	}
 	
 	public int selectOneCount(CodeVo codeVo) {
@@ -24,5 +24,13 @@ public class CodeService {
 	
 	public List<CodeDto> selectList(CodeVo codeVo){
 		return codeDao.selectList(codeVo);
+	}
+	
+	public CodeDto selectOne(CodeVo codeVo) {
+		return codeDao.selectOne(codeVo); 
+	}
+	
+	public int insert(CodeDto codeDto) {
+		return codeDao.insert(codeDto);
 	}
 }

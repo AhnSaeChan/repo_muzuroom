@@ -5,13 +5,22 @@ public class CodeGroupDto {
 	
 	private String seq;
 	private String cgName;
+	private Integer count;
 	private Integer cgDelNY;
 //	-----
+	
+	
 	/**
 	 * @return the seq
 	 */
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	/**
 	 * @param seq the seq to set

@@ -10,7 +10,9 @@ import com.a6.module.codegroup.CodeGroupVo;
 
 @Repository
 public interface CodeDao {
-	public int selectRaw(CodeVo CodeVo);
+	public int selectListWithoutPaging(CodeVo CodeVo);
 	public int selectOneCount(CodeVo CodeVo);
 	public List<CodeDto> selectList(CodeVo CodeVo);
+	public CodeDto selectOne(CodeVo codeVo);
+	public int insert (CodeDto codeDto);
 }

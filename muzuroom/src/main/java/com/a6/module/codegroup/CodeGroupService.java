@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.a6.module.code.CodeVo;
+
 @Service
 public class CodeGroupService {
 	@Autowired
 	CodeGroupDao codeGroupDao;
 	
-	public int selectRaw(CodeGroupVo codeGroupVo) {
-		return codeGroupDao.selectOneCount(codeGroupVo);
+
+	
+	public int listTotal(CodeGroupVo codeGroupVo) {
+		return codeGroupDao.listTotal(codeGroupVo);
 	}
 	
 	public int selectOneCount(CodeGroupVo codeGroupVo) {

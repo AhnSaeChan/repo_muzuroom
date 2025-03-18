@@ -18,7 +18,7 @@ public class CodeGroupController {
 //		int a = codeGroupService.selectOneCount();
 //		model.addAttribute(vo);
 		model.addAttribute("list",codeGroupService.selectList(vo));
-		
+		model.addAttribute("total",codeGroupService.listTotal(vo));
 //		CodeGroupVo codeGroupVo = new CodeGroupVo();
 //		codeGroupVo.setThisPage();
 //		codeGroupVo.setRowNumToShow(20);

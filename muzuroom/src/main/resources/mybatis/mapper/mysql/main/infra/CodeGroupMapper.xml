@@ -11,7 +11,10 @@
 		WHERE 1=1
 </sql>
  
- 
+ <select id="listTotal" resultType="Integer">
+ 	SELECT SUM(count)
+	FROM codegroup;
+ </select>
  
  <select id="selectOneCount" resultType="Integer">
 	SELECT COUNT(*)
@@ -22,18 +25,25 @@
  	select codegroup.* from(
  		SELECT
 			seq,
+            groupUsedNY,
+		    codeGroupCode,
 		    cgName,
-		    cgDelNY
-					
+			cgNameEng,
+            count,
+            cgOrder,
+            cgRegDate,
+            cgDelNY
 		<include refid="selectCommon"/>
 		ORDER BY seq DESC
 	) codegroup
 	limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
+
 <select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			seq,
 		    cgName
+		   
 		FROM
 			codegroup
 		WHERE 1=1
@@ -43,12 +53,23 @@
 	</select>
 <insert id="insert">
 	INSERT INTO codegroup(
-		
-		cgName,
-		cgDelNY
+		groupUsedNY,
+	    codeGroupCode,
+	    cgName,
+		cgNameEng,
+        count,
+        cgOrder,
+        cgRegDate,
+        cgDelNY
 	)VALUES(
 		
-		#{cgName},
+		#{groupUsedNY},
+		#{codeGroupCode},
+		#{cgName}
+		#{cgNameEng}
+		#{count}
+		#{cgOrder}
+		#{cgRegDate}
 		#{cgDelNY}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
@@ -57,7 +78,15 @@
 	</insert>
 	<update id="update">
 	UPDATE codegroup SET
-		cgName = #{cgName}
+		groupUsedNY = #{groupUsedNY}
+	    codeGroupCode = #{codeGroupCode}
+	    cgName = #{cgName}
+		cgNameEng = #{cgNameEng}
+        count = #{count}
+        cgOrder = #{cgOrder}
+        cgRegDate = #{cgRegDate}
+        cgDelNY = #{cgDelNY}
+		
 	WHERE seq = #{seq}
 ;
 	</update>

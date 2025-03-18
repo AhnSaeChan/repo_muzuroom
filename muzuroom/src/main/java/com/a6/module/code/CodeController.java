@@ -3,10 +3,13 @@ package com.a6.module.code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+
+
 public class CodeController {
 	@Autowired
 	CodeService codeService;
@@ -22,4 +25,34 @@ public class CodeController {
 		
 		return "xdm/code/CodeXdmList";
 	}
+	@RequestMapping(value = "/xdm/code/CodeXdmView")
+	public String CodeXdmView(Model model, CodeVo codeVo) {
+		model.addAttribute("item",codeService.selectOne(codeVo));
+		return "xdm/code/CodeXdmView";
+	}
+	@RequestMapping(value = "/xdm/code/CodeXdmForm")
+	public String CodeXdmForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+		
+		
+		
+		return "/xdm/code/CodeXdmList" + "xdm/code/CodeXdmForm";
+	}
+	@RequestMapping(value = "/xdm/code/CodeXdmInst")
+	public String CodeXdmInst(CodeDto codeDto, CodeVo vo, Model model) {
+		
+		codeService.insert(codeDto);
+		
+		model.addAttribute("listCodeGroup", codeService.selectListWithoutPaging(vo));
+		
+//		if (vo.getIfcdSeq(codeDto).equals("0") || vo.getIfcdSeq(codeDto).equals("")) {
+//			//	insert
+//		} else {
+//			model.addAttribute("item", codeService.selectOne(vo));
+//		}
+		
+		return "redirect:/xdm/code/CodeXdmList";
+	}
+	
+	
+	
 }

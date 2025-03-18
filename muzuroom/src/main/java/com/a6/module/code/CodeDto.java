@@ -15,9 +15,25 @@ public class CodeDto {
     private String codeRegDate;
     private String codeCorrectDate;
     private Integer codeGroup_seq;
+    private Integer ifcdSeq;
+    private Integer ifcgSeq;
 // -----
+    
+    
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getIfcdSeq() {
+		return ifcdSeq;
+	}
+	public void setIfcdSeq(Integer ifcdSeq) {
+		this.ifcdSeq = ifcdSeq;
+	}
+	public Integer getIfcgSeq() {
+		return ifcgSeq;
+	}
+	public void setIfcgSeq(Integer ifcgSeq) {
+		this.ifcgSeq = ifcgSeq;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;

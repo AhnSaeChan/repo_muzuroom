@@ -108,7 +108,7 @@ License: For each use you must have a valid license purchased only from above li
 								<span class="path1"></span>
 								
 							</i>
-							<h1 class="ms-5">Total</h1>
+							<h1 th:text = "${total}" class="ms-5"></h1>
 						</div>
 						<!--end::Search-->
 					</div>
@@ -177,8 +177,9 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 									</div>
 								</td>
-								<td th:text ="${list.seq}" ></td>
-								<td><a th:href="@{/xdm/codegroup/CodeGroupXdmView(seq=${list.seq})}" th:text = "${list.cgName}"></a></td>
+								<td th:text ="${list.seq}" class="text-start pe-0" ></td>
+								<td><a th:href="@{/xdm/codegroup/CodeGroupXdmView(seq=${list.seq})}" th:text = "${list.cgName}" class="text-start pe-0"></a></td>
+								<td th:text ="${list.count}" class="text-start pe-0" ></td>
 								<td th:text ="${list.cgDelNY}"></td>
 							</tr>
 						</tbody>
