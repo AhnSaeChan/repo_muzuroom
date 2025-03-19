@@ -65,11 +65,11 @@
 		
 		#{groupUsedNY},
 		#{codeGroupCode},
-		#{cgName}
-		#{cgNameEng}
-		#{count}
-		#{cgOrder}
-		#{cgRegDate}
+		#{cgName},
+		#{cgNameEng},
+		#{count},
+		#{cgOrder},
+		#{cgRegDate},
 		#{cgDelNY}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
@@ -78,16 +78,16 @@
 	</insert>
 	<update id="update">
 	UPDATE codegroup SET
-		groupUsedNY = #{groupUsedNY}
-	    codeGroupCode = #{codeGroupCode}
-	    cgName = #{cgName}
-		cgNameEng = #{cgNameEng}
-        count = #{count}
-        cgOrder = #{cgOrder}
-        cgRegDate = #{cgRegDate}
+		groupUsedNY = #{groupUsedNY},
+	    codeGroupCode = #{codeGroupCode},
+	    cgName = #{cgName},
+		cgNameEng = #{cgNameEng},
+        count = #{count},
+        cgOrder = #{cgOrder},
+        cgRegDate = #{cgRegDate},
         cgDelNY = #{cgDelNY}
 		
 	WHERE seq = #{seq}
-;
+
 	</update>
 </mapper>

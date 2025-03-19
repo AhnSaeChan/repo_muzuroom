@@ -31,24 +31,15 @@ public class CodeController {
 		return "xdm/code/CodeXdmView";
 	}
 	@RequestMapping(value = "/xdm/code/CodeXdmForm")
-	public String CodeXdmForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+	public String CodeXdmForm(){
 		
 		
-		
-		return "/xdm/code/CodeXdmList" + "xdm/code/CodeXdmForm";
+		return "xdm/code/CodeXdmForm";
 	}
 	@RequestMapping(value = "/xdm/code/CodeXdmInst")
-	public String CodeXdmInst(CodeDto codeDto, CodeVo vo, Model model) {
+	public String CodeXdmInst(CodeDto codeDto) {
 		
 		codeService.insert(codeDto);
-		
-		model.addAttribute("listCodeGroup", codeService.selectListWithoutPaging(vo));
-		
-//		if (vo.getIfcdSeq(codeDto).equals("0") || vo.getIfcdSeq(codeDto).equals("")) {
-//			//	insert
-//		} else {
-//			model.addAttribute("item", codeService.selectOne(vo));
-//		}
 		
 		return "redirect:/xdm/code/CodeXdmList";
 	}

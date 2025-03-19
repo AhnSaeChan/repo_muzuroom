@@ -1,205 +1,377 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{xdm/Include/code/headForm ::codeHeadForm}"></div>
-					
-<!--begin::Content-->
-<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
-	<!--begin::Toolbar-->
-	<div class="toolbar" id="kt_toolbar">
-		<div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
-			<!--begin::Info-->
-			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
-				<!--begin::Title-->
-				<h1 class="text-gray-900 fw-bold my-1 fs-2">Code</h1>
-				<!--end::Title-->
-				<!--begin::Breadcrumb-->
-				<ul class="breadcrumb fw-semibold fs-base my-1">
-					<li class="breadcrumb-item text-muted">
-						<a href="index.html" class="text-muted text-hover-primary">Home</a>
-					</li>
-					<li class="breadcrumb-item text-muted">eCommerce</li>
-					<li class="breadcrumb-item text-muted">Catalog</li>
-					<li class="breadcrumb-item text-gray-900">Code</li>
-				</ul>
-				<!--end::Breadcrumb-->
-			</div>
-			<!--end::Info-->
-			<!--begin::Actions-->
-			
-			<!--end::Actions-->
-		</div>
-	</div>
-	<!--end::Toolbar-->
-	<!--begin::Post-->
-	<div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
-		<!--begin::Container-->
-		<div class="container-xxl">
-			<!--begin::Form-->
-			<form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="apps/ecommerce/catalog/products.html">
-				
-				<!--begin::Main column-->
-				<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-					
-					<!--end:::Tabs-->
-					<!--begin::Tab content-->
-					<div class="tab-content">
-						<!--begin::Tab pane-->
-						<div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
-							<div class="d-flex flex-column gap-7 gap-lg-10">
-								<!--begin::General options-->
-								<div class="card card-flush py-4">
-									<!--begin::Card header-->
-									<div class="card-header">
-										<div class="card-title">
-											<h2>기본정보</h2>
-										</div>
-									</div>
-									<!--end::Card header-->
-									<!--begin::Card body-->
-									<div class="card-body pt-0">
-										<!--begin::Input group-->
-										<div class="mb-10 fv-row">
-											<!--begin::Label-->
-											<label for="ifcgSeq" class="required form-label ms-3">코드그룹</label>
-											<!--end::Label-->
-											<!--begin::Input-->
-											<select id="ifcgSeq" name="ifcgSeq" class="d-flex flex-start mt-n1  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
-											<option value="" style="background-color: white; color:black; width:200px; height:41px" href="#">선택하세요</option>
-											<option th:each="list : ${listCodeGroup}" th:value="${list.ifcgSeq}"  
-											th:text="${list.cgName}" th:selected="${listSeq == item?.ifcgSeq}" value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-											<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-											</select>
-											<!--end::Input-->
-											<!--begin::Description-->
-											<!--begin::Label-->
-											<div class="d-flex flex-column flex-md-row gap-5 mt-4 invalid-feedback" id="ifcgSeqFeedback">
-									<div class="flex-row-fluid">
-										<!--begin::Label-->
-										<label class="required form-label ms-3">코드</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<input type="text"  class="form-control" name="billing_order_city" placeholder="자동생성"  />
-										<!--end::Input-->
-									</div>
-									<div class="fv-row flex-row-fluid">
-										<!--begin::Label-->
-										<label class="form-label ms-3">코드 (Another)</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<input type="text" class="form-control" name="billing_order_postcode" placeholder="영대소문자, 숫자" />
-										<!--end::Input-->
-									</div>
-									<div class="fv-row flex-row-fluid">
-										<!--begin::Label-->
-										<label class="required form-label ms-3">코드 이름</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<input type="text" class="form-control" name="billing_order_state" placeholder="한글,영대소문자,숫자"  />
-										<!--end::Input-->
-									</div>
-									<div class="fv-row flex-row-fluid">
-										<!--begin::Label-->
-										<label class="form-label ms-3">코드 이름 (영문)</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<input type="text"text class="form-control" name="billing_order_state" placeholder="영대소문자,숫자"  />
-										<!--end::Input-->
-									</div>
+<div th:replace="~{xdm/Include/headForm ::headForm}"></div>
+					<!--begin::Content-->
+					<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Toolbar-->
+						<div class="toolbar" id="kt_toolbar">
+							<div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+									<!--begin::Title-->
+									<h1 class="text-gray-900 fw-bold my-1 fs-2">Code Form</h1>
+									<!--end::Title-->
+									<!--begin::Breadcrumb-->
+									<ul class="breadcrumb fw-semibold fs-base my-1">
+										<li class="breadcrumb-item text-muted">
+											<a href="index.html" class="text-muted text-hover-primary">Home</a>
+										</li>
+										<li class="breadcrumb-item text-muted">eCommerce</li>
+										<li class="breadcrumb-item text-muted">Catalog</li>
+										<li class="breadcrumb-item text-gray-900">Code</li>
+									</ul>
+									<!--end::Breadcrumb-->
 								</div>
-											<!--end::Input-->
-											<!--begin::Description-->
-											
-											<!--end::Description-->
-										</div>
-										<div class="fv-row col-sm-6 mt-n5">
-												<!--begin::Label-->
-												
-												<!--end::Label-->
-												<!--begin::Input-->
-												<div class="d-flex flex-wrap flex-sm-nowrap gap-3">
-													<div class="fv-row flex-row-fluid">
-										<!--begin::Label-->
-										<label class="required form-label  ms-3">사용 여부</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<select class="  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
-											<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">선택하세요</option>
-											<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-											<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-											</select>
-										<!--end::Input-->
-									</div>
-									<div class="fv-row flex-row-fluid ">
-										<!--begin::Label-->
-										<label class="required form-label  ms-3">순서</label>
-										<!--end::Label-->
-										<!--begin::Input-->
-										<input type="text" style="width:290px; height:41px" class="form-control" name="billing_order_state" placeholder=""  />
-										<!--end::Input-->
-									</div>
-												</div>
-												<!--end::Input-->
-												<!--begin::Description-->
-												
-												<!--end::Description-->
-											</div>
-										
-										<!--end::Input group-->
-										<!--begin::Input group-->
-										<div>
-											<!--begin::Label-->
-											<label class="form-label mt-5 ms-3">설명</label>
-											<!--end::Label-->
-											<!--begin::Editor-->
-											<div class="min-h-200px mb-2 border-radius:30px">
-												<textarea name="" id="" style=" width: 600px; height:150px ; border-width:2px" class="border-radius:30px border-secondary">
-												
-												</textarea></div>
-												<div class="fv-row">
-											
-											<!--begin::Input-->
-											<div class=" col-12  d-flex flex-stack flex-wrap  flex-sm-nowrap py-2 m" >
-							
-												<button type="button" id="btnSave" class="btn btn fw-bold btn-secondary btn-sm"><i class="fa-solid fa-list fs-2x ps-3 me-2"></i></button>
-												<button type="button" id="btnSave" class="btn btn fw-bold btn-primary btn-sm"><i class="fa-solid fa-database fs-2x ps-3 me-2"></i></button>
-											</div>
-											<!--end::Input-->
-											<!--begin::Description-->
-											
-											<!--end::Description-->
-										</div>
-											<!--end::Editor-->
-											<!--begin::Description-->
-										
-											<!--end::Description-->
-										</div>
-										
-										<!--end::Input group-->
-									</div>
-									
-									<!--end::Card header-->
-								</div>
+								<!--end::Info-->
+								<!--begin::Actions-->
 								
-								<!--end::General options-->
-								<!--begin::Media-->
-								
-								
+								<!--end::Actions-->
 							</div>
 						</div>
-						<!--end::Tab pane-->
-						<!--begin::Tab pane-->
-						
-					<!--end::Tab content-->
+						<!--end::Toolbar-->
+						<!--begin::Post-->
+						<div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div class="container-xxl">
+								<!--begin::Form-->
+								<form action="/xdm/code/CodeXdmInst" method="post" id="form" class="form d-flex flex-column flex-lg-row" >
+									
+									<!--begin::Main column-->
+									<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+										
+										<!--end:::Tabs-->
+										<!--begin::Tab content-->
+										<div class="tab-content">
+											<!--begin::Tab pane-->
+											<div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
+												<div class="d-flex flex-column gap-7 gap-lg-10">
+													<!--begin::General options-->
+													<div class="card card-flush py-4">
+														<!--begin::Card header-->
+														<div class="card-header">
+															<div class="card-title">
+																<h2>기본정보</h2>
+															</div>
+														</div>
+														<!--end::Card header-->
+														<!--begin::Card body-->
+														<div class="card-body pt-0">
+															<!--begin::Input group-->
+															<div class="mb-10 fv-row">
+																<!--begin::Label-->
+																<label class="required form-label ms-3">코드그룹</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<select class="d-flex flex-start mt-n1  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
+																<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">선택하세요</option>
+																<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
+																<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
+																</select>
+																<!--end::Input-->
+																<!--begin::Description-->
+																<!--begin::Label-->
+																<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="seq" id="seq" disabled  class="form-control"  placeholder="자동생성" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 (Another)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeAlt" id="codeAlt" class="form-control" placeholder="영대소문자, 숫자" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드 이름</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="cdName" id="cdName" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 이름 (영문)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeNameEng" id="codeNameEng" class="form-control" placeholder="영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+													</div>
+																<!--end::Input-->
+																<!--begin::Description-->
+																
+																<!--end::Description-->
+															</div>
+															<div class="fv-row col-sm-6 mt-n5">
+																	<!--begin::Label-->
+																	
+																	<!--end::Label-->
+																	<!--begin::Input-->
+																	<div class="d-flex flex-wrap flex-sm-nowrap gap-3">
+																		<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label  ms-3">사용 여부</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<select class="  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
+																<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">선택하세요</option>
+																<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
+																<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
+																</select>
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid ">
+															<!--begin::Label-->
+															<label class="required form-label  ms-3">순서</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeUsedNY" id="codeUsedNY" style="width:290px; height:41px" class="form-control" placeholder=""  />
+															<!--end::Input-->
+														</div>
+																	</div>
+																	<!--end::Input-->
+																	<!--begin::Description-->
+																	
+																	<!--end::Description-->
+																</div>
+															
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div>
+																<!--begin::Label-->
+																<label class="form-label mt-5 ms-3">설명</label>
+																<!--end::Label-->
+																<!--begin::Editor-->
+																<div class="min-h-200px mb-2 border-radius:30px">
+																	<textarea name="" id="" style=" width: 600px; height:150px ; border-width:2px" class="border-radius:30px border-secondary">
+																	
+																	</textarea></div>
+																	<div class="fv-row">
+																<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="seq" id="seq" disabled  class="form-control"  placeholder="자동생성" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 (Another)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="cdDelNY" id="cdDelNY" class="form-control" placeholder="영대소문자, 숫자" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드 이름</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeGroupCd" id="codeGroupCd" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 이름 (영문)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeGroupName" id="codeGroupName" class="form-control" placeholder="영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+													</div>
+													<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="seq" id="seq" disabled  class="form-control"  placeholder="자동생성" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 (Another)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeCD" id="codeCD" class="form-control" placeholder="영대소문자, 숫자" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드 이름</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeOrder" id="codeOrder" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 이름 (영문)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeRegDate" id="codeRegDate" class="form-control" placeholder="영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+													</div>
+													<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="seq" id="seq" disabled  class="form-control"  placeholder="자동생성" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 (Another)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeCorrectDate" id="codeCorrectDate" class="form-control" placeholder="영대소문자, 숫자" />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="required form-label ms-3">코드 이름</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeGroup_seq" id="codeGroup_seq" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">코드 이름 (영문)</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="codeRegDate" id="codeRegDate" class="form-control" placeholder="영대소문자,숫자"  />
+															<!--end::Input-->
+														</div>
+													</div>
+													
+																<!--begin::Input-->
+																<div class=" col-12  d-flex flex-stack flex-wrap  flex-sm-nowrap py-2 m" >
+												
+																	<button type="button" class="btn btn fw-bold btn-secondary btn-sm"><i class="fa-solid fa-list fs-2x ps-3 me-2"></i></button>
+																	<button type="button" id="btnSave" class="btn btn fw-bold btn-primary btn-sm"><i class="fa-solid fa-database fs-2x ps-3 me-2"></i></button>
+																</div>
+																<!--end::Input-->
+																<!--begin::Description-->
+																
+																<!--end::Description-->
+															</div>
+																<!--end::Editor-->
+																<!--begin::Description-->
+															
+																<!--end::Description-->
+															</div>
+															
+															<!--end::Input group-->
+														</div>
+														
+														<!--end::Card header-->
+													</div>
+													
+													<!--end::General options-->
+													<!--begin::Media-->
+													
+													
+												</div>
+											</div>
+											<!--end::Tab pane-->
+											<!--begin::Tab pane-->
+											
+										<!--end::Tab content-->
+										
+									</div>
+									<!--end::Main column-->
+								</form>
+								<!--end::Form-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
 					
-				</div>
-				<!--end::Main column-->
-			</form>
-			<!--end::Form-->
-		</div>
-		<!--end::Container-->
-	</div>
-	<!--end::Post-->
-</div>
-<!--end::Content-->
-<div th:replace="~{xdm/Include/code/footerForm ::codeFooterForm}"></div>
+			
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_1"> -->
+<!--     Launch demo modal -->
+<!-- </button> -->
 
+		
+<!-- <div class="modal fade" tabindex="-1" id="myModal" style="display: block;"> -->
+<!--     <div class="modal-dialog"> -->
+<!--         <div class="modal-content"> -->
+<!--             <div class="modal-header"> -->
+<!--                 <h3 class="modal-title">Modal title</h3> -->
+
+<!--                 begin::Close -->
+<!--                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close"> -->
+<!--                     <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i> -->
+<!--                 </div> -->
+<!--                 end::Close -->
+<!--             </div> -->
+
+<!--             <div class="modal-body"> -->
+<!--                 <p>Modal body text goes here.</p> -->
+<!--             </div> -->
+
+<!--             <div class="modal-footer"> -->
+<!--                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button> -->
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+					<!--end::Content-->
+					<script type="text/javascript">
+
+		//let name = document.getElementById("cgName");
+		
+		
+		
+		document.getElementById("btnSave").onclick = function(){
+			
+			if(document.getElementById("codeAlt").value.trim() == null || document.getElementById("codeAlt").value.trim() ==""){
+				//alert(document.getElementById("cgName"));	
+				alert("코드 이름을 입력해 주세요");
+// 				var modal = document.getElementById("myModal");
+				
+				
+				document.getElementById("codeAlt").focus();
+				return false;
+			}
+			
+					
+			if(document.getElementById("cdName").value.trim()== null || document.getElementById("cdName").value.trim() ==""){
+				
+				alert("코드 이름을 입력해 주세요");
+				
+				document.getElementById("cdName").focus();
+				return false;
+			}
+			
+			if(document.getElementById("codeNameEng").value.trim()== null || document.getElementById("codeNameEng").value.trim()==""){
+				
+				alert("코드 이름을 입력해 주세요");
+				
+				document.getElementById("codeNameEng").focus();
+				return false;
+			}
+			
+		document.getElementById("form").submit();
+			}
+		
+		
+			</script>
+			<div th:replace="~{xdm/Include/footerForm ::footerForm}"></div>
+					
+					

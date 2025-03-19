@@ -14,9 +14,7 @@ public class CodeService {
 	@Autowired
 	CodeDao codeDao;
 	
-	public int selectListWithoutPaging(CodeVo codeVo) {
-		return codeDao.selectListWithoutPaging(codeVo);
-	}
+	
 	
 	public int selectOneCount(CodeVo codeVo) {
 		return codeDao.selectOneCount(codeVo);
