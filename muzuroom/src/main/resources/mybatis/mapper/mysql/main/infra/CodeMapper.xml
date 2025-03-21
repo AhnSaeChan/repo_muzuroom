@@ -39,6 +39,18 @@
 		limit #{rowNumToShow} offset #{startRnumForMysql}
  </select>
  
+ <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			seq,
+			cdName,
+			codeGroup_seq
+		FROM
+			code
+		WHERE 1=1
+			AND cdDelNY = 0
+		    AND codeUsedNY = 1
+   </select>
+ 
  <select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			seq,
@@ -46,7 +58,7 @@
 		FROM
 			code
 		WHERE 1=1
-			AND seq =#{seq}
+			AND seq = #{seq}
 		ORDER BY seq DESC
  </select>
  

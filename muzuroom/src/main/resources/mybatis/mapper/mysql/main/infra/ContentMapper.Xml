@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.content.ContentDao">
+
+ <resultMap id="resultMapObj" type="com.a6.module.content.ContentDto"></resultMap>
+ 
+ <sql id="selectCommon" >
+ 		FROM
+			room
+		WHERE 1=1
+</sql>
+
+<select id="selectOneCount" resultType="Integer">
+	SELECT COUNT(*)
+ 	<include refid="selectCommon"/>
+ </select>
+ 
+<select id="selectList" resultMap="resultMapObj">
+ 	SELECT room.* from(
+ 	
+ 	SELECT
+			seq, 
+			roomIdCD,
+			reservAvailableYN,
+			roomName, 
+			pricePerHour,
+			roomRating,
+			shortDescript,
+			roomDetailLocation,
+			roomMap, 
+			distance,
+			favoriteYN,
+			secectTime,
+			roomDetail,
+			roomIntro,
+			roomGuideline,
+			refundPolicy,
+			userInfo_seq
+			<include refid="selectCommon"/>
+			ORDER BY seq DESC
+		) room
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+ </select>
+ 
+<!--  <select id="selectListCachedCodeArrayList" resultMap="resultMapObj"> -->
+<!-- 		SELECT  -->
+<!-- 			seq, -->
+<!-- 			roomName, -->
+<!-- 			codeGroup_seq -->
+<!-- 		FROM -->
+<!-- 			room -->
+<!-- 		WHERE 1=1 -->
+<!-- 			AND cdDelNY = 0 -->
+<!-- 		    AND codeUsedNY = 1 -->
+<!--    </select> -->
+ 
+ <select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			seq,
+		    roomName
+		FROM
+			room
+		WHERE 1=1
+			AND seq = #{seq}
+		ORDER BY seq DESC
+ </select>
+ 
+ <insert id="insert">
+	 INSERT INTO room(
+		
+		roomIdCD,
+		reservAvailableYN,
+		roomName,
+		pricePerHour,
+		roomRating,
+		shortDescript,
+		roomDetailLocation,
+		roomMap,
+		distance,
+		favoriteYN,
+		secectTime,
+		roomDetail,
+        roomIntro,
+        roomGuideline,
+        refundPolicy,
+        userInfo_seq
+        
+	)VALUES(
+		
+        #{roomIdCD},
+        #{reservAvailableYN},
+        #{roomName},
+        #{pricePerHour},
+        #{roomRating},
+        #{shortDescript},
+        #{roomDetailLocation},
+        #{roomMap},
+        #{distance},
+        #{favoriteYN},
+        #{secectTime},
+        #{roomDetail},
+        #{roomIntro},
+        #{roomGuideline},
+        #{refundPolicy},
+        #{userInfo_seq}
+		
+	)
+ 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+ 	</insert>
+ 	
+ 	
+
+ </mapper>

@@ -141,15 +141,15 @@ License: For each use you must have a valid license purchased only from above li
 										<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
 									</div>
 								</th>
-								<th class="min-w-50px">#</th>
-								<th class="min-w-50px">사용</th>
-								<th class="text-end min-w-50px">코드그룹 코드</th>
-								<th class="text-end min-w-200px">코드그룹 이름</th>
-								<th class="text-end min-w-200px">코드그룹 이름(영문)</th>
-								<th class="text-end min-w-100px">갯수</th>
-								<th class="text-end min-w-100px">순서</th>
-								<th class="text-end min-w-100px">등록일</th>
-								<th class="text-end min-w-70px">수정일</th>
+								<th class="text-start min-w-50px">#</th>
+								<th class="text-start min-w-30px">코드그룹 코드</th>
+								<th class="text-start min-w-50px">코드그룹 이름</th>
+								<th class="text-start min-w-100px">코드그룹 이름(영문)</th>
+								<th class="text-start min-w-20px">코드 갯수</th>
+								<th class="text-start min-w-20px">순서</th>
+								<th class="text-start min-w-40px">등록일</th>
+								<th class="text-start min-w-40px">수정일</th>
+								
 							</tr>
 						</thead>
 						<tbody class="fw-semibold text-gray-600">
@@ -177,10 +177,16 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 									</div>
 								</td>
-								<td th:text ="${list.seq}" class="text-start pe-0" ></td>
-								<td><a th:href="@{/xdm/codegroup/CodeGroupXdmView(seq=${list.seq})}" th:text = "${list.cgName}" class="text-start pe-0"></a></td>
-								<td th:text ="${list.count}" class="text-start pe-0" ></td>
-								<td th:text ="${list.cgDelNY}"></td>
+	
+	<td><a th:href="@{/xdm/codegroup/CodeGroupXdmView(seq=${list.seq})}" th:text = "${list.codeGroupCode}" class="text-start pe-0"></a></td>
+	<td th:text ="${list.cgName}" class="text-start pe-0" ></td>
+	<td th:text ="${list.cgNameEng}" class="text-start pe-0"></td>
+	<td th:text ="${list.count}" class="text-start pe-0"></td>
+	<td th:text ="${list.cgOrder}" class="text-start pe-0"></td>
+	<td th:text ="${list.cgRegDate}" class="text-start pe-0"></td>
+	<td th:text ="${list.cgCorrectDate}" class="text-start pe-0"></td>
+								
+							
 							</tr>
 						</tbody>
 					</table>

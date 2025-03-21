@@ -32,6 +32,7 @@
             count,
             cgOrder,
             cgRegDate,
+            cgCorrectDate,
             cgDelNY
 		<include refid="selectCommon"/>
 		ORDER BY seq DESC
@@ -60,6 +61,7 @@
         count,
         cgOrder,
         cgRegDate,
+        cgCorrectDate,
         cgDelNY
 	)VALUES(
 		
@@ -70,6 +72,7 @@
 		#{count},
 		#{cgOrder},
 		#{cgRegDate},
+		#{cgCorrectDate},
 		#{cgDelNY}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
@@ -85,6 +88,7 @@
         count = #{count},
         cgOrder = #{cgOrder},
         cgRegDate = #{cgRegDate},
+        cgCorrectDate= #{cgCorrectDate},
         cgDelNY = #{cgDelNY}
 		
 	WHERE seq = #{seq}

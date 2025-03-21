@@ -1,11 +1,12 @@
 package com.a6.module.code;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.a6.module.codegroup.CodeGroupVo;
+import jakarta.annotation.PostConstruct;
 
 
 
@@ -31,4 +32,44 @@ public class CodeService {
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}
+	
+	 @PostConstruct
+		public void selectListCachedCodeArrayList() throws Exception {
+			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();
+			CodeDto.cachedCodeArrayList.clear(); 
+			CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
+			System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
+		}
+	    
+	    
+		public static void clear() throws Exception {
+			CodeDto.cachedCodeArrayList.clear();
+		}
+		
+		
+		public static List<CodeDto> selectListCachedCode(String Seq) throws Exception {
+			List<CodeDto> rt = new ArrayList<CodeDto>();
+			for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+				if (codeRow.getSeq().equals(Seq)) {
+					rt.add(codeRow);
+				} else {
+					// by pass
+				}
+			}
+			return rt;
+		}
+
+							 
+		public static String selectOneCachedCode(int code) throws Exception {
+			String rt = "";
+			for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+				System.out.println(codeRow.getSeq());
+				if (codeRow.getSeq().equals(Integer.toString(code))) {
+					rt = codeRow.getCdName();
+				} else {
+					// by pass
+				}
+			}
+			return rt;
+		}
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.userinfo.UserInfoDao">
+
+ <resultMap id="resultMapObj" type="com.a6.module.userinfo.UserInfoDto"></resultMap>
+ 
+ <sql id="selectCommon" >
+ 		FROM
+ 			userinfo
+ 		WHERE 1=1	
+ </sql>
+ 
+ <select id="selectOneCount" resultType="Integer">
+ 	SELECT COUNT(*)
+ 	<include refid="selectCommon"/>
+ </select>
+ 
+ 
+ <select id="selectList" resultMap="resultMapObj">
+ 	select userinfo.* from( 
+		 SELECT
+			seq,
+		    userCodeCD,
+		    userFirstName,
+		    userName,
+		    userGenderMF,
+		    userId,
+		    userPassword,
+		    userPhoneFirstDig,
+		    userPhoneNum,
+		    userZipcode,
+		    userAddress,
+		    userEmail,
+		    userDOB,
+		    userInfoDelYN,
+		    userReview_seq,
+		    payMethod_seq,
+		    reservCurrent_seq
+		<include refid="selectCommon"/>
+		ORDER BY seq DESC
+	) userinfo
+	limit #{rowNumToShow} offset #{startRnumForMysql}
+</select>
+
+<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			seq,
+			userCodeCD,
+			userFirstName,
+		    userName,
+		   	userId,
+		   	userPassword,
+		   	userPhoneFirstDig,
+		   	userPhoneNum,
+		   	userZipcode,
+		   	userAddress,
+		   	userEmail,
+		   	userDOB
+		FROM
+			userinfo
+		WHERE 1=1
+			AND seq = #{seq}
+		ORDER BY seq DESC
+		
+</select>
+ 
+ </mapper>

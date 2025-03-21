@@ -1,5 +1,8 @@
 package com.a6.module.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CodeDto {
 	
 	private String seq;
@@ -15,11 +18,29 @@ public class CodeDto {
     private String codeRegDate;
     private String codeCorrectDate;
     private Integer codeGroup_seq;
+    
+    public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 	/**
+	 * 
+	 * 
 	 * @return the seq
 	 */
+    
+    
 	public String getSeq() {
 		return seq;
+	}
+	/**
+	 * @return the cachedCodeArrayList
+	 */
+	public static List<CodeDto> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	/**
+	 * @param cachedCodeArrayList the cachedCodeArrayList to set
+	 */
+	public static void setCachedCodeArrayList(List<CodeDto> cachedCodeArrayList) {
+		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 	/**
 	 * @param seq the seq to set
