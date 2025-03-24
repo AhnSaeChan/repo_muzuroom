@@ -22,7 +22,7 @@
 					</li>
 					<li class="breadcrumb-item text-muted">eCommerce</li>
 					<li class="breadcrumb-item text-muted">Catalog</li>
-					<li class="breadcrumb-item text-gray-900">Code Group</li>
+					<li class="breadcrumb-item text-gray-900">Code</li>
 				</ul>
 				<!--end::Breadcrumb-->
 			</div>
@@ -32,53 +32,56 @@
 			<!--end::Actions-->
 		</div>
 		
-		<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-4 ms-20" >
+		<div id="divSearch" class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-4 ms-20" >
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
-			<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">N</option>
-			<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
-			<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
+			<select id="shDelNy" name="shDelNy" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" ></span>
+			<option value="" th:selected="${vo.shDelNy == null}" style="background-color: white; color:black; width:200px; height:41px">삭제여부</option>
+			<option value="1" th:selected="${vo.shDelNy == 1}" style="background-color: white; color:black; width:200px; height:41px">Y</option>
+			<option value="0" th:selected="${vo.shDelNy == 0}" style="background-color: white; color:black; width:200px; height:41px">N</option>
 			</select>
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select class="d-flex flex-start mt-n1 ms-n1 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">Y</option>
-			<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
-			<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">Action</option>
+			<select id="shUseNy" name="shUseNy" class="d-flex flex-start mt-n1 ms-n1 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" ></span>
+			<option value="" th:selected="${vo.shUseNy == null}" style="background-color: white; color:black; width:200px; height:41px" >사용여부</option>
+			<option value="1"  th:selected="${vo.shUseNy == 1}" style="background-color: white; color:black; width:200px; height:41px" >Y</option>
+			<option value="0"  th:selected="${vo.shUseNy == 0}" style="background-color: white; color:black; width:200px; height:41px" >N</option>
 			</select>
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">날짜</option>
-			<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">등록일</option>
-			<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">수정일</option>
+			<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px"></span>
+			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >날짜</option>
+			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >등록일</option>
+			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >수정일</option>
 			</select>
 			</div>
 			  <div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20">
-				<input type="date" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input type="text" placeholder="시작일" class="form-control form-control-sm" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
 			  <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap ms-10">
-				<input type="date" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input type="text"  placeholder="종료일" class="form-control form-control-sm"  style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
 				</div>
 			
                            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
 				<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">검색구분</option>
-			<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">코드그룹 코드</option>
-			<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">코드그룹 이름</option>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">코드</option>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">대체 코드</option>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">코드 이름</option>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">코드 이름(영문)</option>
+			<select id="shOption" name="shOption" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+			<option value="" th:selected="${vo.shOption == null}" style="background-color: white; color:black; width:200px; height:41px" >검색구분</option>
+			<option value="1" th:selected="${vo.shOption == 1}" style="background-color: white; color:black; width:200px; height:41px" >코드그룹 코드</option>
+			<option value="2" th:selected="${vo.shOption == 2}" style="background-color: white; color:black; width:200px; height:41px" >코드그룹 이름</option>
+			<option value="3" th:selected="${vo.shOption == 3}" style="background-color: white; color:black; width:200px; height:41px">코드</option>
+			<option value="4" th:selected="${vo.shOption == 4}" style="background-color: white; color:black; width:200px; height:41px" >대체 코드</option>
+			<option value="5" th:selected="${vo.shOption == 5}" style="background-color: white; color:black; width:200px; height:41px" >코드 이름</option>
+			<option value="6" th:selected="${vo.shOption == 6}" style="background-color: white; color:black; width:200px; height:41px" >코드 이름(영문)</option>
 			</select>
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-19">
-				<input type="text"  placeholder="검색어" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
-				<a href="#" class="btn btn-primary ms-18"  ><i class="fa-solid fa-magnifying-glass fs-2 py-n5 me-n1"></i></a>
-				<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 me-15"><a href="#" class="btn btn-primary ms-n6"><i class="fa-solid fa-rotate-right fs-2 py-n5 me-n1"></i></a></div>
+				<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;">
+				<div class="invalid-feedback" id="shValueFeedback"></div>
+			</div>
+				<button type="button" id="btnSearch" class="btn btn-primary ms-18"><i class="fa-solid fa-magnifying-glass fs-2 py-n5 me-n1"></i></button>
+				<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 me-15 ">
+				<button type="button" id="btnReset" class="btn btn-primary ms-n6"><i class="fa-solid fa-rotate-right fs-2 py-n5 me-n1"></i></button></div>
 				</div>
                            
 	<div class="toolbar" id="kt_toolbar"></div>
@@ -108,11 +111,11 @@
 					<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 						<div class="w-100 mw-150px">
 							<!--begin::Select2-->
-							<select class="form-select" aria-label="Default select example">
-							<option selected>10</option>
-							<option value="1">25</option>
-							<option value="2">50</option>
-							<option value="3">100</option>
+							<select class="form-select"  id="changeRowNum" name="changeRowNum" aria-label="Default select example">
+							<option value="5"  th:selected="${vo.rowNumToShow eq 5}">5</option>
+							<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+							<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
+							<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
 							</select>
 							<!--end::Select2-->
 						</div>
@@ -177,7 +180,7 @@
 								<td th:text ="${list.codeGroupName}" class="text-start pe-0" ></td>
 								<td th:text ="${list.codeCD}" class="text-start pe-0" data-order="Scheduled"></td>
 								<td th:text ="${list.codeAlt}" class="text-center pe-0">
-								<td  th:text ="${list.cdName}" class="text-center pe-0">
+								<td class="text-center pe-0"><a th:href="@{/xdm/code/CodeXdmView(seq=${list.seq})}" th:text ="${list.cdName}"></a></td>
 								<td th:text ="${list.codeNameEng}" class="text-center pe-0">
 								<td th:text ="${list.codeOrder}" class="text-start pe-0">
 								<td th:text ="${list.codeRegDate}" class="text-start pe-0">
@@ -248,6 +251,24 @@ let form = document.querySelector("form[name=formList]");
 goList = function (thisPage) {
     document.querySelector("input[name=thisPage]").value = thisPage;
     form.action = "/xdm/code/CodeXdmList";
+    form.submit();
+}
+
+document.getElementById("btnSearch").onclick = function () {
+    form.action = "/xdm/code/CodeXdmList";
+    form.submit();
+}
+
+document.getElementById("changeRowNum").onchange = function () {
+    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+    form.action = "/xdm/code/CodeXdmList";
+    form.submit();
+}
+
+document.getElementById("btnReset").onclick = function () {
+	document.getElementById("shOption").value=""
+	document.getElementById("shValue").value=""
+	form.action = "/xdm/code/CodeXdmList";
     form.submit();
 }
 </script>

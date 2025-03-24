@@ -66,50 +66,50 @@
 		ORDER BY seq DESC
  </select>
  
- <insert id="insert">
-	 INSERT INTO room(
+<!--  <insert id="insert"> -->
+<!-- 	 INSERT INTO room( -->
 		
-		roomIdCD,
-		reservAvailableYN,
-		roomName,
-		pricePerHour,
-		roomRating,
-		shortDescript,
-		roomDetailLocation,
-		roomMap,
-		distance,
-		favoriteYN,
-		secectTime,
-		roomDetail,
-        roomIntro,
-        roomGuideline,
-        refundPolicy,
-        userInfo_seq
+<!-- 		roomIdCD, -->
+<!-- 		reservAvailableYN, -->
+<!-- 		roomName, -->
+<!-- 		pricePerHour, -->
+<!-- 		roomRating, -->
+<!-- 		shortDescript, -->
+<!-- 		roomDetailLocation, -->
+<!-- 		roomMap, -->
+<!-- 		distance, -->
+<!-- 		favoriteYN, -->
+<!-- 		secectTime, -->
+<!-- 		roomDetail, -->
+<!--         roomIntro, -->
+<!--         roomGuideline, -->
+<!--         refundPolicy, -->
+<!--         userInfo_seq -->
         
-	)VALUES(
+<!-- 	)VALUES( -->
 		
-        #{roomIdCD},
-        #{reservAvailableYN},
-        #{roomName},
-        #{pricePerHour},
-        #{roomRating},
-        #{shortDescript},
-        #{roomDetailLocation},
-        #{roomMap},
-        #{distance},
-        #{favoriteYN},
-        #{secectTime},
-        #{roomDetail},
-        #{roomIntro},
-        #{roomGuideline},
-        #{refundPolicy},
-        #{userInfo_seq}
+<!--         #{roomIdCD}, -->
+<!--         #{reservAvailableYN}, -->
+<!--         #{roomName}, -->
+<!--         #{pricePerHour}, -->
+<!--         #{roomRating}, -->
+<!--         #{shortDescript}, -->
+<!--         #{roomDetailLocation}, -->
+<!--         #{roomMap}, -->
+<!--         #{distance}, -->
+<!--         #{favoriteYN}, -->
+<!--         #{secectTime}, -->
+<!--         #{roomDetail}, -->
+<!--         #{roomIntro}, -->
+<!--         #{roomGuideline}, -->
+<!--         #{refundPolicy}, -->
+<!--         #{userInfo_seq} -->
 		
-	)
- 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
-			SELECT last_insert_id()
-		</selectKey>
- 	</insert>
+<!-- 	) -->
+<!--  	<selectKey resultType="String" keyProperty="seq" order="AFTER"> -->
+<!-- 			SELECT last_insert_id() -->
+<!-- 		</selectKey> -->
+<!--  	</insert> -->
  	
  	
 

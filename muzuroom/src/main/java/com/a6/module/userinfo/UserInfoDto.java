@@ -18,7 +18,7 @@ public class UserInfoDto {
 	private Integer userInfoDelYN;
 	private Integer userReview_seq;
 	private Integer payMethod_seq;
-	private Integer reservCurrent_int;
+	private Integer reservCurrent_seq;
 //	-----
 	/**
 	 * @return the seq
@@ -213,17 +213,18 @@ public class UserInfoDto {
 		this.payMethod_seq = payMethod_seq;
 	}
 	/**
-	 * @return the reservCurrent_int
+	 * @return the reservCurrent_seq
 	 */
-	public Integer getReservCurrent_int() {
-		return reservCurrent_int;
+	public Integer getReservCurrent_seq() {
+		return reservCurrent_seq;
 	}
 	/**
-	 * @param reservCurrent_int the reservCurrent_int to set
+	 * @param reservCurrent_seq the reservCurrent_seq to set
 	 */
-	public void setReservCurrent_int(Integer reservCurrent_int) {
-		this.reservCurrent_int = reservCurrent_int;
+	public void setReservCurrent_seq(Integer reservCurrent_seq) {
+		this.reservCurrent_seq = reservCurrent_seq;
 	}
+	
 	
 	
 	

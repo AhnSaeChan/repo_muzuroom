@@ -35,4 +35,16 @@ public class UserInfoController {
 		model.addAttribute("item",userInfoService.selectOne(userInfoDto));
 		return "xdm/userinfo/UserInfoXdmView";
 	}
+	
+	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmForm")
+	public String UserInfoXdmForm() {
+		
+		return "xdm/userinfo/UserInfoXdmForm";
+	}
+	
+	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmInst")
+	public String UserInfoXdmInst(Model model, UserInfoDto userInfoDto) {
+		userInfoService.insert(userInfoDto);
+		return "redirect:/xdm/userinfo/UserInfoXdmInst";
+	}
 }

@@ -64,5 +64,48 @@
 		ORDER BY seq DESC
 		
 </select>
+
+<insert id="insert">
+	 INSERT INTO code(
+		
+		userCodeCD,
+		userFirstName,
+		userName,
+		userGenderMF,
+		userId,
+		userPassword,
+		userPhoneFirstDig,
+		userPhoneNum,
+		userZipcode,
+		userAddress,
+		userEmail,
+		userDOB,
+		userInfoDelYN,
+		userReview_seq,
+		payMethod_seq
+		
+	)VALUES(
+		
+		#{userCodeCD},
+		#{userFirstName},
+		#{userName},
+		#{userGenderMF},
+		#{userId},
+		#{userPassword},
+		#{userPhoneFirstDig},
+		#{userPhoneNum},
+		#{userZipcode},
+		#{userAddress},
+		#{userEmail},
+		#{userDOB},
+		#{userInfoDelYN},
+		#{userReview_seq},
+		#{payMethod_seq},
+		#{reservCurrent_seq}
+	)
+ 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+ 	</insert>
  
  </mapper>

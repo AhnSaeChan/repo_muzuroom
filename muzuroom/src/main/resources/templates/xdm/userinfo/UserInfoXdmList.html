@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{xdm/Include/userinfo/head ::head}"></div>
+<div th:replace="~{xdm/Include/userinfo/head ::userinfohead}"></div>
 
 					<!--begin::Content-->
 <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
@@ -231,7 +231,7 @@
 						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-2 m" >
 						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-3 me-2"></i></a>	
 						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-3 me-2"></i></a>	
-						<a href="/xdm/code/CodeXdmForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-3 me-2"></i></a>
+						<a href="/xdm/userinfo/UserInfoXdmForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-3 me-2"></i></a>
 						</div>
 						<!--end::Add product-->
 					<!--end::Table-->
@@ -246,7 +246,7 @@
 </div>
 </form>
 <!--end::Content-->
-<div th:replace="~{xdm/Include/userinfo/footer ::footer}"></div>
+<div th:replace="~{xdm/Include/userinfo/footer ::userinfofooter}"></div>
 <script type="text/javascript">
 let form = document.querySelector("form[name=formList]");
 goList = function (thisPage) {

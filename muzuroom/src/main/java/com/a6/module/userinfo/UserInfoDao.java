@@ -10,4 +10,5 @@ public interface UserInfoDao {
 	public int selectOneCount(UserInfoVo userInfoVo);
 	public List<UserInfoDto> selectList(UserInfoVo userInfoVo);
 	public UserInfoDto selectOne(UserInfoDto userInfoDto);
+	public int insert (UserInfoDto userInfoDto);
 }

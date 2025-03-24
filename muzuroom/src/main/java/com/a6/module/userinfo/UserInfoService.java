@@ -21,5 +21,9 @@ public class UserInfoService {
 	public UserInfoDto selectOne(UserInfoDto userInfoDto) {
 		return userInfoDao.selectOne(userInfoDto);
 	}
+	
+	public int insert(UserInfoDto userInfoDto) {
+		return userInfoDao.insert(userInfoDto);
+	}
 
 }

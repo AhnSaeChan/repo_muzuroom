@@ -7,8 +7,24 @@
  
  <sql id="selectCommon" >
  		FROM
-			code
+			code 
 		WHERE 1=1
+		<if test="shUseNy != null and !shUseNy.equals('')">AND code.codeUsedNY = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND code.cdDelNY = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND code.codeGroupCd = #{shValue}</when>
+            <when test="shOption == 2">AND code.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND code.codeCD LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 4">AND code.codeAlt LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 5">AND code.cdName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 6">AND code.codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
 </sql>
 
 <select id="selectOneCount" resultType="Integer">
@@ -47,14 +63,23 @@
 		FROM
 			code
 		WHERE 1=1
-			AND cdDelNY = 0
+			AND cdDelNY = 1
 		    AND codeUsedNY = 1
    </select>
  
  <select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			seq,
-		    cdName
+		    codeUsedNY,
+			codeGroupCd,
+			codeGroupName,
+			codeCD,
+			codeAlt,
+			cdName,
+			codeNameEng,
+			codeRegDate,
+			codeCorrectDate
+			
 		FROM
 			code
 		WHERE 1=1
@@ -96,6 +121,25 @@
 			SELECT last_insert_id()
 		</selectKey>
  	</insert>
+ 	
+ 	<update id="update">
+	UPDATE code SET
+		cdDelNY = #{cdDelNY},
+	    codeUsedNY = #{codeUsedNY},
+	    codeGroupCd = #{codeGroupCd},
+		codeGroupName = #{codeGroupName},
+        codeCD = #{codeCD},
+        codeAlt = #{codeAlt},
+        cdName = #{cdName},
+        codeNameEng= #{codeNameEng},
+        codeOrder = #{codeOrder},
+        codeRegDate = #{codeRegDate},
+        codeCorrectDate = #{codeCorrectDate},
+        codeGroup_seq = #{codeGroup_seq}
+		
+	WHERE seq = #{seq}
+
+	</update>
  	
  	
 

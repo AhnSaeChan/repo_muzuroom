@@ -14,14 +14,16 @@ public class CodeController {
 	@Autowired
 	CodeService codeService;
 	
+	
 	@RequestMapping(value = "/xdm/code/CodeXdmList")
-	public String codeGroupXdmList(CodeVo vo, Model model) {
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeVo vo, Model model)  {
 		
 		vo.setParamsPaging(codeService.selectOneCount(vo));
 		
+		
 		model.addAttribute("list", codeService.selectList(vo));
 		
-		model.addAttribute("vo",vo);
+		
 		
 		return "xdm/code/CodeXdmList";
 	}
@@ -43,6 +45,8 @@ public class CodeController {
 		
 		return "redirect:/xdm/code/CodeXdmList";
 	}
+	
+	
 	
 	
 	

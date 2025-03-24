@@ -12,6 +12,7 @@ public class ContentController {
 	
 	@RequestMapping(value = "/xdm/content/ContentXdmList")
 	public String ContentXdmList(ContentVo vo, Model model) {
+		
 		vo.setParamsPaging(contentService.selectOneCount(vo));
 		
 		model.addAttribute("list",contentService.selectList(vo));
@@ -22,7 +23,7 @@ public class ContentController {
 	}
 	
 	@RequestMapping(value = "/xdm/content/ContentXdmView")
-	public String ContentXdmView(ContentVo contentvo, Model model) {
+	public String ContentXdmView(Model model, ContentVo contentvo) {
 		
 		
 		model.addAttribute("item",contentService.selectOne(contentvo));
