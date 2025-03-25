@@ -32,7 +32,15 @@ public class CodeService {
 	public int insert(CodeDto codeDto) {
 		return codeDao.insert(codeDto);
 	}
-	
+	public int update(CodeDto codeDto) {
+		return codeDao.update(codeDto);
+	}
+	public int delete(CodeDto codeDto) {
+		return codeDao.delete(codeDto);
+	}
+	public int uelete(CodeDto codeDto) {
+		return codeDao.uelete(codeDto);
+	}
 	 @PostConstruct
 		public void selectListCachedCodeArrayList() throws Exception {
 			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+
+
 @Controller
 
 
@@ -16,7 +18,7 @@ public class CodeController {
 	
 	
 	@RequestMapping(value = "/xdm/code/CodeXdmList")
-	public String codeGroupXdmList(@ModelAttribute("vo") CodeVo vo, Model model)  {
+	public String CodeXdmList(@ModelAttribute("vo") CodeVo vo, Model model)  {
 		
 		vo.setParamsPaging(codeService.selectOneCount(vo));
 		
@@ -33,9 +35,15 @@ public class CodeController {
 		return "xdm/code/CodeXdmView";
 	}
 	@RequestMapping(value = "/xdm/code/CodeXdmForm")
-	public String CodeXdmForm(){
+	public String CodeXdmForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
-		
+		if (vo.getSeq().equals("0") || vo.getSeq().equals("")) {
+//			insert mode
+		} else {
+//			update mode
+			model.addAttribute("item", codeService.selectOne(vo));
+			
+		}
 		return "xdm/code/CodeXdmForm";
 	}
 	@RequestMapping(value = "/xdm/code/CodeXdmInst")
@@ -46,7 +54,29 @@ public class CodeController {
 		return "redirect:/xdm/code/CodeXdmList";
 	}
 	
+	@RequestMapping(value = "/xdm/code/CodeXdmUpdt")
+	public String CodeXdmUpdt(CodeDto codeDto) {
+		
+		codeService.update(codeDto);
+		
+		return "redirect:/xdm/code/CodeXdmList";
+	}
 	
+	@RequestMapping(value = "/xdm/code/CodeXdmDele")
+	public String CodeXdmDele(CodeDto codeDto) {
+		
+		codeService.delete(codeDto);
+		
+		return "redirect:/xdm/code/CodeXdmList";
+	}
+	
+	@RequestMapping(value = "/xdm/code/CodeXdmUele")
+	public String CodeXdmUele(CodeDto codeDto) {
+		
+		codeService.uelete(codeDto);
+		
+		return "redirect:/xdm/code/CodeXdmList";
+	}
 	
 	
 	

@@ -33,6 +33,7 @@
  </select>
  
 <select id="selectList" resultMap="resultMapObj">
+ 
  select code.* from(
  
  SELECT
@@ -139,6 +140,21 @@
 		
 	WHERE seq = #{seq}
 
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM code
+		
+		WHERE seq = #{seq}
+	</delete>
+	
+	<update id="uelete">
+		
+		UPDATE code SET
+		
+			cdDelNY = 1
+		
+		WHERE seq = #{seq}
 	</update>
  	
  	

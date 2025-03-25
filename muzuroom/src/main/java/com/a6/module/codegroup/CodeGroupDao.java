@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.a6.module.code.CodeVo;
 
 @Repository
 public interface CodeGroupDao {
@@ -14,4 +13,6 @@ public interface CodeGroupDao {
 	public List<CodeGroupDto> selectList(CodeGroupVo CodeGroupVo);
 	public CodeGroupDto selectOne(CodeGroupDto codeGroupDto);
 	public int insert(CodeGroupDto codeGroupDto);
+	
+	public List<CodeGroupDto> selectListCachedCodeArrayList();
 }
