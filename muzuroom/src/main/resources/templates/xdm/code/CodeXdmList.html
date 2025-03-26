@@ -35,7 +35,7 @@
 		
 		<div id="divSearch" class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-4 ms-20" >
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
-			<select id="shDelNy" name="shDelNy" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" ></span>
+			<select id="shDelNy" name="shDelNy" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; border-radius: 5px; border-width: 0cap; font-size:15px; width:200px; height:41px" ></span>
 			<option value="" th:selected="${vo.shDelNy == null}" style="background-color: white; color:black; width:200px; height:41px">삭제여부</option>
 			<option value="1" th:selected="${vo.shDelNy == 1}" style="background-color: white; color:black; width:200px; height:41px">Y</option>
 			<option value="0" th:selected="${vo.shDelNy == 0}" style="background-color: white; color:black; width:200px; height:41px">N</option>
@@ -43,7 +43,7 @@
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select id="shUseNy" name="shUseNy" class="d-flex flex-start mt-n1 ms-n1 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" ></span>
+			<select id="shUseNy" name="shUseNy" class="d-flex flex-start mt-n1 ms-n1 form-select" style="font-weight: bold; border-radius: 5px; border-width: 0cap; font-size:15px; width:200px; height:41px" ></span>
 			<option value="" th:selected="${vo.shUseNy == null}" style="background-color: white; color:black; width:200px; height:41px" >사용여부</option>
 			<option value="1"  th:selected="${vo.shUseNy == 1}" style="background-color: white; color:black; width:200px; height:41px" >Y</option>
 			<option value="0"  th:selected="${vo.shUseNy == 0}" style="background-color: white; color:black; width:200px; height:41px" >N</option>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px"></span>
+			<select class="d-flex flex-start mt-n1 ms-n2 form-select" style="font-weight: bold; font-size:15px; border-radius: 5px; border-width: 0cap; width:200px; height:41px"></span>
 			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >날짜</option>
 			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >등록일</option>
 			<option value=""  style="background-color: white; color:black; width:200px; height:41px" >수정일</option>
@@ -66,7 +66,7 @@
                            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
 				<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			
-			<select id="shOption" name="shOption" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
+			<select id="shOption" name="shOption" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; border-radius: 5px; border-width: 0cap; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
 			<option value="" th:selected="${vo.shOption == null}" style="background-color: white; color:black; width:200px; height:41px" >검색구분</option>
 			<option value="1" th:selected="${vo.shOption == 1}" style="background-color: white; color:black; width:200px; height:41px" >코드그룹 코드</option>
 			<option value="2" th:selected="${vo.shOption == 2}" style="background-color: white; color:black; width:200px; height:41px" >코드그룹 이름</option>
@@ -216,7 +216,7 @@
 							<li th:if = "${vo.startPage gt vo. pageNumToShow}" class="page-item" style="cursor:pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"
 							th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
 							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor:pointer"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}" ><!-- ${i.index} --></a></li>
-							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
+							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
 							<li class="page-item">
 							
 							</li>
@@ -224,14 +224,14 @@
 						</nav>
 						</div>
 						</div>
-						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-start flex-sm-nowrap py-2 m" >
-							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-xmark fs-2x ps-3 me-2"></i></a>	
-							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-3 me-2"></i></a>
+						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-start flex-sm-nowrap py-3" >
+							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-xmark fs-2x ps-2 me-1"></i></a>	
+							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-2 me-1"></i></a>
 						
-						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-2 m" >
-						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-3 me-2"></i></a>	
-						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-3 me-2"></i></a>	
-						<button type="button" id="btnForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-3 me-2"></i></button>
+						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-3" >
+						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-2 me-1"></i></a>	
+						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-2 me-1"></i></a>	
+						<button type="button" id="btnForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-2 me-1"></i></button>
 						</div>
 						<!--end::Add product-->
 					<!--end::Table-->

@@ -230,10 +230,10 @@
 																<!--begin::Input-->
 																<div class=" col-12  d-flex flex-stack flex-wrap  flex-sm-nowrap py-2 m" >
 												
-																	<button type="button" class="btn btn fw-bold btn-secondary btn-sm"><i class="fa-solid fa-list fs-2x ps-3 me-2"></i></button>
+																	<button type="button" id="btnList" class="btn btn fw-bold btn-secondary btn-sm"><i class="fa-solid fa-list fs-2x ps-3 me-2"></i></button>
 <!-- 																	<button type="button" id="btnSubmit" class="btn btn fw-bold btn-secondary btn-sm"><i class="fa-solid fa-list fs-2x ps-3 me-2"></i></button> -->
 																	<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-2 gap-3" >
-																	<button type="button" id="btnUelete" class="btn btn fw-bold btn-danger btn-sm"><i class="fa-solid fa-database fs-2x ps-3 me-2"></i></button>
+																	<button type="button" id="btnUelete" class="btn btn fw-bold btn-danger btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-3 me-2"></i></button>
 																	<button type="button" id="btnSubmit" class="btn btn fw-bold btn-primary btn-sm"><i class="fa-solid fa-database fs-2x ps-3 me-2"></i></button>
 																	</div>
 																</div>
@@ -355,6 +355,12 @@
  		var modal = document.getElementById("myModal");
 		var close = document.getElementById("closebtn");
 		
+		(document.getElementById("btnForm"))
+			if(seq.value == "0" || seq.value == "") {
+				document.querySelector("#btnUelete").style.display = 'none';
+			}
+		
+		
 		if(document.getElementById("btnUelete")){
 			document.getElementById("btnUelete").onclick = function () {
 				document.querySelector("#modalConfirmTitle").textContent = "확 인";
@@ -371,18 +377,13 @@
  			if(seq.value == "0" || seq.value == "") {
  				
  				form.action ="/xdm/code/CodeXdmInst";
-//  				form.submit();
-					
- 			} else {
+
+			} else {
  			
  				form.action ="/xdm/code/CodeXdmUpdt";
-//  				form.submit();
- 			}
+			}
  			
- 			
- 				
-
-			if(document.getElementById("codeAlt").value.trim() == null || document.getElementById("codeAlt").value.trim() ==""){
+ 			if(document.getElementById("codeAlt").value.trim() == null || document.getElementById("codeAlt").value.trim() ==""){
 				
 				modal.style.display = "block";
 // 				alert("코드 이름을 입력해 주세요");			
@@ -495,8 +496,16 @@
 		
 		
 		
+		document.getElementById("btnList").onclick = function () {
+			form.action = "/xdm/code/CodeXdmList";
+			form.submit();
+		}
 		document.getElementById("btnModalUelete").onclick = function () {
 			form.action = "/xdm/code/CodeXdmUele";
+			form.submit();
+		}
+		document.getElementById("btnModalDelete").onclick = function () {
+			form.action = "/xdm/code/CodeXdmDele";
 			form.submit();
 		}
 		document.getElementById("closebtn").onclick = function(){
