@@ -18,12 +18,16 @@ public class UserInfoService {
 		return userInfoDao.selectList(userInfoVo);
 	}
 	
-	public UserInfoDto selectOne(UserInfoDto userInfoDto) {
-		return userInfoDao.selectOne(userInfoDto);
+	public UserInfoDto selectOne(UserInfoVo userInfoVo) {
+		return userInfoDao.selectOne(userInfoVo);
 	}
 	
 	public int insert(UserInfoDto userInfoDto) {
 		return userInfoDao.insert(userInfoDto);
+	}
+	
+	public UserInfoDto selectOneLogin(UserInfoDto userInfoDto) {
+		return userInfoDao.selectOneLogin(userInfoDto);
 	}
 
 }

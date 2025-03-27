@@ -29,22 +29,49 @@ public class CodeGroupController {
 		 return "xdm/codegroup/CodeGroupXdmList";
 	}
 	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmView")
-	public String CodeGroupXdmView(Model model, CodeGroupDto codeGroupDto) {
-		model.addAttribute("item",codeGroupService.selectOne(codeGroupDto));
+	public String CodeGroupXdmView(Model model, CodeGroupVo vo) {
+		model.addAttribute("item",codeGroupService.selectOne(vo));
 		return "xdm/codegroup/CodeGroupXdmView";
 	}
 	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmForm")
-	public String CodeGroupXdmForm() {
+	public String CodeGroupXdmForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+		
+		if (vo.getSeq().equals("0") || vo.getSeq().equals("")) {
+//			insert mode
+		} else {
+//			update mode
+			model.addAttribute("item", codeGroupService.selectOne(vo));
+			
+		}
 		
 		return "xdm/codegroup/CodeGroupXdmForm";
 	}
 	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmInst")
-	public String emailaddressXdmInst(CodeGroupDto codeGroupDto) {
+	public String CodeGroupXdmInst(CodeGroupDto codeGroupDto) {
 		
 		codeGroupService.insert(codeGroupDto);
 		
 		return "redirect:/xdm/codegroup/CodeGroupXdmList";
 	}
-	
-	
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmUpdt")
+	public String CodeGroupXdmUpdt(CodeGroupDto codeGroupDto) {
+		
+		codeGroupService.update(codeGroupDto);
+		
+		return "redirect:/xdm/codegroup/CodeGroupXdmList";
+	}
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmDele")
+	public String CodeGroupXdmDele(CodeGroupDto codeGroupDto) {
+		
+		codeGroupService.delete(codeGroupDto);
+		
+		return "redirect:/xdm/codegroup/CodeGroupXdmList";
+	}
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmUele")
+	public String CodeGroupXdmUele(CodeGroupDto codeGroupDto) {
+		
+		codeGroupService.uelete(codeGroupDto);
+		
+		return "redirect:/xdm/codegroup/CodeGroupXdmList";
+	}	
 }

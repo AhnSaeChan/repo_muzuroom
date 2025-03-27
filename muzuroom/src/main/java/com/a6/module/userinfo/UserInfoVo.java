@@ -13,14 +13,74 @@ public class UserInfoVo {
 	private int endPage;										// 마지막 페이지 번호
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
-
+	
+	private String seq;
+	private String userName;
+	private String userId;
+	private String userPassword;
 //	-----
-
+	
 	/**
 	 * @return the thisPage
 	 */
 	public int getThisPage() {
 		return thisPage;
+	}
+
+	/**
+	 * @return the userPassword
+	 */
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	/**
+	 * @param userPassword the userPassword to set
+	 */
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	/**
+	 * @return the seq
+	 */
+	public String getSeq() {
+		return seq;
+	}
+
+	/**
+	 * @param seq the seq to set
+	 */
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	/**

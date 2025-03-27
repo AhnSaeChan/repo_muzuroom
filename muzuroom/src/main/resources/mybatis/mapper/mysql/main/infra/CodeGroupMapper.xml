@@ -119,4 +119,19 @@
 	WHERE seq = #{seq}
 
 	</update>
+	
+	<delete id="delete">
+		DELETE FROM codegroup
+		
+		WHERE seq = #{seq}
+	</delete>
+	
+	<update id="uelete">
+		UPDATE codegroup SET
+		
+			cgDelNY = 1
+		
+		WHERE seq = #{seq}
+	</update>
+	
 </mapper>

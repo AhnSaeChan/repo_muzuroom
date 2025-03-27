@@ -61,8 +61,28 @@
 			userinfo
 		WHERE 1=1
 			AND seq = #{seq}
+			<!-- 		userSeq=#{userSeq} -->
+<!-- 	 <if test="seq != null and !seq.equals('')"> AND seq = #{seq}</if> -->
+<!-- 	 <if test="userId != null and !userId.equals('')"> AND userId = #{userId}</if> -->
+<!-- 	 <if test="userPassword != null and !userPassword.equals('')"> AND userPassword = #{userPassword}</if> -->
 		ORDER BY seq DESC
-		
+</select>
+
+<select id="selectOneLogin" resultMap="resultMapObj">
+			select
+				seq,
+				userId,
+				userName,
+				userPassword
+				
+			From
+				userinfo
+			where
+				1=1
+
+and userId= #{userId}
+<if test="userPassword !=null and !userPassword.equals('')">
+And userPassword=#{userPassword}</if>
 </select>
 
 <insert id="insert">
@@ -82,8 +102,8 @@
 		userDOB,
 		userInfoDelYN,
 		userReview_seq,
-		payMethod_seq
-		
+		payMethod_seq,
+		reservCurrent_seq
 	)VALUES(
 		
 		#{userCodeCD},

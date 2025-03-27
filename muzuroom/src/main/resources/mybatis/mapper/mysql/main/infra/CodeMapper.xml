@@ -64,7 +64,7 @@
 		FROM
 			code
 		WHERE 1=1
-			AND cdDelNY = 1
+			AND cdDelNY = 0
 		    AND codeUsedNY = 1
    </select>
  

@@ -30,12 +30,24 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectList(CodeGroupVo codeGroupVo){
 		return codeGroupDao.selectList(codeGroupVo);
 	}
-	public CodeGroupDto selectOne(CodeGroupDto codeGroupDto){
-		return codeGroupDao.selectOne(codeGroupDto);
+	public CodeGroupDto selectOne(CodeGroupVo codeGroupVo){
+		return codeGroupDao.selectOne(codeGroupVo);
 	}
 	
 	public int insert(CodeGroupDto codeGroupDto){ // 함수를 선언 ,Dto를 받겠다고 선언
 		 return codeGroupDao.insert(codeGroupDto); //하나씩 추가, 함수를 사용
+	 }
+	
+	public int update(CodeGroupDto codeGroupDto){ // 함수를 선언 ,Dto를 받겠다고 선언
+		 return codeGroupDao.update(codeGroupDto); //하나씩 추가, 함수를 사용
+	 }
+	
+	public int delete(CodeGroupDto codeGroupDto){ // 함수를 선언 ,Dto를 받겠다고 선언
+		 return codeGroupDao.delete(codeGroupDto); //하나씩 추가, 함수를 사용
+	 }
+	
+	public int uelete(CodeGroupDto codeGroupDto){ // 함수를 선언 ,Dto를 받겠다고 선언
+		 return codeGroupDao.uelete(codeGroupDto); //하나씩 추가, 함수를 사용
 	 }
 	
 	@PostConstruct

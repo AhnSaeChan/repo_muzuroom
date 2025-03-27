@@ -36,11 +36,6 @@ public class UserInfoController {
 		 return "xdm/userinfo/UserInfoXdmList";
 	}
 	
-	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmView")
-	public String UserInfoXdmView(Model model, UserInfoDto userInfoDto) {
-		model.addAttribute("item",userInfoService.selectOne(userInfoDto));
-		return "xdm/userinfo/UserInfoXdmView";
-	}
 	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmForm")
 	public String UserInfoXdmForm() {
@@ -56,7 +51,23 @@ public class UserInfoController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/signinXdmProc")
-	public Map<String, Object> signinXdmProc(UserInfoDto dto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> signinXdmProc(UserInfoDto UserInfoDto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		UserInfoDto rtMember = userInfoService.selectOneLogin(UserInfoDto);
+//		UtilCookie.deleteCookieXdm();
+		httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
+		httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
+		httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
+		returnMap.put("rt","success");
+		System.out.println(rtMember.getUserId());
+		return returnMap;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/signoutXdmProc")
+	public Map<String, Object> signoutXdmProc(UserInfoDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 //		UtilCookie.deleteCookieXdm();
 //		httpSession.setAttribute("sessSeqXdm", null);
@@ -66,4 +77,9 @@ public class UserInfoController {
 		return returnMap;
 		
 	}
+	
+	
+	
+	
+	
 }
