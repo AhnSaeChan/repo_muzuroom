@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{xdm/Include/userinfo/head ::userinfohead}"></div>
+<div th:replace="~{xdm/Include/head ::head}"></div>
 
 					<!--begin::Content-->
 <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
@@ -246,7 +246,7 @@
 </div>
 </form>
 <!--end::Content-->
-<div th:replace="~{xdm/Include/userinfo/footer ::userinfofooter}"></div>
+<div th:replace="~{xdm/Include/footer ::footer}"></div>
 <script type="text/javascript">
 let form = document.querySelector("form[name=formList]");
 goList = function (thisPage) {

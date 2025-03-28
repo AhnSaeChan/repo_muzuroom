@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{xdm/Include/code/head ::codehead}"></div>
+<div th:replace="~{xdm/Include/head ::head}"></div>
+<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
 
 					<!--begin::Content-->
 <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
@@ -58,9 +59,9 @@
 			</select>
 			</div>
 			  <div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20">
-				<input type="text" placeholder="시작일" class="form-control form-control-sm" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
+				<input type="text" id="datetimepickerL" placeholder="시작일" class="form-control form-control-sm" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
 			  <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap ms-10">
-				<input type="text"  placeholder="종료일" class="form-control form-control-sm"  style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
+				<input type="text" id="datetimepickerR" placeholder="종료일" class="form-control form-control-sm"  style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
 				</div>
 			
                            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
@@ -77,9 +78,9 @@
 			</select>
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-19">
-				<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;">
+				<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
 				<div class="invalid-feedback" id="shValueFeedback"></div>
-			</div>
+			
 				<button type="button" id="btnSearch" class="btn btn-primary ms-18"><i class="fa-solid fa-magnifying-glass fs-2 py-n5 me-n1"></i></button>
 				<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 me-15 ">
 				<button type="button" id="btnReset" class="btn btn-primary ms-n6"><i class="fa-solid fa-rotate-right fs-2 py-n5 me-n1"></i></button></div>
@@ -246,12 +247,31 @@
 </div>
 </form>
 <!--end::Content-->
-<div th:replace="~{xdm/Include/code/footer ::codefooter}"></div>
+<div th:replace="~{xdm/Include/footer ::footer}"></div>
+ 
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+
 <script type="text/javascript">
+
+jQuery('#datetimepickerL').datetimepicker();
+jQuery('#datetimepickerR').datetimepicker();
 
 let seq = document.querySelector("input[name=seq]");	
 let form = document.querySelector("form[name=formList]");
 
+
+document.getElementById("btnForm").onclick = function () {
+    goForm(0);
+}
+
+
+goForm = function (keyValue) {
+    seq.value = keyValue;
+    form.action = "/xdm/code/CodeXdmForm";
+    form.submit();
+}
 goList = function (thisPage) {
     document.querySelector("input[name=thisPage]").value = thisPage;
     form.action = "/xdm/code/CodeXdmList";
@@ -276,14 +296,4 @@ document.getElementById("btnReset").onclick = function () {
     form.submit();
 }
 
-document.getElementById("btnForm").onclick = function () {
-    goForm(0);
-}
-
-
-goForm = function (keyValue) {
-    seq.value = keyValue;
-    form.action = "/xdm/code/CodeXdmForm";
-    form.submit();
-}
 </script>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{xdm/Include/head ::head}"></div>
-
+<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
 <!--
 Author: Keenthemes
 Product Name: CraftProduct Version: 1.1.6
@@ -69,9 +69,9 @@ License: For each use you must have a valid license purchased only from above li
 			</select>
 			</div>
 			  <div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20">
-				<input type="date" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input type="text" id="datetimepickerL" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
 			  <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap ms-10">
-				<input type="date" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input type="text" id="datetimepickerR" style=" width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
 				</div>
 			
                            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
@@ -233,9 +233,16 @@ License: For each use you must have a valid license purchased only from above li
 </div>
 </form>
 <!--end::Content-->
-
 <div th:replace="~{xdm/Include/footer ::footer}"></div>
+
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
 <script type="text/javascript">
+
+jQuery('#datetimepickerL').datetimepicker();
+jQuery('#datetimepickerR').datetimepicker();
+
 let seq = document.querySelector("input[name=seq]");
 let form = document.querySelector("form[name=formList]");
 

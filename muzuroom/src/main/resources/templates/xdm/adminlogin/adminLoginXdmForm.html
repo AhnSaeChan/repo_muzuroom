@@ -98,7 +98,7 @@ License: For each use you must have a valid license purchased only from above li
 									<label class="form-label fs-6 fw-bold text-gray-900">ID</label>
 									<!--end::Label-->
 									<!--begin::Input-->
-									<input class="form-control form-control-lg form-control-solid" type="text" id="userId" name="id" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="text" id="userId" name="id" value="hongdon" autocomplete="off" />
 									 <div class="invalid-feedback">
 						                아이디를 입력해주세요.
 						             </div>
@@ -119,7 +119,7 @@ License: For each use you must have a valid license purchased only from above li
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Input-->
-									<input class="form-control form-control-lg form-control-solid" type="password" id="userPw" name="password" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="password" id="userPw" name="password" value="123asd" autocomplete="off" />
 									<div class="invalid-feedback">
 					                    비밀번호를 입력해주세요.
 					                </div>
@@ -168,28 +168,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--end::Wrapper-->
 					</div>
 					<!--end::Content-->
-	<div class="modal fade show" tabindex="-1" id="myModal" aria-modal="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title"></h3>
-
-                <!--begin::Close-->
-                
-                <!--end::Close-->
-            </div>
-
-            <div class="modal-body">
-                <p>잘못입력했습니다</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" id="closebtn" class="btn btn-light" >Close</button>
-<!--                 <button type="button" class="btn btn-prsimary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>				
+			
 					
 	<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
@@ -202,9 +181,8 @@ License: For each use you must have a valid license purchased only from above li
 					body
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" data-bs-dismiss="modal"><i class="fa-solid fa-angle-left fa-lg"></i></button>
-					<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="modalAlert"><i class="fa-solid fa-x fa-lg"></i></button>
-					<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id=""><i class="far fa-trash-alt fa-lg"></i></button>
+					<button type="button" class="btn btn-primary btn-sm btn_custom" name="" id="modalAlert" data-bs-dismiss="modal"><i class="fa-solid fa-x fa-lg"></i></button>
+					
 				</div>
 			</div>
 		</div>
@@ -290,11 +268,10 @@ License: For each use you must have a valid license purchased only from above li
 				,success: function(response) {
 					if(response.rt == "success") {
 // 						
+							
 							 location.href = "/xdm/userinfo/UserInfoXdmList";
-							alert("asdsad");
 					} else {
-				 		alert("else");
-						
+				 		
 						document.getElementById("modalAlertTitle").innerText = "확 인";
 				 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
 				 		$("#modalAlert").modal("show");
@@ -304,10 +281,9 @@ License: For each use you must have a valid license purchased only from above li
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
-						 
-						
-
- 		}
+	}
+	
+	
 		
 // 		function Validation() {
 //             var isValid = true;

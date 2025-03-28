@@ -55,24 +55,30 @@ public class UserInfoController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		UserInfoDto rtMember = userInfoService.selectOneLogin(UserInfoDto);
+		if(rtMember!=null) {
+			httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
+			httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
+			httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
+			returnMap.put("rt","success");
+		}else {
+			returnMap.put("rt","fail");
+//			System.out.println(rtMember.getSeq());
+		}
 //		UtilCookie.deleteCookieXdm();
-		httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
-		httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
-		httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
-		returnMap.put("rt","success");
-		System.out.println(rtMember.getUserId());
+		
+//		System.out.println(rtMember.getUserId());
 		return returnMap;
 		
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/signoutXdmProc")
-	public Map<String, Object> signoutXdmProc(UserInfoDto dto, HttpSession httpSession) throws Exception {
+	public Map<String, Object> signoutXdmProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 //		UtilCookie.deleteCookieXdm();
-//		httpSession.setAttribute("sessSeqXdm", null);
-//		httpSession.setAttribute("sessIdXdm", null);
-//		httpSession.setAttribute("sessNameXdm", null);
+		httpSession.setAttribute("sessSeqXdm", null);
+		httpSession.setAttribute("sessIdXdm", null);
+		httpSession.setAttribute("sessNameXdm", null);
 		returnMap.put("rt","success");
 		return returnMap;
 		

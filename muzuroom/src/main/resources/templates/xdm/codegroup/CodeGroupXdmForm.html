@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{xdm/Include/headForm ::headForm}"></div>
+<div th:replace="~{xdm/Include/head ::head}"></div>
 					<!--begin::Content-->
 					<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
 						<!--begin::Toolbar-->
@@ -279,7 +279,11 @@
 <!--     </div> -->
 <!-- </div> -->
 					<!--end::Content-->
-					<script type="text/javascript">
+		<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+		<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/utilities/jquery.js"></script>
+		<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+		
+		<script type="text/javascript">
 
 		//let name = document.getElementById("cgName");
 		
@@ -344,6 +348,6 @@
 			modal.style.display = "none";
 			}
 			</script>
-			<div th:replace="~{xdm/Include/footerForm ::footerForm}"></div>
+			<div th:replace="~{xdm/Include/footer ::footer}"></div>
 					
 					
