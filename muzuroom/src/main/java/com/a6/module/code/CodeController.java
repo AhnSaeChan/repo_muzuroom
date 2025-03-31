@@ -25,8 +25,6 @@ public class CodeController {
 		
 		model.addAttribute("list", codeService.selectList(vo));
 		
-		
-		
 		return "xdm/code/CodeXdmList";
 	}
 	@RequestMapping(value = "/xdm/code/CodeXdmView")
