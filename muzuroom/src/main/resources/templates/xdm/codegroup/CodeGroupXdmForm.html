@@ -294,6 +294,9 @@
 		(document.getElementById("btnForm"))
 		if(seq.value == "0" || seq.value == "") {
 			document.querySelector("#btnUelete").style.display = 'none';
+		}else{
+			
+			document.querySelector("#btnSubmit").style.display = 'none';	
 		}
 		
 		if(document.getElementById("btnUelete")){
@@ -332,8 +335,13 @@
 				return false;
 			}
 			
-		document.getElementById("form").submit();
+			form.submit();
 			}
+		
+		document.getElementById("btnList").onclick = function () {
+			form.action = "/xdm/codegroup/CodeGroupXdmList";
+			form.submit();
+		}
 		
 		document.getElementById("btnModalUelete").onclick = function () {
 			form.action = "/xdm/codegroup/CodeGroupXdmUele";

@@ -63,15 +63,15 @@ License: For each use you must have a valid license purchased only from above li
 			</div>
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-18" >
 			<select class="d-flex flex-start mt-n1 ms-1 form-select" style="font-weight: bold; font-size:15px; width:200px; height:41px; border-width: 0;" aria-label="Default select example">N</span>
-			<option value="1" style="background-color: white; color:black; width:200px; height:41px">날짜</option>
-			<option value="2" style="background-color: white; color:black; width:200px; height:41px">등록일</option>
-			<option value="3" style="background-color: white; color:black; width:200px; height:41px">수정일</option>
+			<option value="" th:selected="${vo.shOptionDate == null}" style="background-color: white; color:black; width:200px; height:41px">날짜</option>
+			<option value="1" th:selected="${vo.shOptionDate == 1}" style="background-color: white; color:black; width:200px; height:41px">등록일</option>
+			<option value="2" th:selected="${vo.shOptionDate == 2}" style="background-color: white; color:black; width:200px; height:41px">수정일</option>
 			</select>
 			</div>
 			  <div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20">
-				<input type="text" id="date_timepicker_start" placeholder="시작일" style=" font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input th:value="${vo.shDateStart != null && #strings.length(vo.shDateStart) >= 10 ? #strings.substring(vo.shDateStart, 0, 10) : vo.shDateStart}" type="text" id="shDateStart" name="shDateStart" placeholder="시작일" style=" font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
 			  <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap ms-10">
-				<input type="text" id="date_timepicker_end" placeholder="종료일" style=" font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
+				<input th:value="${vo.shDateEnd != null && #strings.length(vo.shDateEnd) >= 10 ? #strings.substring(vo.shDateEnd, 0, 10) : vo.shDateEnd}" type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" style=" font-weight: bold; font-size:15px; width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;"></div>
 				</div>
 			
                            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
@@ -243,25 +243,25 @@ License: For each use you must have a valid license purchased only from above li
 jQuery.datetimepicker.setLocale('kr');
 
 jQuery(function(){
-	 jQuery('#date_timepicker_start').datetimepicker({
-	  format:'Y/m/d',
+	 jQuery('#shDateStart').datetimepicker({
+	  format:'Y-m-d',
 	  onShow:function( ct ){
 	   this.setOptions({
-	    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+	    maxDate:jQuery('#shDateEnd').val()?jQuery('#shDateEnd').val():false
 	   })
 	  },
 	  timepicker:false
 	 });
-	 jQuery('#date_timepicker_end').datetimepicker({
-	  datepicker:false,	
-	  format:'Y/m/d',
+	 jQuery('#shDateEnd').datetimepicker({
+	  datepicker:true,	
+	  format:'Y-m-d',
 	  onShow:function( ct ){
 	   this.setOptions({
-	    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+	    minDate:jQuery('#shDateStart').val()?jQuery('#shDateStart').val():false
 	   })
 	  },
-	  timepicker:true,
-	  format:'h:i'
+	  timepicker:false,
+	  format:'Y-m-d'
 	 });
 	});
 

@@ -6,13 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
-
 @Controller
 
-
-public class CodeController {
+public class CodeController{
 	@Autowired
 	CodeService codeService;
 	
@@ -21,7 +17,6 @@ public class CodeController {
 	public String CodeXdmList(@ModelAttribute("vo") CodeVo vo, Model model)  {
 		
 		vo.setParamsPaging(codeService.selectOneCount(vo));
-		
 		
 		model.addAttribute("list", codeService.selectList(vo));
 		

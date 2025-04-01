@@ -84,7 +84,7 @@
 															<label class="form-label ms-3">코드 (Another)(INT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeAlt" id="codeAlt" class="form-control" placeholder="영대소문자, 숫자" required />
+															<input type="text" name="codeAlt" id="codeAlt" th:value="${item?.codeAlt}" class="form-control" placeholder="영대소문자, 숫자" required />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -92,7 +92,7 @@
 															<label class="required form-label ms-3">코드 이름(VARCHAR)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cdName" id="cdName" class="form-control" placeholder="한글,영대소문자,숫자" />
+															<input type="text" name="cdName" id="cdName" th:value="${item?.codeAlt}" class="form-control" placeholder="한글,영대소문자,숫자" />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -100,7 +100,7 @@
 															<label class="form-label ms-3">코드 이름(VARCHAR) (영문)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeNameEng" id="codeNameEng" class="form-control" placeholder="영대소문자,숫자"   />
+															<input type="text" name="codeNameEng" id="codeNameEng" th:value="${item?.codeNameEng}" class="form-control" placeholder="영대소문자,숫자"   />
 															<!--end::Input-->
 														</div>
 													</div>
@@ -132,7 +132,7 @@
 															<label class="required form-label  ms-3">사용여부(TINYINT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeUsedNY" id="codeUsedNY" style="width:290px; height:41px" class="form-control" placeholder=""  />
+															<input type="text" name="codeUsedNY" id="codeUsedNY" th:value="${item?.codeUsedNY}" style="width:290px; height:41px" class="form-control" placeholder=""  />
 															<!--end::Input-->
 														</div>
 																	</div>
@@ -160,7 +160,7 @@
 															<label class="required form-label ms-3">삭제 상태(TINYINT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cdDelNY" id="cdDelNY" class="form-control"/>
+															<input type="text" name="cdDelNY" id="cdDelNY" th:value="${item?.cdDelNY}" class="form-control"/>
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -168,7 +168,7 @@
 															<label class="form-label ms-3">코드 그룹코드(INT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeGroupCd" id="codeGroupCd" class="form-control" placeholder="영대소문자, 숫자" />
+															<input type="text" name="codeGroupCd" id="codeGroupCd" th:value="${item?.codeGroupCd}" class="form-control" placeholder="영대소문자, 숫자" />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -176,7 +176,7 @@
 															<label class="required form-label ms-3">코드그룹이름(VARCHAR)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeGroupName" id="codeGroupName" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input type="text" name="codeGroupName" id="codeGroupName" th:value="${item?.codeGroupName}" class="form-control" placeholder="한글,영대소문자,숫자"  />
 															<!--end::Input-->
 															<div class="invalid-feedback">
 															입력해주세요
@@ -187,7 +187,7 @@
 															<label class="form-label ms-3">코드 번호(INT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeCD" id="codeCD" class="form-control" placeholder="영대소문자,숫자"  />
+															<input type="text" name="codeCD" id="codeCD" class="form-control" th:value="${item?.codeCD}" placeholder="영대소문자,숫자"  />
 															<!--end::Input-->
 														</div>
 													</div>
@@ -197,7 +197,7 @@
 															<label class="required form-label ms-3">코드 순서(INT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeOrder" id="codeOrder" class="form-control" />
+															<input type="text" name="codeOrder" id="codeOrder" th:value="${item?.codeOrder}" class="form-control" />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -205,7 +205,7 @@
 															<label class="form-label ms-3">코드 등록 날짜(VARCHAR)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeRegDate" id="codeRegDate" class="form-control" placeholder="영대소문자, 숫자" />
+															<input type="text" name="codeRegDate" id="codeRegDate" th:value="${item?.codeRegDate}" class="form-control" placeholder="영대소문자, 숫자" />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -213,7 +213,7 @@
 															<label class="required form-label ms-3">코드 수정 날짜(VARCHAR)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeCorrectDate" id="codeCorrectDate" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input type="text" name="codeCorrectDate" id="codeCorrectDate" th:value="${item?.codeCorrectDate}" class="form-control" placeholder="한글,영대소문자,숫자"  />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -221,7 +221,7 @@
 															<label class="form-label ms-3" >codeGroup_seq(INT)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeGroup_seq" id="codeGroup_seq"  class="form-control" placeholder="영대소문자,숫자"  />
+															<input type="text" name="codeGroup_seq" id="codeGroup_seq" th:value="${item?.codeGroup_seq}"  class="form-control" placeholder="영대소문자,숫자"  />
 															<!--end::Input-->
 														</div>
 													</div>
@@ -358,6 +358,9 @@
 		(document.getElementById("btnForm"))
 			if(seq.value == "0" || seq.value == "") {
 				document.querySelector("#btnUelete").style.display = 'none';
+			} else {
+	 			
+				document.querySelector("#btnSubmit").style.display = 'none';
 			}
 		
 		

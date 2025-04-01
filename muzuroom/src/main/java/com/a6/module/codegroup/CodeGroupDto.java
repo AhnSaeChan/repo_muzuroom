@@ -1,9 +1,8 @@
 package com.a6.module.codegroup;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.a6.module.code.CodeDto;
 
 public class CodeGroupDto {
 
@@ -15,8 +14,8 @@ public class CodeGroupDto {
 	private String cgNameEng;
 	private Integer count;
 	private String cgOrder;
-	private String cgRegDate;
-	private String cgCorrectDate;
+	private Date cgRegDate;
+	private Date cgCorrectDate;
 	private Integer cgDelNY;
 	
 	public static List<CodeGroupDto> cachedCodeArrayList = new ArrayList<CodeGroupDto>();
@@ -28,6 +27,30 @@ public class CodeGroupDto {
 	 */
 	public String getSeq() {
 		return seq;
+	}
+	/**
+	 * @return the cgRegDate
+	 */
+	public Date getCgRegDate() {
+		return cgRegDate;
+	}
+	/**
+	 * @param cgRegDate the cgRegDate to set
+	 */
+	public void setCgRegDate(Date cgRegDate) {
+		this.cgRegDate = cgRegDate;
+	}
+	/**
+	 * @return the cgCorrectDate
+	 */
+	public Date getCgCorrectDate() {
+		return cgCorrectDate;
+	}
+	/**
+	 * @param cgCorrectDate the cgCorrectDate to set
+	 */
+	public void setCgCorrectDate(Date cgCorrectDate) {
+		this.cgCorrectDate = cgCorrectDate;
 	}
 	/**
 	 * @return the cachedCodeArrayList
@@ -89,30 +112,7 @@ public class CodeGroupDto {
 	public void setCgOrder(String cgOrder) {
 		this.cgOrder = cgOrder;
 	}
-	/**
-	 * @return the cgRegDate
-	 */
-	public String getCgRegDate() {
-		return cgRegDate;
-	}
-	/**
-	 * @param cgRegDate the cgRegDate to set
-	 */
-	public void setCgRegDate(String cgRegDate) {
-		this.cgRegDate = cgRegDate;
-	}
-	/**
-	 * @return the cgCorrectDate
-	 */
-	public String getCgCorrectDate() {
-		return cgCorrectDate;
-	}
-	/**
-	 * @param cgCorrectDate the cgCorrectDate to set
-	 */
-	public void setCgCorrectDate(String cgCorrectDate) {
-		this.cgCorrectDate = cgCorrectDate;
-	}
+	
 	public Integer getCount() {
 		return count;
 	}

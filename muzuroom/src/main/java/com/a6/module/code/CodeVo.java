@@ -1,5 +1,7 @@
 package com.a6.module.code;
 
+import java.sql.Date;
+
 public class  CodeVo {
 //	paging
 	private int thisPage = 1;									// 현재 페이지
@@ -18,19 +20,84 @@ public class  CodeVo {
 //	search
 	private Integer shUseNy = 1; 									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private Integer shDelNy = 0; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
-	private Integer shOptionDate = 2;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOptionDate;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shDateStart;
 	private String shDateEnd;
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shValue;
+	
+//	private Date codeRegDate;
+//	private Date codeCorrectDate;
+	
 //	-----
-
+	
 	/**
 	 * @return the thisPage
 	 */
 	public int getThisPage() {
 		return thisPage;
 	}
+
+	/**
+	 * @return the shDateStart
+	 */
+	
+
+	/**
+	 * @return the shDateStart
+	 */
+	public String getShDateStart() {
+		return shDateStart;
+	}
+
+	/**
+	 * @param shDateStart the shDateStart to set
+	 */
+	public void setShDateStart(String shDateStart) {
+		this.shDateStart = shDateStart;
+	}
+
+	/**
+	 * @return the shDateEnd
+	 */
+	public String getShDateEnd() {
+		return shDateEnd;
+	}
+
+	/**
+	 * @param shDateEnd the shDateEnd to set
+	 */
+	public void setShDateEnd(String shDateEnd) {
+		this.shDateEnd = shDateEnd;
+	}
+
+	/**
+	 * @return the codeRegDate
+	 */
+//	public Date getCodeRegDate() {
+//		return codeRegDate;
+//	}
+//
+//	/**
+//	 * @param codeRegDate the codeRegDate to set
+//	 */
+//	public void setCodeRegDate(Date codeRegDate) {
+//		this.codeRegDate = codeRegDate;
+//	}
+//
+//	/**
+//	 * @return the codeCorrectDate
+//	 */
+//	public Date getCodeCorrectDate() {
+//		return codeCorrectDate;
+//	}
+//
+//	/**
+//	 * @param codeCorrectDate the codeCorrectDate to set
+//	 */
+//	public void setCodeCorrectDate(Date codeCorrectDate) {
+//		this.codeCorrectDate = codeCorrectDate;
+//	}
 
 	/**
 	 * @return the seq
@@ -88,33 +155,7 @@ public class  CodeVo {
 		this.shOptionDate = shOptionDate;
 	}
 
-	/**
-	 * @return the shDateStart
-	 */
-	public String getShDateStart() {
-		return shDateStart;
-	}
-
-	/**
-	 * @param shDateStart the shDateStart to set
-	 */
-	public void setShDateStart(String shDateStart) {
-		this.shDateStart = shDateStart;
-	}
-
-	/**
-	 * @return the shDateEnd
-	 */
-	public String getShDateEnd() {
-		return shDateEnd;
-	}
-
-	/**
-	 * @param shDateEnd the shDateEnd to set
-	 */
-	public void setShDateEnd(String shDateEnd) {
-		this.shDateEnd = shDateEnd;
-	}
+	
 
 	/**
 	 * @return the shOption

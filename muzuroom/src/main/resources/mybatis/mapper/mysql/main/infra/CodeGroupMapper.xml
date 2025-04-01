@@ -11,12 +11,12 @@
 		WHERE 1=1
 		<if test="shUseNy != null and !shUseNy.equals('')">AND codegroup.groupUsedNY = #{shUseNy}</if>
         <if test="shDelNy != null and !shDelNy.equals('')">AND codegroup.cgDelNY = #{shDelNy}</if>
-<!-- 				
+				
 				<choose>
-					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 1">AND codegroup.cgRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND codegroup.cgCorrectDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
- -->				
+
         <choose>
             <when test="shOption == 1">AND codegroup.codeGroupCode = #{shValue}</when>
             <when test="shOption == 2">AND codegroup.cgName LIKE CONCAT('%',#{shValue},'%')</when>

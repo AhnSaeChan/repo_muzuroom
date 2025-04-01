@@ -1,5 +1,6 @@
 package com.a6.module.code;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class CodeDto {
 	private String cdName; 
 	private String codeNameEng;
     private Integer codeOrder;
-    private String codeRegDate;
-    private String codeCorrectDate;
+    private Date codeRegDate;
+    private Date codeCorrectDate;
     private Integer codeGroup_seq;
     
     public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
@@ -29,6 +30,30 @@ public class CodeDto {
     
 	public String getSeq() {
 		return seq;
+	}
+	/**
+	 * @return the codeRegDate
+	 */
+	public Date getCodeRegDate() {
+		return codeRegDate;
+	}
+	/**
+	 * @param codeRegDate the codeRegDate to set
+	 */
+	public void setCodeRegDate(Date codeRegDate) {
+		this.codeRegDate = codeRegDate;
+	}
+	/**
+	 * @return the codeCorrectDate
+	 */
+	public Date getCodeCorrectDate() {
+		return codeCorrectDate;
+	}
+	/**
+	 * @param codeCorrectDate the codeCorrectDate to set
+	 */
+	public void setCodeCorrectDate(Date codeCorrectDate) {
+		this.codeCorrectDate = codeCorrectDate;
 	}
 	/**
 	 * @return the cachedCodeArrayList
@@ -156,30 +181,8 @@ public class CodeDto {
 	public void setCodeOrder(Integer codeOrder) {
 		this.codeOrder = codeOrder;
 	}
-	/**
-	 * @return the codeRegDate
-	 */
-	public String getCodeRegDate() {
-		return codeRegDate;
-	}
-	/**
-	 * @param codeRegDate the codeRegDate to set
-	 */
-	public void setCodeRegDate(String codeRegDate) {
-		this.codeRegDate = codeRegDate;
-	}
-	/**
-	 * @return the codeCorrectDate
-	 */
-	public String getCodeCorrectDate() {
-		return codeCorrectDate;
-	}
-	/**
-	 * @param codeCorrectDate the codeCorrectDate to set
-	 */
-	public void setCodeCorrectDate(String codeCorrectDate) {
-		this.codeCorrectDate = codeCorrectDate;
-	}
+	
+	
 	/**
 	 * @return the codeGroup_seq
 	 */
