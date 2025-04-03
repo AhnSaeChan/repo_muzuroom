@@ -13,12 +13,6 @@ public class ContentController {
 	@RequestMapping(value = "/xdm/content/ContentXdmList")
 	public String ContentXdmList(ContentVo vo, Model model) {
 		
-		vo.setParamsPaging(contentService.selectOneCount(vo));
-		
-		model.addAttribute("list",contentService.selectList(vo));
-		
-		model.addAttribute("vo", vo);
-		
 		return "xdm/content/ContentXdmList";
 	}
 	
