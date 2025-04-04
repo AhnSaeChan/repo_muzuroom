@@ -64,7 +64,7 @@
 				<input  th:value="${vo.shDateEnd != null && #strings.length(vo.shDateEnd) >= 10 ? #strings.substring(vo.shDateEnd, 0, 10) : vo.shDateEnd}" type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" class="form-control form-control-sm"  style="font-weight: bold; font-size:15px;  width:200px; height:41px; border-radius: 5px; border-width: 0cap; padding-left: 15px;" autocomplete="off"></div>
 				</div>
 			
-                           <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
+            <div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-2 ms-20">
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
 			<select id="shOption" name="shOption" class="d-flex flex-start mt-n1 ms-2 form-select" style="font-weight: bold; border-radius: 5px; border-width: 0cap; font-size:15px; width:200px; height:41px" aria-label="Default select example">N</span>
 			<option value="" th:selected="${vo.shOption == null}" style="background-color: white; color:black; width:200px; height:41px" >검색구분</option>

@@ -1,5 +1,7 @@
 package com.a6.module.userinfo;
 
+import java.sql.Date;
+
 public class UserInfoDto {
 
 	private String seq;
@@ -9,22 +11,74 @@ public class UserInfoDto {
 	private Integer userGenderMF;
 	private String userId;
 	private String userPassword;
-	private String userPhoneFirstDig;
+	private String mobileCarrier;
 	private String userPhoneNum;
 	private String userZipcode;
+	private String adminDistrict;
 	private String userAddress;
 	private String userEmail;
-	private String userDOB;
+	private Date userDOB;
+	private Date userRegDate;
 	private Integer userInfoDelYN;
 	private Integer userReview_seq;
 	private Integer payMethod_seq;
 	private Integer reservCurrent_seq;
 //	-----
+	
+	
 	/**
 	 * @return the seq
 	 */
 	public String getSeq() {
 		return seq;
+	}
+	/**
+	 * @return the adminDistrict
+	 */
+	public String getAdminDistrict() {
+		return adminDistrict;
+	}
+	/**
+	 * @param adminDistrict the adminDistrict to set
+	 */
+	public void setAdminDistrict(String adminDistrict) {
+		this.adminDistrict = adminDistrict;
+	}
+	/**
+	 * @return the mobileCarrier
+	 */
+	public String getMobileCarrier() {
+		return mobileCarrier;
+	}
+	/**
+	 * @param mobileCarrier the mobileCarrier to set
+	 */
+	public void setMobileCarrier(String mobileCarrier) {
+		this.mobileCarrier = mobileCarrier;
+	}
+	/**
+	 * @return the userDOB
+	 */
+	public Date getUserDOB() {
+		return userDOB;
+	}
+	/**
+	 * @param userDOB the userDOB to set
+	 */
+	public void setUserDOB(Date userDOB) {
+		this.userDOB = userDOB;
+	}
+	/**
+	 * @return the userRegDate
+	 */
+	public Date getUserRegDate() {
+		return userRegDate;
+	}
+	/**
+	 * @param userRegDate the userRegDate to set
+	 */
+	public void setUserRegDate(Date userRegDate) {
+		this.userRegDate = userRegDate;
 	}
 	/**
 	 * @param seq the seq to set
@@ -104,18 +158,7 @@ public class UserInfoDto {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	/**
-	 * @return the userPhoneFirstDig
-	 */
-	public String getUserPhoneFirstDig() {
-		return userPhoneFirstDig;
-	}
-	/**
-	 * @param userPhoneFirstDig the userPhoneFirstDig to set
-	 */
-	public void setUserPhoneFirstDig(String userPhoneFirstDig) {
-		this.userPhoneFirstDig = userPhoneFirstDig;
-	}
+	
 	/**
 	 * @return the userPhoneNum
 	 */
@@ -164,18 +207,7 @@ public class UserInfoDto {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	/**
-	 * @return the userDOB
-	 */
-	public String getUserDOB() {
-		return userDOB;
-	}
-	/**
-	 * @param userDOB the userDOB to set
-	 */
-	public void setUserDOB(String userDOB) {
-		this.userDOB = userDOB;
-	}
+	
 	/**
 	 * @return the userInfoDelYN
 	 */

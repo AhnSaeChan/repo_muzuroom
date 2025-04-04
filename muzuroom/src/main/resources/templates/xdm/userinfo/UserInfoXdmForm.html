@@ -34,8 +34,8 @@
 							<!--begin::Container-->
 							<div class="container-xxl">
 								<!--begin::Form-->
-								<form action="/xdm/userinfo/UserInfoXdmInst" novalidate="novalidate" method="post" id="form" class="form d-flex flex-column flex-lg-row "  >
-									
+								<form name="formList" id="formList" method="post" class="form d-flex flex-column flex-lg-row "  >
+									<input type = "hidden" name="seq">	
 									<!--begin::Main column-->
 									<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
 										
@@ -59,40 +59,43 @@
 															<!--begin::Input group-->
 															<div class="mb-10 fv-row">
 																<!--begin::Label-->
-																<label class="required form-label ms-3">코드그룹</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<select class="d-flex flex-start mt-n1  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
-																<option value="1" style="background-color: white; color:black; width:200px; height:41px" href="#">선택하세요</option>
-																<option value="2" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-																<option value="3" style="background-color: white; color:black; width:200px; height:41px" href="#">선택</option>
-																</select>
+																<div class="d-flex flex-column flex-md-row gap-5 mt-4 ">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">관리번호</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.seq}" type="text"  class="form-control" disabled />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">관리자 구분</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userCodeCD}" type="text" name="codeRegDate" id="codeRegDate" class="form-control"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">삭제 상태</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userInfoDelYN}" type="text" name="userInfoDelYN" id="userInfoDelYN" class="form-control"   />
+															<!--end::Input-->
+														</div>
+														
+													</div>
 																<!--end::Input-->
 																<!--begin::Description-->
 																<!--begin::Label-->
-																<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+													<div class="d-flex flex-column flex-md-row gap-5 mt-4">
 														<div class="flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label ms-3">코드#</label>
+															<label class="form-label ms-3">사용자 성씨</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="seq" id="seq" disabled  class="form-control"  placeholder="자동생성" />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3">사용자 코드</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userCodeCD" id="userCodeCD" class="form-control" placeholder="영대소문자, 숫자" required />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 성</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userFirstName" id="userFirstName" class="form-control" placeholder="한글,영대소문자,숫자" />
+															<input th:value ="${item.userFirstName}" type="text" name="seq" id="seq" class="form-control"   />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -100,7 +103,23 @@
 															<label class="form-label ms-3">사용자 이름</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userName" id="userName" class="form-control" placeholder="영대소문자,숫자"   />
+															<input th:value ="${item.userName}" type="text" name="userCodeCD" id="userCodeCD" class="form-control"/>
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">사용자 성별</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userGenderMF}" type="text" name="userFirstName" id="userFirstName" class="form-control"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">사용자 전자메일</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userEmail}" type="text" name="userName" id="userName" class="form-control"    />
 															<!--end::Input-->
 														</div>
 													</div>
@@ -137,26 +156,26 @@
 																<div class="d-flex flex-column flex-md-row gap-5 ">
 														<div class="flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 성별</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userGenderMF" id="userGenderMF" class="form-control"/>
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
 															<label class="form-label ms-3">사용자 ID</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userId" id="userId" class="form-control" placeholder="영대소문자, 숫자" />
+															<input th:value ="${item.userId}" type="text" name="userGenderMF" id="userGenderMF" class="form-control"/>
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 비밀번호</label>
+															<label class="form-label ms-3">사용자 비밀번호</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userPassword" id="userPassword" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input th:value ="${item.userPassword}" type="text" name="userId" id="userId" class="form-control"  />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">사용자 거주지역</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.adminDistrict}" type="text" name="userPassword" id="userPassword" class="form-control"   />
 															<!--end::Input-->
 															<div class="invalid-feedback">
 															입력해주세요
@@ -167,68 +186,55 @@
 															<label class="form-label ms-3">사용자 통신사</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userPhoneFirstDig" id="userPhoneFirstDig" class="form-control" placeholder="영대소문자,숫자"  />
+															<input th:value ="${item.mobileCarrier}" type="text" name="userPhoneFirstDig" id="userPhoneFirstDig" class="form-control"   />
 															<!--end::Input-->
 														</div>
 													</div>
-													<div class="d-flex flex-column flex-md-row gap-5 mt-4">
-														<div class="flex-row-fluid">
-															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 전화번호</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userPhoneNum" id="userPhoneNum" class="form-control" />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3">사용자 우편번호</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userZipcode" id="userZipcode" class="form-control" placeholder="영대소문자, 숫자" />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 주소</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userAddress" id="userAddress" class="form-control" placeholder="한글,영대소문자,숫자"  />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3" >사용자 email</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="userEmail" id="userEmail"  class="form-control" placeholder="영대소문자,숫자"  />
-															<!--end::Input-->
-														</div>
-														</div>
+													
 														
 													<div class="d-flex flex-column flex-md-row gap-5 mt-4 ">
 														<div class="flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label ms-3">사용자 생년월일</label>
+															<label class="form-label ms-3">사용자 전화번호</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userDOB" id="userDOB" class="form-control" />
+															<input th:value ="${item.userPhoneNum}" type="text" name="userDOB" id="userDOB" class="form-control" />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="form-label ms-3">사용 상태</label>
+															<label class="form-label ms-3">사용자 생년월일</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeRegDate" id="codeRegDate" class="form-control" placeholder="영대소문자, 숫자" />
+															<input th:value ="${item.userDOB}" type="text" name="codeRegDate" id="codeRegDate" class="form-control"  />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label ms-3">삭제 상태</label>
+															<label class="form-label ms-3">사용자 회원가입일</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="userInfoDelYN" id="userInfoDelYN" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input th:value ="${item.userRegDate}" type="text" name="userInfoDelYN" id="userInfoDelYN" class="form-control" />
+															<!--end::Input-->
+														</div>
+														
+														
+													</div>
+													<div class="d-flex flex-column flex-md-row gap-5 mt-4">
+														<div class="flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3">우편번호</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userZipcode}" type="text" name="seq" id="seq" class="form-control"   />
+															<!--end::Input-->
+														</div>
+														<div class="fv-row flex-row-fluid col-10">
+															<!--begin::Label-->
+															<label class="form-label ms-3">나머지 주소</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input th:value ="${item.userAddress}" type="text" name="userCodeCD" id="userCodeCD" class="form-control"/>
 															<!--end::Input-->
 														</div>
 														

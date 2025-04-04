@@ -18,6 +18,16 @@ public class UserInfoVo {
 	private String userName;
 	private String userId;
 	private String userPassword;
+	
+//	search
+	private Integer shUseNy = 1; 									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shDelNy = 0; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOptionDate;							/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private String shDateStart;
+	private String shDateEnd;
+	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private String shValue;
+	
 //	-----
 	
 	/**
@@ -25,6 +35,104 @@ public class UserInfoVo {
 	 */
 	public int getThisPage() {
 		return thisPage;
+	}
+
+	/**
+	 * @return the shUseNy
+	 */
+	public Integer getShUseNy() {
+		return shUseNy;
+	}
+
+	/**
+	 * @param shUseNy the shUseNy to set
+	 */
+	public void setShUseNy(Integer shUseNy) {
+		this.shUseNy = shUseNy;
+	}
+
+	/**
+	 * @return the shDelNy
+	 */
+	public Integer getShDelNy() {
+		return shDelNy;
+	}
+
+	/**
+	 * @param shDelNy the shDelNy to set
+	 */
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
+	}
+
+	/**
+	 * @return the shOptionDate
+	 */
+	public Integer getShOptionDate() {
+		return shOptionDate;
+	}
+
+	/**
+	 * @param shOptionDate the shOptionDate to set
+	 */
+	public void setShOptionDate(Integer shOptionDate) {
+		this.shOptionDate = shOptionDate;
+	}
+
+	/**
+	 * @return the shDateStart
+	 */
+	public String getShDateStart() {
+		return shDateStart;
+	}
+
+	/**
+	 * @param shDateStart the shDateStart to set
+	 */
+	public void setShDateStart(String shDateStart) {
+		this.shDateStart = shDateStart;
+	}
+
+	/**
+	 * @return the shDateEnd
+	 */
+	public String getShDateEnd() {
+		return shDateEnd;
+	}
+
+	/**
+	 * @param shDateEnd the shDateEnd to set
+	 */
+	public void setShDateEnd(String shDateEnd) {
+		this.shDateEnd = shDateEnd;
+	}
+
+	/**
+	 * @return the shOption
+	 */
+	public Integer getShOption() {
+		return shOption;
+	}
+
+	/**
+	 * @param shOption the shOption to set
+	 */
+	public void setShOption(Integer shOption) {
+		this.shOption = shOption;
+	}
+
+	/**
+	 * @return the shValue
+	 */
+	public String getShValue() {
+		return shValue;
+	}
+
+	/**
+	 * @param shValue the shValue to set
+	 */
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
 	}
 
 	/**

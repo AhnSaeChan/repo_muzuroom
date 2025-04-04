@@ -15,4 +15,10 @@ public class AdminLoginController {
 		
 		return "xdm/adminlogin/adminLoginXdmForm";
 	}
+	
+	@RequestMapping(value = "/user/userlogin/userLoginUserForm")
+	public String userLoginUserForm() {
+		
+		return "user/userlogin/userLoginUserForm";
+	}
 }

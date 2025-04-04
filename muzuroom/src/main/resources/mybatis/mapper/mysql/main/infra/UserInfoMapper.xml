@@ -8,7 +8,27 @@
  <sql id="selectCommon" >
  		FROM
  			userinfo
- 		WHERE 1=1	
+ 		WHERE 1=1
+ 		<if test="shUseNy != null and !shUseNy.equals('')">AND userinfo.userCodeCD = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND userinfo.userInfoDelYN = #{shDelNy}</if>
+				
+				<choose>
+					<when test="shOptionDate == 1">AND userinfo.userDOB BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND userinfo.userRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+ 				</choose>
+ 				
+        <choose>
+            <when test="shOption == 1">AND userinfo.userFirstName = #{shValue}</when>
+            <when test="shOption == 2">AND userinfo.userName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND userinfo.userId LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 4">AND userinfo.userPassword LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 5">AND userinfo.mobileCarrier LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 6">AND userinfo.userPhoneNum LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 7">AND userinfo.adminDistrict LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 8">AND userinfo.userEmail LIKE CONCAT('%',#{shValue},'%')</when>
+            
+            
+        </choose>	
  </sql>
  
  <select id="selectOneCount" resultType="Integer">
@@ -27,12 +47,14 @@
 		    userGenderMF,
 		    userId,
 		    userPassword,
-		    userPhoneFirstDig,
+		    mobileCarrier,
 		    userPhoneNum,
 		    userZipcode,
+		    adminDistrict,
 		    userAddress,
 		    userEmail,
 		    userDOB,
+		    userRegDate,
 		    userInfoDelYN,
 		    userReview_seq,
 		    payMethod_seq,
@@ -51,12 +73,15 @@
 		    userName,
 		   	userId,
 		   	userPassword,
-		   	userPhoneFirstDig,
+		   	mobileCarrier,
 		   	userPhoneNum,
 		   	userZipcode,
+		   	adminDistrict,
 		   	userAddress,
 		   	userEmail,
-		   	userDOB
+		   	userDOB,
+		   	userRegDate,
+		   	userInfoDelYN
 		FROM
 			userinfo
 		WHERE 1=1
@@ -94,12 +119,14 @@ And userPassword=#{userPassword}</if>
 		userGenderMF,
 		userId,
 		userPassword,
-		userPhoneFirstDig,
+		mobileCarrier,
 		userPhoneNum,
 		userZipcode,
+		adminDistrict,
 		userAddress,
 		userEmail,
 		userDOB,
+		userRegDate,
 		userInfoDelYN,
 		userReview_seq,
 		payMethod_seq,
@@ -112,12 +139,14 @@ And userPassword=#{userPassword}</if>
 		#{userGenderMF},
 		#{userId},
 		#{userPassword},
-		#{userPhoneFirstDig},
+		#{mobileCarrier},
 		#{userPhoneNum},
 		#{userZipcode},
+		#{adminDistrict},
 		#{userAddress},
 		#{userEmail},
 		#{userDOB},
+		#{userRegDate},
 		#{userInfoDelYN},
 		#{userReview_seq},
 		#{payMethod_seq},

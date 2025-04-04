@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +20,7 @@ public class UserInfoController {
 	UserInfoService userInfoService;
 	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmList")
-	public String UserInfoXdmList(UserInfoVo vo, Model model) {
+	public String UserInfoXdmList(@ModelAttribute("vo") UserInfoVo vo, Model model) {
 	
 		vo.setParamsPaging(userInfoService.selectOneCount(vo));
 		
@@ -31,15 +32,15 @@ public class UserInfoController {
 //		codeGroupVo.setThisPage();
 //		codeGroupVo.setRowNumToShow(20);
 		
-		model.addAttribute("vo", vo);
+		
 	
 		 return "xdm/userinfo/UserInfoXdmList";
 	}
 	
 	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmForm")
-	public String UserInfoXdmForm() {
-		
+	public String UserInfoXdmForm(Model model, UserInfoVo userInfoVo) {
+		model.addAttribute("item",userInfoService.selectOne(userInfoVo));
 		return "xdm/userinfo/UserInfoXdmForm";
 	}
 	
