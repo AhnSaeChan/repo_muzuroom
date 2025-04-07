@@ -85,6 +85,43 @@ public class UserInfoController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/signinUsrProc")
+	public Map<String, Object> signinUsrProc(UserInfoDto UserInfoDto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		UserInfoDto rtMember = userInfoService.selectOneLogin(UserInfoDto);
+		if(rtMember!=null) {
+			httpSession.setAttribute("sessSeqUsr",rtMember.getSeq());
+			httpSession.setAttribute("sessIdUsr",rtMember.getUserId());
+			httpSession.setAttribute("sessNameUsr",rtMember.getUserName());
+			returnMap.put("rt","success");
+		}else {
+			returnMap.put("rt","fail");
+//			System.out.println(rtMember.getSeq());
+		}
+//		UtilCookie.deleteCookieXdm();
+		
+//		System.out.println(rtMember.getUserId());
+		return returnMap;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/signoutUsrProc")
+	public Map<String, Object> signoutUsrProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		UtilCookie.deleteCookieXdm();
+		httpSession.setAttribute("sessSeqUsr", null);
+		httpSession.setAttribute("sessIdUsr", null);
+		httpSession.setAttribute("sessNameUsr", null);
+		returnMap.put("rt","success");
+		return returnMap;
+		
+	}
+	
+	
+	
 	
 	
 	

@@ -12,10 +12,10 @@ public class IndexView {
 		return "/xdm/index/IndexView";
 	}
 	
-	@RequestMapping(value = "/user/userindex/userIndexView")
-	public String userIndexView() {
+	@RequestMapping(value = "/usr/usrindex/usrIndexView")
+	public String usrIndexView() {
 			
-		return "/user/userindex/userIndexView";
+		return "/usr/usrindex/usrIndexView";
 	}
 }
 

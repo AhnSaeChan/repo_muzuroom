@@ -29,5 +29,7 @@ public class UserInfoService {
 	public UserInfoDto selectOneLogin(UserInfoDto userInfoDto) {
 		return userInfoDao.selectOneLogin(userInfoDto);
 	}
+	
+	
 
 }
