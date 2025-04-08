@@ -36,6 +36,12 @@
  	<include refid="selectCommon"/>
  </select>
  
+ <select id="selectDuplicateId" resultType="Integer">
+	SELECT COUNT(userId) 
+	FROM userinfo
+	WHERE userId =#{userId}
+</select>
+ 
  
  <select id="selectList" resultMap="resultMapObj">
  	select userinfo.* from( 

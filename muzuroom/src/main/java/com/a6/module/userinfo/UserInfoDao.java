@@ -12,5 +12,6 @@ public interface UserInfoDao {
 	public UserInfoDto selectOne(UserInfoVo userInfoVo);
 	public int insert (UserInfoDto userInfoDto);
 	public UserInfoDto selectOneLogin(UserInfoDto userInfoDto);
+	public int selectDuplicateId(UserInfoDto userInfoDto);
 	
 }

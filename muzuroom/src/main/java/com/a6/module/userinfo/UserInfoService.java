@@ -30,6 +30,8 @@ public class UserInfoService {
 		return userInfoDao.selectOneLogin(userInfoDto);
 	}
 	
-	
+	public int selectDuplicateId(UserInfoDto userInfoDto) {
+		return userInfoDao.selectDuplicateId(userInfoDto);
+	}
 
 }

@@ -78,7 +78,8 @@
 												</label>
 											<input type="text" id="userId" name="userId" class="form-control" 
 												 />
-											<div class="invalid-feedback">ID를 입력해주세요.</div>
+											<div class="invalid-feedback" id="duplicateId">ID를 입력해주세요.</div>
+											
 										</div>
 										<div class="col-12">
 											<div class="password-field position-relative">
@@ -89,6 +90,7 @@
 														id="userPw" name="userPw" placeholder="비밀번호" />
 													<span><i class="bi bi-eye-slash passwordToggler"></i></span>
 													<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+													
 												</div>
 											</div>
 										</div>
@@ -97,7 +99,7 @@
 												<label for="formSignupPassword"
 													class="form-label visually-hidden">비밀번호 확인</label>
 												<div class="password-field position-relative">
-													<input type="password" id="passwordCon" name="passwordCon" class="form-control"
+													<input type="password" id="passwordCon" name="passwordCon" class="form-control fakePassword"
 														 placeholder="비밀번호 확인"  />
 													<span><i class="bi bi-eye-slash passwordToggler"></i></span>
 													<div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
@@ -135,7 +137,7 @@
 										<div class="col-12">
 											<label for="formSignupaddress" class="form-label visually-hidden">주소
 												</label>
-											<input type="text" id="adress" name="adress" class="form-control" 
+											<input type="text" id="address" name="address" class="form-control" 
 												placeholder="나머지 주소를 입력해주세요" required />
 											<div class="invalid-feedback">주소를 입력해주세요.</div>
 										</div>
@@ -217,38 +219,57 @@
 	<script type="text/javascript">
 	
 	function Validation() {
-        var isValid = true;
-		var userId = $("#userId").val();
-        var userPassword = $("#userPw").val();
+	    var isValid = true;
 
-       	if (userId === "") {
-            $("#userId").addClass("is-invalid");  
-            $("#userId").css("border-color", "#dc3545");
-            isValid = false;
-        } else {
-            $("#userId").removeClass("is-invalid");  
-            $("#userId").css("border-color", "");  
-        }
+	    var firstName = $("#firstName").val().trim();
+	    var fullName = $("#fullName").val().trim();
+	    var userId = $("#userId").val().trim();
+	    var userPw = $("#userPw").val();
+	    var passwordCon = $("#passwordCon").val();
+	    var teleNum = $("#teleNum").val().trim();
+	    var zipcode = $("#zipcode").val().trim();
+	    var address = $("#address").val().trim(); 
+	    var emailAdd = $("#emailAdd").val().trim();
+	    var dob = $("#dob").val().trim();
 
-        if (userPassword === "") {
-            $("#userPw").addClass("is-invalid"); 
-          	$("#userPw").css("border-color", "#dc3545");
-            isValid = false;
-        } else {
-            $("#userPw").removeClass("is-invalid");  
-            $("#userPw").css("border-color", ""); 
-        }
-        return isValid; 
-        
-    }
-	$( "#buttonSignUp" ).on( "click", function() {
+	    function validateField(id, value) {
+	        if (value === "") {
+	            $("#" + id).addClass("is-invalid").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#" + id).removeClass("is-invalid").css("border-color", "");
+	        }
+	    }
+
+	    validateField("firstName", firstName);
+	    validateField("fullName", fullName);
+	    validateField("userId", userId);
+	    validateField("userPw", userPw);
+	    validateField("passwordCon", passwordCon);
+	    validateField("teleNum", teleNum);
+	    validateField("zipcode", zipcode);
+	    validateField("address", address);
+	    validateField("emailAdd", emailAdd);
+	    validateField("dob", dob);
+
+	    
+	    if (userPw !== passwordCon) {
+	        $("#passwordCon").addClass("is-invalid").css("border-color", "#dc3545");
+	        isValid = false;
+	    }
+
+	    return isValid;
+	}
+    
+	$( "#userId" ).on( "blur", function() {
 			loginLogic();
 	}); 
 	
 	
 	function loginLogic (){
-		
-		if(Validation() == false) return false;
+		var userId = $("#userId").val().trim();
+	    if (userId === "") return;
+// 		if(Validation() == false) return false;
 		$.ajax({
 			async: true 
 			,cache: false
@@ -256,16 +277,16 @@
 			/* ,dataType:"json" */
 			,url: "/signinUsrProc"
 			/* ,data : $("#formLogin").serialize() */
-			,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val()}
+			,data : { "userId" : $("#userId").val(),}
 			,success: function(response) {
 				if(response.rt == "success") {
 //						
-						
-						 location.href = "/usr/usrindex/usrIndexView";
+						 
 				} else {
 			 		
+					alert("asd");	
 					document.getElementById("modalAlertTitle").innerText = "확 인";
-			 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+			 		document.getElementById("modalAlertBody").innerText = "id가 중복";
 			 		$("#modalAlert").modal("show");
 				}
 			}
@@ -274,6 +295,39 @@
 			}
 		});
 }
+
+$(document).ready(function() {
+    $("#userId").on("blur", function() {
+        checkDuplicateId();
+    });
+});
+
+function checkDuplicateId() {
+    var userId = $("#userId").val().trim();
+    if (userId === "") return;
+
+    $.ajax({
+        url: "/selectDuplicateId",
+        type: "post",
+        data: { userId: userId },
+        success: function(res) {
+            if (res.rt === "fail") {
+                $("#userId").addClass("is-invalid").css("border-color", "#dc3545");
+                $("#userId").data("valid", false);
+            } else {
+                $("#userId").removeClass("is-invalid").css("border-color", "");
+                $("#userId").data("valid", true);
+            }
+        },
+        error: function() {
+            alert("서버 오류: 아이디 중복 검사 실패");
+        }
+    });
+}
+$("#buttonSignUp").on("click", function() {
+    if (!Validation()) return;
+
+});
 	
 	
 	</script>

@@ -120,6 +120,17 @@ public class UserInfoController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/selectDuplicateId")
+	public Map<String, Object> selectDuplicateId(UserInfoDto UserInfoDto) throws Exception {
+	    Map<String, Object> returnMap = new HashMap<>();
+	    
+	    int cheakId = userInfoService.selectDuplicateId(UserInfoDto); // DB에서 동일한 userId 개수 조회
+	    returnMap.put("rt", cheakId > 0 ? "fail" : "success");
+	    
+	    return returnMap;
+	}
+	
 	
 	
 	
