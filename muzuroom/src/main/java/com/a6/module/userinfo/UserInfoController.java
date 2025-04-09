@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,9 +46,13 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmInst")
-	public String UserInfoXdmInst(Model model, UserInfoDto userInfoDto) {
+	public String UserInfoXdmInst(UserInfoDto userInfoDto, UserInfoVo vo) {
 		userInfoService.insert(userInfoDto);
-		return "redirect:/xdm/userinfo/UserInfoXdmInst";
+		
+		vo.setUserPassword(encodeBcrypt(userInfoDto.getUserPassword(), 10));
+		
+		
+		return "redirect:/xdm/userinfo/UserInfoXdmList";
 	}
 	
 	@ResponseBody
@@ -131,7 +136,16 @@ public class UserInfoController {
 	    return returnMap;
 	}
 	
-	
+	//암호화 코드
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
 	
 	
 	

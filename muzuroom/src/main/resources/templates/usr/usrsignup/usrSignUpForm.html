@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
@@ -43,14 +43,15 @@
 								</div>
 
 								<!-- form -->
-								<form class="form w-100" novalidate="novalidate">
+								<form id="form" class="form w-100" novalidate="novalidate">
+									
 									<div class="row g-3">
 										<!-- col -->
 										<div class="col-md-6 col-12">
 											<!-- input -->
 											<label for="formSignupfname" class="form-label visually-hidden">성
 												</label>
-											<input type="text" id="firstName" name="firstName" class="form-control"
+											<input type="text" id="userFirstName" name="userFirstName" class="form-control"
 												placeholder="성" />
 											<div class="invalid-feedback">성을 입력해주세요.</div>
 										</div>
@@ -58,7 +59,7 @@
 											<!-- input -->
 											<label for="formSignuplname" class="form-label visually-hidden">이름
 												</label>
-											<input type="text" id="fullName" name="fullName" class="form-control"
+											<input type="text" id="userName" name="userName" class="form-control"
 												placeholder="이름" />
 											<div class="invalid-feedback">이름을 입력해주세요.</div>
 										</div>
@@ -87,7 +88,7 @@
 													class="form-label visually-hidden">비밀번호</label>
 												<div class="password-field position-relative">
 													<input type="password" class="form-control fakePassword"
-														id="userPw" name="userPw" placeholder="비밀번호" />
+														id="userPassword" name="userPassword" placeholder="비밀번호" />
 													<span><i class="bi bi-eye-slash passwordToggler"></i></span>
 													<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 													
@@ -119,7 +120,7 @@
 										<div class="col-md-8 col-12">
 											<label for="formSignupfphonenum" class="form-label visually-hidden">
 												</label>
-											<input type="text" id="teleNum" name="teleNum" class="form-control" 
+											<input type="text" id="userPhoneNum" name="userPhoneNum" class="form-control" 
 												placeholder="" />
 											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 										</div>
@@ -127,7 +128,7 @@
 											<!-- input -->
 											<label for="formSignupfname" class="form-label visually-hidden">
 												</label>
-											<input type="text" id="zipcode" name="zipcode" class="form-control" 
+											<input type="text" id="userZipcode" name="userZipcode" class="form-control" 
 												placeholder="" />
 											<div class="invalid-feedback">우편번호를 입력해주세요.</div>
 										</div>
@@ -137,23 +138,37 @@
 										<div class="col-12">
 											<label for="formSignupaddress" class="form-label visually-hidden">주소
 												</label>
-											<input type="text" id="address" name="address" class="form-control" 
+											<input type="text" id="userAddress" name="userAddress" class="form-control" 
 												placeholder="나머지 주소를 입력해주세요" required />
 											<div class="invalid-feedback">주소를 입력해주세요.</div>
 										</div>
 										<div class="col-12">
 											<label for="formSignupEmail" class="form-label visually-hidden">이메일 주소
 												</label>
-											<input type="email" id="emailAdd" name="emailAdd" class="form-control" 
+											<input type="email" id="userEmail" name="userEmail" class="form-control" 
 												placeholder="Email" />
 											<div class="invalid-feedback">이메일을 입력해주세요.</div>
 										</div>
 										<div class="col-12">
 											<label for="formSignupEmail" class="form-label visually-hidden">생일
 												</label>
-											<input type="date" id="dob" name="dob" class="form-control" 
+											<input type="date" id="userDOB" name="userDOB" class="form-control" 
 												placeholder="생년월일을 선택해주세요" />
 											<div class="invalid-feedback">생년월일을 선택해주세요.</div>
+										</div>
+										<div class="col-md-8 col-12">
+											<label for="formSignupfphonenum" class="form-label visually-hidden">
+												</label>
+											<input type="text" id=reservCurrent_seq name="reservCurrent_seq" class="form-control" 
+												placeholder="" />
+											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+										</div>
+										<div class="col-md-8 col-12">
+											<label for="formSignupfphonenum" class="form-label visually-hidden">
+												</label>
+											<input type="text" id="payMethod_seq" name="payMethod_seq" class="form-control" 
+												placeholder="" />
+											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 										</div>
 										<!-- btn -->
 										<div class="col-12 d-grid"><button type="button" id="buttonSignUp"
@@ -218,19 +233,21 @@
 	
 	<script type="text/javascript">
 	
+	let seq = document.querySelector("input[name=seq]");
+	
 	function Validation() {
 	    var isValid = true;
 
-	    var firstName = $("#firstName").val().trim();
-	    var fullName = $("#fullName").val().trim();
+	    var firstName = $("#userFirstName").val().trim();
+	    var fullName = $("#userName").val().trim();
 	    var userId = $("#userId").val().trim();
-	    var userPw = $("#userPw").val();
+	    var userPw = $("#userPassword").val();
 	    var passwordCon = $("#passwordCon").val();
-	    var teleNum = $("#teleNum").val().trim();
-	    var zipcode = $("#zipcode").val().trim();
-	    var address = $("#address").val().trim(); 
-	    var emailAdd = $("#emailAdd").val().trim();
-	    var dob = $("#dob").val().trim();
+	    var teleNum = $("#userPhoneNum").val().trim();
+	    var zipcode = $("#userZipcode").val().trim();
+	    var address = $("#userAddress").val().trim(); 
+	    var emailAdd = $("#userEmail").val().trim();
+	    var dob = $("#userDOB").val().trim();
 
 	    function validateField(id, value) {
 	        if (value === "") {
@@ -241,16 +258,16 @@
 	        }
 	    }
 
-	    validateField("firstName", firstName);
-	    validateField("fullName", fullName);
+	    validateField("userFirstName", firstName);
+	    validateField("userName", fullName);
 	    validateField("userId", userId);
-	    validateField("userPw", userPw);
+	    validateField("userPassword", userPw);
 	    validateField("passwordCon", passwordCon);
-	    validateField("teleNum", teleNum);
-	    validateField("zipcode", zipcode);
-	    validateField("address", address);
-	    validateField("emailAdd", emailAdd);
-	    validateField("dob", dob);
+	    validateField("userPhoneNum", teleNum);
+	    validateField("userZipcode", zipcode);
+	    validateField("userAddress", address);
+	    validateField("userEmail", emailAdd);
+	    validateField("userDOB", dob);
 
 	    
 	    if (userPw !== passwordCon) {
@@ -261,46 +278,48 @@
 	    return isValid;
 	}
     
-	$( "#userId" ).on( "blur", function() {
-			loginLogic();
-	}); 
+// 	$( "#userId" ).on( "blur", function() {
+// 			loginLogic();
+// 	}); 
 	
 	
-	function loginLogic (){
-		var userId = $("#userId").val().trim();
-	    if (userId === "") return;
-// 		if(Validation() == false) return false;
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			/* ,dataType:"json" */
-			,url: "/signinUsrProc"
-			/* ,data : $("#formLogin").serialize() */
-			,data : { "userId" : $("#userId").val(),}
-			,success: function(response) {
-				if(response.rt == "success") {
-//						
+// 	function loginLogic (){
+// 		var userId = $("#userId").val().trim();
+// 	    if (userId === "") return;
+// // 		if(Validation() == false) return false;
+// 		$.ajax({
+// 			async: true 
+// 			,cache: false
+// 			,type: "post"
+// 			/* ,dataType:"json" */
+// 			,url: "/signinUsrProc"
+// 			/* ,data : $("#formLogin").serialize() */
+// 			,data : { "userId" : $("#userId").val(),}
+// 			,success: function(response) {
+// 				if(response.rt == "success") {
+// //						
 						 
-				} else {
+// 				} else {
 			 		
-					alert("asd");	
-					document.getElementById("modalAlertTitle").innerText = "확 인";
-			 		document.getElementById("modalAlertBody").innerText = "id가 중복";
-			 		$("#modalAlert").modal("show");
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-}
+// 					alert("asd");	
+// 					document.getElementById("modalAlertTitle").innerText = "확 인";
+// 			 		document.getElementById("modalAlertBody").innerText = "id가 중복";
+// 			 		$("#modalAlert").modal("show");
+// 				}
+// 			}
+// 			,error : function(jqXHR, textStatus, errorThrown){
+// 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+// 			}
+// 		});
+// }
 
 $(document).ready(function() {
     $("#userId").on("blur", function() {
         checkDuplicateId();
     });
 });
+
+
 
 function checkDuplicateId() {
     var userId = $("#userId").val().trim();
@@ -313,19 +332,32 @@ function checkDuplicateId() {
         success: function(res) {
             if (res.rt === "fail") {
                 $("#userId").addClass("is-invalid").css("border-color", "#dc3545");
+                $("#duplicateId").text("ID가 중복되었습니다.");
                 $("#userId").data("valid", false);
             } else {
                 $("#userId").removeClass("is-invalid").css("border-color", "");
+                $("#duplicateId").text("");
                 $("#userId").data("valid", true);
+                
+                if (Validation()) {
+                    $("#form").attr("action", "/xdm/userinfo/UserInfoXdmInst");
+                    $("#form").submit();
+                }
             }
         },
-        error: function() {
-            alert("서버 오류: 아이디 중복 검사 실패");
+        error: function(jqXHR, textStatus, errorThrown) {
+        	alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
         }
     });
 }
 $("#buttonSignUp").on("click", function() {
+	checkDuplicateId();
+	
+	
+    
     if (!Validation()) return;
+
+    
 
 });
 	

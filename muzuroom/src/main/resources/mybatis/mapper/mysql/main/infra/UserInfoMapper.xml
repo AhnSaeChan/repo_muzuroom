@@ -117,7 +117,7 @@ And userPassword=#{userPassword}</if>
 </select>
 
 <insert id="insert">
-	 INSERT INTO code(
+	 INSERT INTO userinfo(
 		
 		userCodeCD,
 		userFirstName,
@@ -147,20 +147,21 @@ And userPassword=#{userPassword}</if>
 		#{userPassword},
 		#{mobileCarrier},
 		#{userPhoneNum},
-		#{userZipcode},
-		#{adminDistrict},
+        #{userZipcode},
+        #{adminDistrict},
 		#{userAddress},
-		#{userEmail},
-		#{userDOB},
-		#{userRegDate},
-		#{userInfoDelYN},
-		#{userReview_seq},
-		#{payMethod_seq},
-		#{reservCurrent_seq}
-	)
+        #{userEmail},
+        #{userDOB},
+        #{userRegDate},
+        #{userInfoDelYN},
+        #{userReview_seq},
+        #{payMethod_seq},
+        #{reservCurrent_seq}
+        )
  	<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
  	</insert>
+ 	
  
  </mapper>
