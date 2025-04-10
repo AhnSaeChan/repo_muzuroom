@@ -49,7 +49,11 @@ public class UserInfoController {
 	public String UserInfoXdmInst(UserInfoDto userInfoDto, UserInfoVo vo) {
 		userInfoService.insert(userInfoDto);
 		
-		vo.setUserPassword(encodeBcrypt(userInfoDto.getUserPassword(), 10));
+		String encryptedPw = encodeBcrypt(userInfoDto.getUserPassword(), 10);
+	    userInfoDto.setUserPassword(encryptedPw); // 암호화된 값으로 세팅
+
+	    // 2. DB에 저장
+	    userInfoService.insert(userInfoDto);
 		
 		
 		return "redirect:/xdm/userinfo/UserInfoXdmList";
