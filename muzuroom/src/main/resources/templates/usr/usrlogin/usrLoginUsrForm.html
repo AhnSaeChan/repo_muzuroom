@@ -49,7 +49,7 @@
 											<!-- input -->
 											<label for="formSigninEmail" class="form-label visually-hidden">Email
 												address</label>
-											<input type="text" id="userId" name="id" value="hongdon" class="form-control" 
+											<input type="text" id="userId" name="id" value="hwakin" class="form-control" 
 												placeholder="ID" />
 											<div class="invalid-feedback">ID를 입력해 주세요.</div>
 										</div>
@@ -59,7 +59,7 @@
 												<label for="formSigninPassword"
 													class="form-label visually-hidden">Password</label>
 												<div class="password-field position-relative">
-													<input type="password" id="userPw" name="password" value="123asd" class="form-control"
+													<input type="password" id="userPw" name="userPw" value="852456" class="form-control"
 														 placeholder="비밀번호" />
 													<span><i class="bi bi-eye-slash passwordToggler"></i></span>
 													<div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
@@ -86,7 +86,7 @@
 										<!-- link -->
 										<div>
 											계정이 없으신가요?
-											<a href="./signup.html" class="text-link">회원가입</a>
+											<a href="/usrSignUpForm" class="text-link">회원가입</a>
 										</div>
 									</div>
 								</form>
@@ -172,7 +172,7 @@
 			/* ,dataType:"json" */
 			,url: "/signinUsrProc"
 			/* ,data : $("#formLogin").serialize() */
-			,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val()}
+			,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPw").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
 //						

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.a6.common.util.UtilDateTime;
+
 import jakarta.servlet.http.HttpSession;
 
 
@@ -23,6 +25,13 @@ public class UserInfoController {
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmList")
 	public String UserInfoXdmList(@ModelAttribute("vo") UserInfoVo vo, Model model) {
 	
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		
+		if (vo.getShDelNy() == null) {
+		    vo.setShDelNy(0);
+		}
+		
 		vo.setParamsPaging(userInfoService.selectOneCount(vo));
 		
 //		int a = codeGroupService.selectOneCount();
@@ -47,12 +56,12 @@ public class UserInfoController {
 	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmInst")
 	public String UserInfoXdmInst(UserInfoDto userInfoDto, UserInfoVo vo) {
-		userInfoService.insert(userInfoDto);
+		
 		
 		String encryptedPw = encodeBcrypt(userInfoDto.getUserPassword(), 10);
-	    userInfoDto.setUserPassword(encryptedPw); // 암호화된 값으로 세팅
+	    userInfoDto.setUserPassword(encryptedPw); 
 
-	    // 2. DB에 저장
+	    
 	    userInfoService.insert(userInfoDto);
 		
 		
@@ -65,7 +74,17 @@ public class UserInfoController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		UserInfoDto rtMember = userInfoService.selectOneLogin(UserInfoDto);
+		
+		
 		if(rtMember!=null) {
+			
+			
+	        String inputPassword = UserInfoDto.getUserPassword();
+
+	        
+	        String hashedPassword = rtMember.getUserPassword();
+	        
+	        if (matchesBcrypt(inputPassword, hashedPassword, 10)) {
 			httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
 			httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
 			httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
@@ -73,7 +92,12 @@ public class UserInfoController {
 		}else {
 			returnMap.put("rt","fail");
 //			System.out.println(rtMember.getSeq());
-		}
+		} 
+		}else {
+	        
+	        returnMap.put("rt", "fail");
+	    }
+
 //		UtilCookie.deleteCookieXdm();
 		
 //		System.out.println(rtMember.getUserId());
@@ -100,19 +124,33 @@ public class UserInfoController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		UserInfoDto rtMember = userInfoService.selectOneLogin(UserInfoDto);
-		if(rtMember!=null) {
-			httpSession.setAttribute("sessSeqUsr",rtMember.getSeq());
-			httpSession.setAttribute("sessIdUsr",rtMember.getUserId());
-			httpSession.setAttribute("sessNameUsr",rtMember.getUserName());
+			if(rtMember!=null) {
+			
+			
+	        String inputPassword = UserInfoDto.getUserPassword();
+
+	        
+	        String hashedPassword = rtMember.getUserPassword();
+	        
+	        if (matchesBcrypt(inputPassword, hashedPassword, 10)) {
+			httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
+			httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
+			httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
 			returnMap.put("rt","success");
 		}else {
 			returnMap.put("rt","fail");
 //			System.out.println(rtMember.getSeq());
-		}
+		} 
+		}else {
+	        
+	        returnMap.put("rt", "fail");
+	    }
+
 //		UtilCookie.deleteCookieXdm();
 		
 //		System.out.println(rtMember.getUserId());
 		return returnMap;
+		
 		
 	}
 	
@@ -134,7 +172,7 @@ public class UserInfoController {
 	public Map<String, Object> selectDuplicateId(UserInfoDto UserInfoDto) throws Exception {
 	    Map<String, Object> returnMap = new HashMap<>();
 	    
-	    int cheakId = userInfoService.selectDuplicateId(UserInfoDto); // DB에서 동일한 userId 개수 조회
+	    int cheakId = userInfoService.selectDuplicateId(UserInfoDto); 
 	    returnMap.put("rt", cheakId > 0 ? "fail" : "success");
 	    
 	    return returnMap;
@@ -149,6 +187,13 @@ public class UserInfoController {
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
+	}
+	
+	//회원가입
+	@RequestMapping(value = "/usrSignUpForm")
+	public String usrSignUpForm() {
+		
+		return "usr/usrsignup/usrSignUpForm";
 	}
 	
 	

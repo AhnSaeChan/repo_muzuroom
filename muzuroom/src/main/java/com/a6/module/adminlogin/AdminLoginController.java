@@ -10,13 +10,13 @@ import com.a6.module.code.CodeVo;
 @Controller
 public class AdminLoginController {
 
-	@RequestMapping(value = "/xdm/adminlogin/adminLoginXdmForm")
+	@RequestMapping(value = "/adminLoginXdmForm")
 	public String adminLoginXdmForm() {
 		
 		return "xdm/adminlogin/adminLoginXdmForm";
 	}
 	
-	@RequestMapping(value = "/usr/usrlogin/usrLoginUsrForm")
+	@RequestMapping(value = "/usrLoginUsrForm")
 	public String usrLoginUsrForm() {
 		
 		return "/usr/usrlogin/usrLoginUsrForm";

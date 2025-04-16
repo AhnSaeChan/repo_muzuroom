@@ -20,7 +20,7 @@
 	<link href="/user/template/FreshCart-1.4.0/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet" />
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="/user/template/FreshCart-1.4.0/assets/css/theme.min.css">
-
+	<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
 	<title>Sign Up eCommerce HTML Template - FreshCart Furniture</title>
 </head>
 
@@ -65,13 +65,14 @@
 										</div>
 										<div class="col-12">
 											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-												<label class="form-check-label" for="inlineRadio1">남</label>
-											  </div>
-											  <div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-												<label class="form-check-label" for="inlineRadio2">여</label>
-											  </div>
+											  <input class="form-check-input" type="radio" name="userGenderMF" id="inlineRadio1" value="1" checked>
+											  <label class="form-check-label" for="inlineRadio1">남</label>
+											</div>
+											
+											<div class="form-check form-check-inline">
+											  <input class="form-check-input" type="radio" name="userGenderMF" id="inlineRadio2" value="2">
+											  <label class="form-check-label" for="inlineRadio2">여</label>
+											</div>
 										</div>
 										<div class="col-12">
 											<!-- input -->
@@ -108,15 +109,14 @@
 											</div>
 										</div>
 										<div class="col-md-4 col-12">
-											<select class="form-select">
-                                                <option selected value="">010</option>
-                                                <option>011</option>
-												<option>016</option>
-												<option>017</option>
-												<option>018</option>
-												<option>019</option>
-                                            </select>
-                                        </div>
+										    <select class="form-select" id="mobileCarrier" name="mobileCarrier">
+										        <option selected value="">통신사</option>
+										        <option value="3">SKT</option>
+										        <option value="4">LGU+</option>
+										        <option value="5">KT</option>
+										    </select>
+										    <div class="invalid-feedback">통신사를 선택해 주세요</div>
+										</div>
 										<div class="col-md-8 col-12">
 											<label for="formSignupfphonenum" class="form-label visually-hidden">
 												</label>
@@ -152,52 +152,11 @@
 										<div class="col-12">
 											<label for="formSignupEmail" class="form-label visually-hidden">생일
 												</label>
-											<input type="date" id="userDOB" name="userDOB" class="form-control" 
+											<input type="text" id="userDOB" name="userDOB" class="form-control" 
 												placeholder="생년월일을 선택해주세요" />
 											<div class="invalid-feedback">생년월일을 선택해주세요.</div>
 										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id=reservCurrent_seq name="reservCurrent_seq" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id="payMethod_seq" name="payMethod_seq" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id="userCodeCD" name="userCodeCD" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id="userGenderMF" name="userGenderMF" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id="userInfoDelYN" name="userInfoDelYN" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<label for="formSignupfphonenum" class="form-label visually-hidden">
-												</label>
-											<input type="text" id="userReview_seq" name="userReview_seq" class="form-control" 
-												placeholder="" />
-											<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-										</div>
+										
 										<!-- btn -->
 										<div class="col-12 d-grid"><button type="button" id="buttonSignUp"
 												class="btn btn-primary">회원가입</button></div>
@@ -258,6 +217,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	
 	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
 	
 	<script type="text/javascript">
 	
@@ -276,6 +237,7 @@
 	    var address = $("#userAddress").val().trim(); 
 	    var emailAdd = $("#userEmail").val().trim();
 	    var dob = $("#userDOB").val().trim();
+	    var mobile = $("#mobileCarrier").val().trim();
 
 	    function validateField(id, value) {
 	        if (value === "") {
@@ -296,7 +258,7 @@
 	    validateField("userAddress", address);
 	    validateField("userEmail", emailAdd);
 	    validateField("userDOB", dob);
-
+	    validateField("mobileCarrier", mobile);
 	    
 	    if (userPw !== passwordCon) {
 	        $("#passwordCon").addClass("is-invalid").css("border-color", "#dc3545");
@@ -306,40 +268,7 @@
 	    return isValid;
 	}
     
-// 	$( "#userId" ).on( "blur", function() {
-// 			loginLogic();
-// 	}); 
-	
-	
-// 	function loginLogic (){
-// 		var userId = $("#userId").val().trim();
-// 	    if (userId === "") return;
-// // 		if(Validation() == false) return false;
-// 		$.ajax({
-// 			async: true 
-// 			,cache: false
-// 			,type: "post"
-// 			/* ,dataType:"json" */
-// 			,url: "/signinUsrProc"
-// 			/* ,data : $("#formLogin").serialize() */
-// 			,data : { "userId" : $("#userId").val(),}
-// 			,success: function(response) {
-// 				if(response.rt == "success") {
-// //						
-						 
-// 				} else {
-			 		
-// 					alert("asd");	
-// 					document.getElementById("modalAlertTitle").innerText = "확 인";
-// 			 		document.getElementById("modalAlertBody").innerText = "id가 중복";
-// 			 		$("#modalAlert").modal("show");
-// 				}
-// 			}
-// 			,error : function(jqXHR, textStatus, errorThrown){
-// 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-// 			}
-// 		});
-// }
+
 
 $(document).ready(function() {
     $("#userId").on("blur", function() {
@@ -347,7 +276,16 @@ $(document).ready(function() {
     });
 });
 
+$("#buttonSignUp").on("click", function() {
+	checkDuplicateId();
+	
+	
+    
+    if (!Validation()) return;
 
+    
+
+});
 
 function checkDuplicateId() {
     var userId = $("#userId").val().trim();
@@ -378,19 +316,30 @@ function checkDuplicateId() {
         }
     });
 }
-$("#buttonSignUp").on("click", function() {
-	checkDuplicateId();
-	
-	
-    
-    if (!Validation()) return;
 
-    
-
-});
 	
 	
 	</script>
+	
+	<script type="text/javascript">
+
+jQuery.datetimepicker.setLocale('kr');
+
+jQuery(function(){
+	 jQuery('#userDOB').datetimepicker({
+	  format:'Y-m-d',
+	  onShow:function( ct ){
+	   this.setOptions({
+	    
+	   })
+	  },
+	  timepicker:false
+	 });
+	 
+	});
+
+
+</script>
 </body>
 
 </html>

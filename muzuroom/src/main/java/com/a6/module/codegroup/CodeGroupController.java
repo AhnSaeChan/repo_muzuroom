@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.a6.common.util.UtilDateTime;
+
 @Controller
 public class CodeGroupController {
 	@Autowired
@@ -13,7 +15,14 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/xdm/codegroup/CodeGroupXdmList")
 	public String CodeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
-	
+		
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		
+		if (vo.getShDelNy() == null) {
+		    vo.setShDelNy(0);
+		}
+		
 		vo.setParamsPaging(codeGroupService.selectOneCount(vo));
 		
 //		int a = codeGroupService.selectOneCount();

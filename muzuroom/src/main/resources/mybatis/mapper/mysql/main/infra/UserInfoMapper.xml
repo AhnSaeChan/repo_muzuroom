@@ -6,26 +6,29 @@
  <resultMap id="resultMapObj" type="com.a6.module.userinfo.UserInfoDto"></resultMap>
  
  <sql id="selectCommon" >
- 		FROM
- 			userinfo
- 		WHERE 1=1
- 		<if test="shUseNy != null and !shUseNy.equals('')">AND userinfo.userCodeCD = #{shUseNy}</if>
-        <if test="shDelNy != null and !shDelNy.equals('')">AND userinfo.userInfoDelYN = #{shDelNy}</if>
+ 		
+ 	 
+	FROM userinfo a
+	Where 1=1
+
+		
+ 		<if test="shUseNy != null and !shUseNy.equals('')">AND a.userCodeCD = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.userInfoDelYN = #{shDelNy}</if>
 				
 				<choose>
-					<when test="shOptionDate == 1">AND userinfo.userDOB BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND userinfo.userRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 1">AND a.userDOB BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.userRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
  				</choose>
  				
         <choose>
-            <when test="shOption == 1">AND userinfo.userFirstName = #{shValue}</when>
-            <when test="shOption == 2">AND userinfo.userName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND userinfo.userId LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 4">AND userinfo.userPassword LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 5">AND userinfo.mobileCarrier LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 6">AND userinfo.userPhoneNum LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 7">AND userinfo.adminDistrict LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 8">AND userinfo.userEmail LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 1">AND a.userFirstName = #{shValue}</when>
+            <when test="shOption == 2">AND a.userName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.userId LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 4">AND a.userPassword LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 5">AND a.mobileCarrier LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 6">AND a.userPhoneNum LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 7">AND a.adminDistrict LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 8">AND a.userEmail LIKE CONCAT('%',#{shValue},'%')</when>
             
             
         </choose>	
@@ -99,21 +102,33 @@
 		ORDER BY seq DESC
 </select>
 
-<select id="selectOneLogin" resultMap="resultMapObj">
-			select
-				seq,
-				userId,
-				userName,
-				userPassword
+<!-- <select id="selectOneLogin" resultMap="resultMapObj"> -->
+<!-- 			select -->
+<!-- 				seq, -->
+<!-- 				userId, -->
+<!-- 				userName, -->
+<!-- 				userPassword -->
 				
-			From
-				userinfo
-			where
-				1=1
+<!-- 			From -->
+<!-- 				userinfo -->
+<!-- 			where -->
+<!-- 				1=1 -->
 
-and userId= #{userId}
-<if test="userPassword !=null and !userPassword.equals('')">
-And userPassword=#{userPassword}</if>
+<!-- and userId= #{userId} -->
+<!-- <if test="userPassword !=null and !userPassword.equals('')"> -->
+<!-- And userPassword=#{userPassword}</if> -->
+<!-- </select> -->
+
+<select id="selectOneLogin" resultMap="resultMapObj">
+    SELECT
+        seq,
+        userId,
+        userName,
+        userPassword
+    FROM
+        userinfo
+    WHERE
+        userId = #{userId}
 </select>
 
 <insert id="insert">
@@ -138,30 +153,32 @@ And userPassword=#{userPassword}</if>
 		payMethod_seq,
 		reservCurrent_seq
 	)VALUES(
-		
-		#{userCodeCD},
-		#{userFirstName},
-		#{userName},
-		#{userGenderMF},
-		#{userId},
-		#{userPassword},
-		#{mobileCarrier},
-		#{userPhoneNum},
-        #{userZipcode},
-        #{adminDistrict},
-		#{userAddress},
-        #{userEmail},
-        #{userDOB},
-        #{userRegDate},
-        #{userInfoDelYN},
-        #{userReview_seq},
-        #{payMethod_seq},
-        #{reservCurrent_seq}
-        )
+		16,
+	    #{userFirstName},
+	    #{userName},
+	    #{userGenderMF},
+	    #{userId},
+	    #{userPassword},
+	    #{mobileCarrier},
+	    #{userPhoneNum},
+	    #{userZipcode},
+	    #{adminDistrict},
+	    #{userAddress},
+	    #{userEmail},
+	    #{userDOB},
+	    #{userRegDate},
+	    0,
+	    1,
+	    1,
+	    1
+	)
  	<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
  	</insert>
  	
+ 	
+	
+	
  
  </mapper>

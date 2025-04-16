@@ -98,7 +98,7 @@ License: For each use you must have a valid license purchased only from above li
 									<label class="form-label fs-6 fw-bold text-gray-900">ID</label>
 									<!--end::Label-->
 									<!--begin::Input-->
-									<input class="form-control form-control-lg form-control-solid" type="text" id="userId" name="id" value="hongdon" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="text" id="userId" name="id" value="hwakin" autocomplete="off" />
 									 <div class="invalid-feedback">
 						                아이디를 입력해주세요.
 						             </div>
@@ -119,7 +119,7 @@ License: For each use you must have a valid license purchased only from above li
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Input-->
-									<input class="form-control form-control-lg form-control-solid" type="password" id="userPw" name="password" value="123asd" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="password" id="userPw" name="userPw" value="852456" autocomplete="off" />
 									<div class="invalid-feedback">
 					                    비밀번호를 입력해주세요.
 					                </div>
@@ -226,7 +226,7 @@ License: For each use you must have a valid license purchased only from above li
 		function Validation() {
             var isValid = true;
 			var userId = $("#userId").val();
-            var userPassword = $("#userPw").val();
+            var userPassword = $("#userPassword").val();
 
            	if (userId === "") {
                 $("#userId").addClass("is-invalid");  
@@ -264,7 +264,7 @@ License: For each use you must have a valid license purchased only from above li
 				/* ,dataType:"json" */
 				,url: "/signinXdmProc"
 				/* ,data : $("#formLogin").serialize() */
-				,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val()}
+				,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPw").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 // 						
