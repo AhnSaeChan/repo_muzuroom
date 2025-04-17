@@ -16,6 +16,11 @@ public class UserInfoDto {
 	private String userZipcode;
 	private String adminDistrict;
 	private String userAddress;
+	private String streetAddress;
+	private String lotAddress;
+	private String addressRef;
+	private Double latitude;
+	private Double longitude;
 	private String userEmail;
 	private Date userDOB;
 	private Date userRegDate;
@@ -31,6 +36,36 @@ public class UserInfoDto {
 	 */
 	public String getSeq() {
 		return seq;
+	}
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+	public String getLotAddress() {
+		return lotAddress;
+	}
+	public void setLotAddress(String lotAddress) {
+		this.lotAddress = lotAddress;
+	}
+	public String getAddressRef() {
+		return addressRef;
+	}
+	public void setAddressRef(String addressRef) {
+		this.addressRef = addressRef;
+	}
+	public Double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	public Double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 	/**
 	 * @return the adminDistrict

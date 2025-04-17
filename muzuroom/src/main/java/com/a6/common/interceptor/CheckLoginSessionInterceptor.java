@@ -10,7 +10,7 @@ public class CheckLoginSessionInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 //		관리자용
-		if(request.getRequestURI().contains("Xdm")) {
+		if(request.getRequestURI().contains("xdm")) {
 			if (request.getSession().getAttribute("sessSeqXdm") != null) {
 				// by pass
 			} else {
