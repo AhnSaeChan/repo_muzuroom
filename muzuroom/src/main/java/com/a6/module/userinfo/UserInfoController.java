@@ -22,6 +22,11 @@ public class UserInfoController {
 	@Autowired
 	UserInfoService userInfoService;
 	
+	@Autowired
+	MailService mailService;
+	
+	
+	
 	@RequestMapping(value = "/xdm/userinfo/UserInfoXdmList")
 	public String UserInfoXdmList(@ModelAttribute("vo") UserInfoVo vo, Model model) {
 	
@@ -60,7 +65,21 @@ public class UserInfoController {
 		
 		String encryptedPw = encodeBcrypt(userInfoDto.getUserPassword(), 10);
 	    userInfoDto.setUserPassword(encryptedPw); 
-
+	    
+	   Thread thread = new Thread(new Runnable() {
+	    
+		@Override
+	    public void run() {
+	    	
+	    	try {
+	    		mailService.sendMailWelcome();
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	};
+	    }
+	   });
+	    
+	    thread.start();
 	    
 	    userInfoService.insert(userInfoDto);
 		
@@ -133,9 +152,9 @@ public class UserInfoController {
 	        String hashedPassword = rtMember.getUserPassword();
 	        
 	        if (matchesBcrypt(inputPassword, hashedPassword, 10)) {
-			httpSession.setAttribute("sessSeqXdm",rtMember.getSeq());
-			httpSession.setAttribute("sessIdXdm",rtMember.getUserId());
-			httpSession.setAttribute("sessNameXdm",rtMember.getUserName());
+			httpSession.setAttribute("sessSeqUsr",rtMember.getSeq());
+			httpSession.setAttribute("sessIdUsr",rtMember.getUserId());
+			httpSession.setAttribute("sessNameUsr",rtMember.getUserName());
 			returnMap.put("rt","success");
 		}else {
 			returnMap.put("rt","fail");

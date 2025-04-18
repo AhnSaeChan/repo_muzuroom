@@ -181,7 +181,7 @@
 	    #{longitude},
 	    #{userEmail},
 	    #{userDOB},
-	    #{userRegDate},
+	    NOW(),
 	    0,
 	    1,
 	    1,

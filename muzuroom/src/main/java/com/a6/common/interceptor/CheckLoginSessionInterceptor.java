@@ -14,7 +14,7 @@ public class CheckLoginSessionInterceptor implements HandlerInterceptor{
 			if (request.getSession().getAttribute("sessSeqXdm") != null) {
 				// by pass
 			} else {
-				response.sendRedirect("xdm/adminlogin/adminLoginXdmForm");
+				response.sendRedirect("/adminLoginXdmForm");
 		        return false;
 			}
 		} else {
@@ -22,11 +22,11 @@ public class CheckLoginSessionInterceptor implements HandlerInterceptor{
 		}
 		
 //		사용자용
-		if(request.getRequestURI().contains("Usr")) {
+		if(request.getRequestURI().contains("usr")) {
 			if (request.getSession().getAttribute("sessSeqUsr") != null) {
 				// by pass
 			} else {
-				response.sendRedirect("usr/usrlogin/usrLoginUsrForm");
+				response.sendRedirect("/usrLoginUsrForm");
 				return false;
 			}
 		} else {

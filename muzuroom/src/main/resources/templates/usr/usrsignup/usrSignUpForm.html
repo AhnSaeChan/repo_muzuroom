@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=28135095d1a69c93a6a26fcbaa4d7d06"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=28135095d1a69c93a6a26fcbaa4d7d06&libraries=services"></script>
 	<!-- Favicon icon-->
 	<link rel="apple-touch-icon" sizes="180x180" href="/user/template/FreshCart-1.4.0/assets/images/favicon/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="/user/template/FreshCart-1.4.0/assets/images/favicon/favicon-32x32.png" />
@@ -262,20 +262,56 @@
 <!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=28135095d1a69c93a6a26fcbaa4d7d06"></script> -->
 <!-- 	<script src=`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.d22722faffaa61d321f63a60f44d04c8}&libraries=services,clusterer&autoload=false`></script> -->
 	
-<!-- 	<script type="text/javascript"> -->
-// 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-// 	    mapOption = { 
-// 	        center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 좌표
-// 	        level: 3 // 확대 레벨
-// 	    };
-	
-// 		var map = new kakao.maps.Map(mapContainer, mapOption);
-<!-- 	</script> -->
+
 	
 
 	<script type="text/javascript">
 	
 	let seq = document.querySelector("input[name=seq]");
+	
+// 	function Validation() {
+// 	    var isValid = true;
+
+// 	    var firstName = $("#userFirstName").val().trim();
+// 	    var fullName = $("#userName").val().trim();
+// 	    var userId = $("#userId").val().trim();
+// 	    var userPw = $("#userPassword").val();
+// 	    var passwordCon = $("#passwordCon").val();
+// 	    var teleNum = $("#userPhoneNum").val().trim();
+// 	    var zipcode = $("#sample4_postcode").val().trim();
+// 	    var address = $("#sample4_detailAddress").val().trim(); 
+// 	    var emailAdd = $("#userEmail").val().trim();
+// 	    var dob = $("#userDOB").val().trim();
+// 	    var mobile = $("#mobileCarrier").val().trim();
+
+// 	    function validateField(id, value) {
+// 	        if (value === "") {
+// 	            $("#" + id).addClass("is-invalid").css("border-color", "#dc3545");
+// 	            isValid = false;
+// 	        } else {
+// 	            $("#" + id).removeClass("is-invalid").css("border-color", "");
+// 	        }
+// 	    }
+
+// 	    validateField("userFirstName", firstName);
+// 	    validateField("userName", fullName);
+// 	    validateField("userId", userId);
+// 	    validateField("userPassword", userPw);
+// 	    validateField("passwordCon", passwordCon);
+// 	    validateField("userPhoneNum", teleNum);
+// 	    validateField("sample4_postcode", zipcode);
+// 	    validateField("sample4_detailAddress", address);
+// 	    validateField("userEmail", emailAdd);
+// 	    validateField("userDOB", dob);
+// 	    validateField("mobileCarrier", mobile);
+	    
+// 	    if (userPw !== passwordCon) {
+// 	        $("#passwordCon").addClass("is-invalid").css("border-color", "#dc3545");
+// 	        isValid = false;
+// 	    }
+
+// 	    return isValid;
+// 	}
 	
 	function Validation() {
 	    var isValid = true;
@@ -287,13 +323,13 @@
 	    var passwordCon = $("#passwordCon").val();
 	    var teleNum = $("#userPhoneNum").val().trim();
 	    var zipcode = $("#sample4_postcode").val().trim();
-	    var address = $("#sample4_detailAddress").val().trim(); 
+	    var address = $("#sample4_detailAddress").val().trim();
 	    var emailAdd = $("#userEmail").val().trim();
 	    var dob = $("#userDOB").val().trim();
 	    var mobile = $("#mobileCarrier").val().trim();
 
-	    function validateField(id, value) {
-	        if (value === "") {
+	    function validateField(id, value, regex = null) {
+	        if (value === "" || (regex && !regex.test(value))) {
 	            $("#" + id).addClass("is-invalid").css("border-color", "#dc3545");
 	            isValid = false;
 	        } else {
@@ -301,18 +337,19 @@
 	        }
 	    }
 
-	    validateField("userFirstName", firstName);
-	    validateField("userName", fullName);
-	    validateField("userId", userId);
-	    validateField("userPassword", userPw);
-	    validateField("passwordCon", passwordCon);
-	    validateField("userPhoneNum", teleNum);
-	    validateField("sample4_postcode", zipcode);
-	    validateField("sample4_detailAddress", address);
-	    validateField("userEmail", emailAdd);
-	    validateField("userDOB", dob);
-	    validateField("mobileCarrier", mobile);
-	    
+	    validateField("userFirstName", firstName, /^[가-힣a-zA-Z\s]+$/); // 한글, 영문
+	    validateField("userName", fullName, /^[가-힣a-zA-Z\s]+$/); // 한글, 영문
+	    validateField("userId", userId, /^[a-zA-Z0-9]{5,20}$/); // 영어+숫자 5~20자
+	    validateField("userPassword", userPw, /^[a-zA-Z0-9]{8,20}$/); // 영어+숫자 8~20자
+	    validateField("passwordCon", passwordCon, /^[a-zA-Z0-9]{8,20}$/);
+	    validateField("userPhoneNum", teleNum, /^\d{10,11}$/); // 숫자 10~11자리
+	    validateField("sample4_postcode", zipcode); // 우편번호는 값만 있으면 OK
+	    validateField("sample4_detailAddress", address); // 상세주소도 값만
+	    validateField("userEmail", emailAdd, /^[^\s@]+@[^\s@]+\.[^\s@]+$/); // 이메일 형식
+	    validateField("userDOB", dob, /^\d{4}-\d{2}-\d{2}$/); // yyyy-mm-dd
+	    validateField("mobileCarrier", mobile); // 통신사 선택했는지
+
+	    // 비밀번호, 비밀번호 확인 일치하는지
 	    if (userPw !== passwordCon) {
 	        $("#passwordCon").addClass("is-invalid").css("border-color", "#dc3545");
 	        isValid = false;
@@ -323,11 +360,65 @@
     
 
 
-// $(document).ready(function() {
-//     $("#userId").on("blur", function() {
-//         checkDuplicateId();
-//     });
-// });
+	$(document).ready(function() {
+	    $("#userId").on("blur", function() {
+	    	
+	    	 if ($(this).val().trim() !== "") {
+	             checkDuplicateId();
+	         }
+	    });
+
+	    $("#userFirstName").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#userName").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#userPassword").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#passwordCon").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#userPhoneNum").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#sample4_postcode").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#sample4_detailAddress").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#userEmail").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#userDOB").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	    $("#mobileCarrier").on("blur", function() {
+	    	if ($(this).val().trim() !== "") {
+	    		Validation(); 
+	    	}
+	    });
+	});
 
 $("#buttonSignUp").on("click", function() {
 	checkDuplicateId();
@@ -394,38 +485,36 @@ jQuery(function(){
 
 </script>
 
-<script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+<script type="text/javascript">
+    var mapContainer = document.getElementById('map'), 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.5665, 126.9780), 
+        level: 3 
+    };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var geocoder = new kakao.maps.services.Geocoder();
+    var marker = new kakao.maps.Marker(); 
+
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                     extraRoadAddr += data.bname;
                 }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
                 if(data.buildingName !== '' && data.apartment === 'Y'){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
                 } else {
@@ -433,12 +522,10 @@ jQuery(function(){
                 }
 
                 var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                 if(data.autoRoadAddress) {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
                     guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
                     guideTextBox.style.display = 'block';
-
                 } else if(data.autoJibunAddress) {
                     var expJibunAddr = data.autoJibunAddress;
                     guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
@@ -447,21 +534,223 @@ jQuery(function(){
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
                 }
+
+                
+                if (roadAddr !== '') {
+                    geocoder.addressSearch(roadAddr, function(result, status) {
+                        if (status === kakao.maps.services.Status.OK) {
+                            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                            
+                            map.setCenter(coords);
+
+                            
+                            marker.setMap(map);
+                            marker.setPosition(coords);
+
+                            
+                            document.getElementById('postcode').value = result[0].y; 
+                            document.getElementById('userAddress').value = result[0].x; 
+                        }
+                    });
+                }
             }
         }).open();
     }
 </script>
 
-<script type="text/javascript">
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 좌표
-	        level: 3 // 확대 레벨
-	    };
-	
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-	</script>
-	
+<!-- <!-- <script> -->
+<!-- // //개별 필드 검사 -->
+<!-- // function validateField(id, value, regex = null) { -->
+<!-- //     if (value.trim() === "") { -->
+<!-- //         $("#" + id) -->
+<!-- //             .addClass("is-invalid") -->
+<!-- //             .css("border-color", "#dc3545") -->
+<!-- //             .next(".invalid-feedback").text("필수 입력 항목입니다."); -->
+<!-- //         return false; -->
+<!-- //     } -->
+
+<!-- //     if (id === "userPassword" || id === "passwordCon") { -->
+<!-- //         if (value.length < 6) { -->
+<!-- //             $("#" + id) -->
+<!-- //                 .addClass("is-invalid") -->
+<!-- //                 .css("border-color", "#dc3545") -->
+<!-- //                 .next(".invalid-feedback").text("비밀번호가 너무 짧습니다. (6자 이상 입력)"); -->
+<!-- //             return false; -->
+<!-- //         } -->
+<!-- //     } -->
+
+<!-- //     if (regex && !regex.test(value)) { -->
+<!-- //         $("#" + id) -->
+<!-- //             .addClass("is-invalid") -->
+<!-- //             .css("border-color", "#dc3545") -->
+<!-- //             .next(".invalid-feedback").text("형식이 올바르지 않습니다."); -->
+<!-- //         return false; -->
+<!-- //     } -->
+
+<!-- //     $("#" + id).removeClass("is-invalid").css("border-color", "").next(".invalid-feedback").text(""); -->
+<!-- //     return true; -->
+<!-- // } -->
+
+<!-- // // 비밀번호 확인 검사 -->
+<!-- // function validatePasswordConfirmation() { -->
+<!-- //     var password = $("#userPassword").val(); -->
+<!-- //     var passwordCon = $("#passwordCon").val(); -->
+
+<!-- //     if (passwordCon.trim() === "") { -->
+<!-- //         $("#passwordCon") -->
+<!-- //             .addClass("is-invalid") -->
+<!-- //             .css("border-color", "#dc3545") -->
+<!-- //             .next(".invalid-feedback").text("필수 입력 항목입니다."); -->
+<!-- //         return false; -->
+<!-- //     } -->
+
+<!-- //     if (password.length < 6 || passwordCon.length < 6) { -->
+<!-- //         $("#passwordCon") -->
+<!-- //             .addClass("is-invalid") -->
+<!-- //             .css("border-color", "#dc3545") -->
+<!-- //             .next(".invalid-feedback").text("비밀번호가 너무 짧습니다. (6자 이상 입력)"); -->
+<!-- //         return false; -->
+<!-- //     } -->
+
+<!-- //     if (password !== passwordCon) { -->
+<!-- //         $("#passwordCon") -->
+<!-- //             .addClass("is-invalid") -->
+<!-- //             .css("border-color", "#dc3545") -->
+<!-- //             .next(".invalid-feedback").text("비밀번호가 일치하지 않습니다."); -->
+<!-- //         return false; -->
+<!-- //     } -->
+
+<!-- //     $("#passwordCon").removeClass("is-invalid").css("border-color", "").next(".invalid-feedback").text(""); -->
+<!-- //     return true; -->
+<!-- // } -->
+
+<!-- // // 전체 폼 유효성 검사 -->
+<!-- // function Validation() { -->
+<!-- //     var isValid = true; -->
+
+<!-- //     var fields = [ -->
+<!-- //         "userFirstName", -->
+<!-- //         "userName", -->
+<!-- //         "userId", -->
+<!-- //         "userPassword", -->
+<!-- //         "userPhoneNum", -->
+<!-- //         "sample4_postcode", -->
+<!-- //         "sample4_detailAddress", -->
+<!-- //         "userEmail", -->
+<!-- //         "userDOB", -->
+<!-- //         "mobileCarrier", -->
+<!-- //         "passwordCon" -->
+<!-- //     ]; -->
+
+<!-- //     fields.forEach(function(field) { -->
+<!-- //         var value = $("#" + field).val().trim(); -->
+<!-- //         var regex = null; -->
+
+<!-- //         switch (field) { -->
+<!-- //             case "userFirstName": -->
+<!-- //             case "userName": -->
+<!-- //                 regex = /^[가-힣a-zA-Z\s]+$/; -->
+<!-- //                 break; -->
+<!-- //             case "userId": -->
+<!-- //                 regex = /^[a-zA-Z0-9]{5,20}$/; -->
+<!-- //                 break; -->
+<!-- //             case "userPassword": -->
+<!-- //             case "passwordCon": -->
+<!-- //                 regex = /^[a-zA-Z0-9]+$/; -->
+<!-- //                 break; -->
+<!-- //             case "userPhoneNum": -->
+<!-- //                 regex = /^\d{10,11}$/; -->
+<!-- //                 break; -->
+<!-- //             case "userEmail": -->
+<!-- //                 regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; -->
+<!-- //                 break; -->
+<!-- //             case "userDOB": -->
+<!-- //                 regex = /^\d{4}-\d{2}-\d{2}$/; -->
+<!-- //                 break; -->
+<!-- //         } -->
+
+<!-- //         if (!validateField(field, value, regex)) { -->
+<!-- //             isValid = false; -->
+<!-- //         } -->
+<!-- //     }); -->
+
+<!-- //     if (!validatePasswordConfirmation()) { -->
+<!-- //         isValid = false; -->
+<!-- //     } -->
+
+<!-- //     return isValid; -->
+<!-- // } -->
+
+<!-- // // 이벤트 연결 -->
+<!-- // $(document).ready(function() { -->
+<!-- //     var fields = [ -->
+<!-- //         "userFirstName", -->
+<!-- //         "userName", -->
+<!-- //         "userId", -->
+<!-- //         "userPassword", -->
+<!-- //         "userPhoneNum", -->
+<!-- //         "sample4_postcode", -->
+<!-- //         "sample4_detailAddress", -->
+<!-- //         "userEmail", -->
+<!-- //         "userDOB", -->
+<!-- //         "mobileCarrier", -->
+<!-- //         "passwordCon" -->
+<!-- //     ]; -->
+
+<!-- //     fields.forEach(function(field) { -->
+<!-- //         $("#" + field).on("blur", function() { -->
+<!-- //             var value = $(this).val().trim(); -->
+<!-- //             var regex = null; -->
+
+<!-- //             switch (field) { -->
+<!-- //                 case "userFirstName": -->
+<!-- //                 case "userName": -->
+<!-- //                     regex = /^[가-힣a-zA-Z\s]+$/; -->
+<!-- //                     break; -->
+<!-- //                 case "userId": -->
+<!-- //                     regex = /^[a-zA-Z0-9]{5,20}$/; -->
+<!-- //                     break; -->
+<!-- //                 case "userPassword": -->
+<!-- //                 case "passwordCon": -->
+<!-- //                     regex = /^[a-zA-Z0-9]+$/; -->
+<!-- //                     break; -->
+<!-- //                 case "userPhoneNum": -->
+<!-- //                     regex = /^\d{10,11}$/; -->
+<!-- //                     break; -->
+<!-- //                 case "userEmail": -->
+<!-- //                     regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; -->
+<!-- //                     break; -->
+<!-- //                 case "userDOB": -->
+<!-- //                     regex = /^\d{4}-\d{2}-\d{2}$/; -->
+<!-- //                     break; -->
+<!-- //             } -->
+
+<!-- //             validateField(field, value, regex); -->
+
+<!-- //             if (field === "passwordCon") { -->
+<!-- //                 validatePasswordConfirmation(); -->
+<!-- //             } -->
+<!-- //         }); -->
+<!-- //     }); -->
+
+<!-- //     // 아이디 중복 체크 -->
+<!-- //     $("#userId").on("blur", function() { -->
+<!-- //         if ($(this).val().trim() !== "") { -->
+<!-- //             checkDuplicateId(); -->
+<!-- //         } -->
+<!-- //     }); -->
+
+<!-- //     // 회원가입 버튼 클릭 시 전체 검사 -->
+<!-- //     $("#registerButton").on("click", function(e) { -->
+<!-- //         if (!Validation()) { -->
+<!-- //             e.preventDefault(); -->
+<!-- //             alert("입력한 정보를 다시 확인해주세요."); -->
+<!-- //         } -->
+<!-- //     }); -->
+<!-- // }); -->
+
+<!-- <!-- </script>	 --> 
 	
 
 
