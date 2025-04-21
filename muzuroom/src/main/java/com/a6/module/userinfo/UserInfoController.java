@@ -155,6 +155,23 @@ public class UserInfoController {
 			httpSession.setAttribute("sessSeqUsr",rtMember.getSeq());
 			httpSession.setAttribute("sessIdUsr",rtMember.getUserId());
 			httpSession.setAttribute("sessNameUsr",rtMember.getUserName());
+			httpSession.setAttribute("sessEmailUsr",rtMember.getUserEmail());
+			httpSession.setAttribute("sessFirstNameUsr",rtMember.getUserFirstName());
+			httpSession.setAttribute("sessGenderUsr",rtMember.getUserGenderMF());
+			httpSession.setAttribute("sessPassUsr",rtMember.getUserPassword());
+			httpSession.setAttribute("sessPhoneUsr",rtMember.getUserPhoneNum());
+			httpSession.setAttribute("sessZipcodeUsr",rtMember.getUserZipcode());
+			httpSession.setAttribute("sessAddressUsr",rtMember.getUserAddress());
+			httpSession.setAttribute("sessStreetUsr",rtMember.getStreetAddress());
+			httpSession.setAttribute("sessLotUsr",rtMember.getLotAddress());
+			httpSession.setAttribute("sessAddRefUsr",rtMember.getAddressRef());
+			httpSession.setAttribute("sessLatitudeUsr",rtMember.getLatitude());
+			httpSession.setAttribute("sessLongitudeUsr",rtMember.getLongitude());
+			httpSession.setAttribute("sessAdiminDistrictUsr",rtMember.getAdminDistrict());
+			httpSession.setAttribute("sessMobileCarrierUsr",rtMember.getMobileCarrier());
+			httpSession.setAttribute("sessgetUserDOBUsr",rtMember.getUserDOB());
+			
+			
 			returnMap.put("rt","success");
 		}else {
 			returnMap.put("rt","fail");
@@ -181,6 +198,25 @@ public class UserInfoController {
 		httpSession.setAttribute("sessSeqUsr", null);
 		httpSession.setAttribute("sessIdUsr", null);
 		httpSession.setAttribute("sessNameUsr", null);
+		httpSession.setAttribute("sessEmail",null);
+		httpSession.setAttribute("sessSeqUsr",null);
+		httpSession.setAttribute("sessIdUsr",null);
+		httpSession.setAttribute("sessNameUsr",null);
+		httpSession.setAttribute("sessEmailUsr",null);
+		httpSession.setAttribute("sessFirstNameUsr",null);
+		httpSession.setAttribute("sessGenderUsr",null);
+		httpSession.setAttribute("sessPassUsr",null);
+		httpSession.setAttribute("sessPhoneUsr",null);
+		httpSession.setAttribute("sessZipcodeUsr",null);
+		httpSession.setAttribute("sessAddressUsr",null);
+		httpSession.setAttribute("sessStreetUsr",null);
+		httpSession.setAttribute("sessLotUsr",null);
+		httpSession.setAttribute("sessAddRefUsr",null);
+		httpSession.setAttribute("sessLatitudeUsr",null);
+		httpSession.setAttribute("sessLongitudeUsr",null);
+		httpSession.setAttribute("sessAdiminDistrictUsr",null);
+		httpSession.setAttribute("sessMobileCarrierUsr",null);
+		httpSession.setAttribute("sessgetUserDOBUsr",null);
 		returnMap.put("rt","success");
 		return returnMap;
 		
@@ -214,6 +250,17 @@ public class UserInfoController {
 		
 		return "usr/usrsignup/usrSignUpForm";
 	}
+	
+	@RequestMapping(value = "/usrMyInfoMod")
+	public String usrMyInfoMod(Model model, UserInfoVo userInfoVo, HttpSession session) {
+		  
+		  
+		  
+		
+		model.addAttribute("list",userInfoService.selectList(userInfoVo));
+		return "/usr/myaccount/usrMyInfoMod";
+	}
+	
 	
 	
 	

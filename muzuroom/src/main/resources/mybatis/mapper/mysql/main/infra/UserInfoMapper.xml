@@ -8,27 +8,27 @@
  <sql id="selectCommon" >
  		
  	 
-	FROM userinfo a
+	FROM userinfo 
 	Where 1=1
 
 		
- 		<if test="shUseNy != null and !shUseNy.equals('')">AND a.userCodeCD = #{shUseNy}</if>
-        <if test="shDelNy != null and !shDelNy.equals('')">AND a.userInfoDelYN = #{shDelNy}</if>
+ 		<if test="shUseNy != null and !shUseNy.equals('')">AND userinfo.userCodeCD = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND userinfo.userInfoDelYN = #{shDelNy}</if>
 				
 				<choose>
-					<when test="shOptionDate == 1">AND a.userDOB BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND a.userRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 1">AND userinfo.userDOB BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND userinfo.userRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
  				</choose>
  				
         <choose>
-            <when test="shOption == 1">AND a.userFirstName = #{shValue}</when>
-            <when test="shOption == 2">AND a.userName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND a.userId LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 4">AND a.userPassword LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 5">AND a.mobileCarrier LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 6">AND a.userPhoneNum LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 7">AND a.adminDistrict LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 8">AND a.userEmail LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 1">AND userinfo.userFirstName = #{shValue}</when>
+            <when test="shOption == 2">AND userinfo.userName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND userinfo.userId LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 4">AND userinfo.userPassword LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 5">AND userinfo.mobileCarrier LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 6">AND userinfo.userPhoneNum LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 7">AND userinfo.adminDistrict LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 8">AND userinfo.userEmail LIKE CONCAT('%',#{shValue},'%')</when>
             
             
         </choose>	
@@ -76,6 +76,7 @@
 		<include refid="selectCommon"/>
 		ORDER BY seq DESC
 	) userinfo
+	
 	limit #{rowNumToShow} offset #{startRnumForMysql}
 </select>
 
@@ -99,6 +100,37 @@
 		FROM
 			userinfo
 		WHERE 1=1
+		<if test="seq != null">
+			AND seq = #{seq}
+		</if>
+			<!-- 		userSeq=#{userSeq} -->
+<!-- 	 <if test="seq != null and !seq.equals('')"> AND seq = #{seq}</if> -->
+<!-- 	 <if test="userId != null and !userId.equals('')"> AND userId = #{userId}</if> -->
+<!-- 	 <if test="userPassword != null and !userPassword.equals('')"> AND userPassword = #{userPassword}</if> -->
+		ORDER BY seq DESC
+</select>
+
+
+
+<select id="selectInfo" resultMap="resultMapObj">
+		SELECT
+			seq,
+			userCodeCD,
+			userFirstName,
+		    userName,
+		   	mobileCarrier,
+		   	userPhoneNum,
+		   	userZipcode,
+		   	adminDistrict,
+		   	userAddress,
+		   	streetAddress,
+		   	lotAddress,
+		   	addressRef,
+		   	userEmail,
+		   	userDOB
+		FROM
+			userinfo
+		WHERE
 			AND seq = #{seq}
 			<!-- 		userSeq=#{userSeq} -->
 <!-- 	 <if test="seq != null and !seq.equals('')"> AND seq = #{seq}</if> -->
@@ -127,9 +159,24 @@
 <select id="selectOneLogin" resultMap="resultMapObj">
     SELECT
         seq,
-        userId,
+        userFirstName,
         userName,
-        userPassword
+        userGenderMF,
+        userId,
+        userPassword,
+        mobileCarrier,
+        userPhoneNum,
+        userZipcode,
+        adminDistrict,
+        userAddress,
+        streetAddress,
+        lotAddress,
+        addressRef,
+        latitude,
+        longitude,
+        userEmail,
+        userDOB
+        
     FROM
         userinfo
     WHERE

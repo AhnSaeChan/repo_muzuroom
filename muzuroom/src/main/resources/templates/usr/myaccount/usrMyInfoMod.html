@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{usr/Include/usrindex/head ::head}"></div>
+<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
+
+	<section class="py-lg-8 py-5">
+		<div class="container">
+			<div class="row">
+				<!--Account sidebar start-->
+				<div class="col-lg-3 col-md-4">
+
+					<!-- Navbar -->
+					<div class="mb-4 text-center text-md-start">
+						<div class="d-lg-flex align-items-center gap-3 border p-3 ">
+							<img src="./assets/images/avatar/avatar-1.jpg" alt=""
+								class="avatar avatar-lg rounded-circle">
+							<div class="mt-2 mt-lg-0 overflow-hidden">
+								<h3 class="mb-0 fs-5">[[${session.sessNameUsr}]]</h3>
+								<p class="mb-0 small text-truncate">[[${session.sessEmailUsr}]]</p>
+							</div>
+						</div>
+					</div>
+					<div class="d-md-none text-center d-grid">
+						<button class="btn btn-light mb-3 d-flex align-items-center justify-content-between"
+							type="button" data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu"
+							aria-expanded="false" aria-controls="collapseAccountMenu">
+							Account Menu
+							<i class="bi bi-chevron-down ms-2"></i>
+						</button>
+					</div>
+					<div class="collapse d-md-block" id="collapseAccountMenu">
+						<div class="mb-3">
+							<h3 class="fs-5">My Account</h3>
+						</div>
+						<ul class="nav flex-column nav-account">
+							<li class="nav-item">
+								<a class="nav-link " href="./account-order.html">
+									<span class="d-flex justify-content-between align-items-center">
+										<span>
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+												stroke-linecap="round" stroke-linejoin="round"
+												class="feather feather-shopping-bag">
+												<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+												<line x1="3" y1="6" x2="21" y2="6"></line>
+												<path d="M16 10a4 4 0 0 1-8 0"></path>
+											</svg>
+											<span class="ms-1">예약 현황</span>
+										</span>
+										<span class="">
+
+											<span class="badge bg-danger rounded-pill">
+												1
+											</span>
+										</span>
+									</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./account-wishlist.html">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-heart">
+										<path
+											d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+										</path>
+									</svg>
+									<span class="ms-1">즐겨찾기</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./account-payment.html">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-credit-card">
+										<rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+										<line x1="1" y1="10" x2="23" y2="10"></line>
+									</svg>
+									<span class="ms-1">Payment Method</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./account-reviews.html">
+
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-star">
+										<polygon
+											points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+										</polygon>
+									</svg>
+									<span class="ms-1">Reviews</span>
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./account-personal-info.html">
+
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-user">
+										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+										<circle cx="12" cy="7" r="4"></circle>
+									</svg>
+									<span class="ms-1">개인정보 관리</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./account-address.html">
+
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-map-pin">
+										<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+										<circle cx="12" cy="10" r="3"></circle>
+									</svg>
+									<span class="ms-1">비밀번호 관리</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./account-notification.html">
+
+
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-bell">
+										<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+										<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+									</svg>
+									<span class="ms-1">예약 상세</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./contact.html">
+
+
+
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-help-circle">
+										<circle cx="12" cy="12" r="10"></circle>
+										<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+										<line x1="12" y1="17" x2="12.01" y2="17"></line>
+									</svg>
+									<span class="ms-1">Help Center</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="./index.html">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-log-out">
+										<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+										<polyline points="16 17 21 12 16 7"></polyline>
+										<line x1="21" y1="12" x2="9" y2="12"></line>
+									</svg>
+									<span class="ms-1">로그 아웃</span>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Account sidebar end-->
+				<div class="col-lg-9 col-md-8">
+					<div class="row mb-4">
+						<div class="col-lg-9 col-12">
+							<h1 class="mb-0 h2">개인정보 수정</h1>
+						</div>
+					</div>
+					<!--Personal information-->
+					<div th:each="list : ${list}" class="row g-4">
+						<div class="col-12">
+							<div class="card h-100">
+								<div class="card-body d-flex flex-column gap-3 p-4">
+									<div class="d-flex flex-row align-items-center justify-content-between">
+										<h2 class="mb-0 h5">기본정보</h2>
+									</div>
+									<div>
+										<form class="row needs-validation" novalidate>
+											
+
+											<div class="col-12 py-1 ">
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+													<label class="form-check-label" for="inlineRadio1">남</label>
+												  </div>
+												  <div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+													<label class="form-check-label" for="inlineRadio2">여</label>
+												  </div>
+											</div>
+											<div class="mb-3 col-12 py-2">
+												<label for="accountInfoName" class="form-label visually-hidden">성</label>
+												<input type="text" class="form-control" th:value="${session.sessFirstNameUsr}" placeholder="성"
+													required />
+												<div class="invalid-feedback">성을 입력해 주세요.</div>
+											</div>
+											<div class="mb-3 col-12 ">
+												<label for="accountInfoLname" class="form-label visually-hidden">이름</label>
+												<input type="text" th:value="${session.sessNameUsr}"  id="accountInfoLname" class="form-control" placeholder="이름"
+													required />
+												<div class="invalid-feedback">이름을 입력해 주세요.</div>
+											</div>
+											<div class="mb-3 col-12 py-2">
+												<label for="accountInfoDate" class="form-label visually-hidden">Date of Birth</label>
+												<input type="text" id="shDateStart" name="shDateStart" th:value="${session.sessgetUserDOBUsr}" class="form-control" placeholder="생년월일"
+													required />
+												<div class="invalid-feedback">생년월일을 입력해 주세요.</div>
+											</div>
+											
+										
+									
+										
+											
+				
+											<div class="mb-3 col-12">
+												<label for="accountInfoEmail" class="form-label visually-hidden">Enter your
+													Email</label>
+												<input type="email" th:value="${session.sessEmailUsr}" id="accountInfoEmail" class="form-control"
+													placeholder="Email" required />
+												<div class="invalid-feedback">이메일 주소를 입력해주세요.</div>
+											</div>
+											<div class="col-md-3 col-12">
+												<select class="form-select">
+													<option selected value="">010</option>
+													<option>011</option>
+													<option>016</option>
+													<option>017</option>
+													<option>018</option>
+													<option>019</option>
+												</select>
+											</div>
+											<div class="col-md-9 col-12">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" th:value="${session.sessPhoneUsr}" class="form-control" id="formSignupfname"
+													placeholder="" required />
+												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+											</div>
+											<div class="col-md-3 col-12 py-3">
+												<!-- input -->
+												<label for="formSignupfname" class="form-label visually-hidden">
+													</label>
+												<input type="text" th:value="${session.sessZipcodeUsr}" id="sample4_postcode" name="userZipcode" class="form-control" 
+													placeholder="" required />
+												<div class="invalid-feedback">우편번호를 입력해주세요.</div>
+											</div>
+											<div class="col-md-6 col-12 py-3">
+												<button class="btn btn-primary" type="button" onclick="sample4_execDaumPostcode()" >우편번호 검색</button>
+											</div>
+											<div class="col-md-6 col-12">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="sample4_roadAddress" name="streetAddress" th:value="${session.sessStreetUsr}" class="form-control" 
+													placeholder="" required />
+											</div>
+											<div class="col-md-6 col-12">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="sample4_jibunAddress" name="lotAddress" th:value="${session.sessLotUsr}" class="form-control" 
+													placeholder="" required />
+													
+												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+											</div>
+											
+											<div class="col-md-8 col-12 py-3">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="sample4_detailAddress" name="userAddress" th:value="${session.sessAddressUsr}" class="form-control" 
+													placeholder="" required />
+											</div>
+											
+											
+											<div class="col-md-4 col-12 py-3">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="sample4_extraAddress" name="addressRef" th:value="${session.sessAddRefUsr}" class="form-control" 
+													placeholder="" required />
+												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+											</div>
+											<div  id="map" style="width:910px;height:200px; margin:0 auto; border: 1px solid black;"></div>
+											<div class="col-md-4 col-12 py-3">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="guide" name="latitude"  class="form-control" 
+													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
+											</div>
+											<div class="col-md-4 col-12 py-3">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="postcode" name="latitude"  class="form-control" 
+													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
+											</div>
+											<span id="guide" style="color:#999; display:none"></span>
+											<div class="col-md-4 col-12 py-3">
+												<label for="formSignupfphonenum" class="form-label visually-hidden">
+													</label>
+												<input type="text" id="userAddress" name="longitude" class="form-control" 
+													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
+													
+												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+											</div>
+											
+											<div class="d-flex gap-3 flex-column flex-md-row py-3">
+												<button type="submit" class="btn btn-primary w-100">변경사항 저장</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							
+						
+						<div class="col-12">
+							<div class="card">
+								
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="card border-warning bg-warning-subtle">
+								<div class="card-body p-4 d-flex flex-column gap-5">
+									<div class="d-flex flex-column gap-2">
+										<h3 class="mb-0 h5">2단계 보안 인증</h3>
+										<p class="mb-0">자신의 계정에 2단계 보안 인증을 하여 더 안전하게 
+											계정을 보호할 수 있습니다. <a href="#!"
+												class="text-link">Authy, 1password,</a> 아니면 <a href="#!"
+												class="text-link">google Authenticator</a>와 같은 애플리케이션을 사용하여
+											승인 번호를 받아 주세요.</p>
+									</div>
+									<div class="d-flex flex-lg-row flex-column gap-3 align-items-center">
+										<a href="#!" class=" btn btn-primary">2단계 보안 인증 활성화</a>
+										<a href="#!" class="text-link">Learn more in the docs</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="card border-danger bg-danger-subtle">
+								<div class="card-body p-4 d-flex flex-column gap-5">
+									<div class="d-flex flex-column gap-2">
+										<h3 class="mb-0 h5 text-danger">경고</h3>
+										<p class="mb-0">계정을 삭제하시면, 개인정보는 즉시 비활성화 됩니다. 
+											계정을 복구하고 싶으시면  <span
+											class="text-danger">14일</span> 내에, ID와 비밀번호로 로그인을 해주시면 
+											등록하신 Email로 계정복구 링크를 보내 드리겠습니다.</p>
+									</div>
+									<form class="row needs-validation" novalidate>
+									<div class="mb-3 col-12">
+										<div class="password-field position-relative">
+											<label for="accountInforPassword"
+												class="form-label visually-hidden">Password</label>
+											<div class="password-field position-relative">
+												<input type="password" class="form-control fakePassword text-danger"
+													id="accountInforPassword" placeholder="비밀번호를 입력하면 계정이 삭제됩니다" required/>
+												<span><i class="bi bi-eye-slash passwordToggler"></i></span>
+												<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+											</div>
+										</div>
+									</div>
+									
+									<div>
+										<button type="submit" class="btn btn-danger w-100">계정 삭제</button>
+									</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+	<div th:replace="~{usr/Include/usrindex/footer ::footer}"></div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<script type="text/javascript">
+    //달력 
+    $.datetimepicker.setLocale('ko'); //번역기
+    jQuery(function(){
+    	 jQuery('#shDateStart').datetimepicker({
+    	  format:'Y-m-d',
+    	  onShow:function( ct ){
+    	   this.setOptions({
+    	    maxDate:jQuery('#shDateEnd').val()?jQuery('#shDateEnd').val():false
+    	   })
+    	  },
+    	  timepicker:false
+    	 });
+    	 jQuery('#shDateEnd').datetimepicker({
+    	  format:'Y/m/d',
+    	  onShow:function( ct ){
+    	   this.setOptions({
+    	    minDate:jQuery('#shDateStart').val()?jQuery('#shDateStart').val():false
+    	   })
+    	  },
+    	  timepicker:false
+    	 });
+    	});
+    
+    </script>
+    
+    <script type="text/javascript">
+    var mapContainer = document.getElementById('map'), 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.5665, 126.9780), 
+        level: 3 
+    };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var geocoder = new kakao.maps.services.Geocoder();
+    var marker = new kakao.maps.Marker(); 
+
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
+
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                if(roadAddr !== ''){
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+
+                
+                if (roadAddr !== '') {
+                    geocoder.addressSearch(roadAddr, function(result, status) {
+                        if (status === kakao.maps.services.Status.OK) {
+                            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                            
+                            map.setCenter(coords);
+
+                            
+                            marker.setMap(map);
+                            marker.setPosition(coords);
+
+                            
+                            document.getElementById('postcode').value = result[0].y; 
+                            document.getElementById('userAddress').value = result[0].x; 
+                        }
+                    });
+                }
+            }
+        }).open();
+    }
+</script>
