@@ -21,6 +21,12 @@ public class UtilDateTime {
 		return date + " 23:59:59";
 	}
 	
+	 public static String nowString() {
+	        LocalDateTime now = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        return now.format(formatter);
+	    }
+	
 	
 	
 	

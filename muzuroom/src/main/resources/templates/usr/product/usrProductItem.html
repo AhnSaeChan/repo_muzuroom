@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{usr/Include/usrindex/head ::head}"></div>
+
+
+	<div class="container py-4">
+		<div class="row">
+			<div class="col-12 py-2">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="#!">Shop</a></li>
+						<li class="breadcrumb-item"><a href="#!">Office</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Office Chair Pillow</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!--Breadcrumb end-->
+	<!--Product start-->
+	<section class="pb-lg-8">
+		<div class="container">
+			<div class="row">
+				<!--Product image-->
+				<div class="col-lg-6">
+					<!--Swiper-->
+					<div class="row">
+						<div class="swiper-container swiper" data-thumbs="true" id="swiper-1" data-pagination-type=""
+							data-speed="400" data-space-between="120" data-pagination="false" data-navigation="false"
+							data-autoplay="false" data-effect="fade" data-autoplay-delay="3000"
+							data-breakpoints='{"480": {"slidesPerView": 1}, "768": {"slidesPerView": 1}, "1024": {"slidesPerView": 1}}'>
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="./assets/images/product/product1.png"
+										data-zoom="./assets/images/product/product1.png" alt="Preview"
+										class="drift w-100" data-zoom-options='{
+										"paneSelector": "#zoomPane",
+
+										"hoverDelay": 500,
+										"touchDisable": true
+								}' />
+								</div>
+								<div class="swiper-slide">
+									<img src="./assets/images/product/product-img2.png"
+										data-zoom="./assets/images/product/product-img2" alt="Preview"
+										class="drift w-100" data-zoom-options='{
+										"paneSelector": "#zoomPane",
+
+										"hoverDelay": 500,
+										"touchDisable": true
+								}' />
+								</div>
+								<div class="swiper-slide">
+									<img src="./assets/images/product/product-img3.png"
+										data-zoom="./assets/images/product/product-img3" alt="Preview"
+										class="drift w-100" data-zoom-options='{
+									"paneSelector": "#zoomPane",
+
+									"hoverDelay": 500,
+									"touchDisable": true
+							}' />
+								</div>
+								<div class="swiper-slide">
+									<img src="./assets/images/product/product-img4.png"
+										data-zoom="./assets/images/product/product-img4.jpg" alt="Preview"
+										class="drift w-100" data-zoom-options='{
+										"paneSelector": "#zoomPane",
+
+										"hoverDelay": 500,
+										"touchDisable": true
+								}' />
+								</div>
+
+								<!-- Add more slides as needed -->
+							</div>
+						</div>
+
+						<!-- Thumbs Swiper Container -->
+						<div class="swiper-container swiper-thumbs mt-4 overflow-hidden">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="ratio ratio-1x1 border">
+										<img src="./assets/images/product/product1.png" alt="product image"
+											class="" />
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ratio ratio-1x1 border">
+										<img src="./assets/images/product/product-img2.png" alt="product image"
+											class="" />
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ratio ratio-1x1 border">
+										<img src="./assets/images/product/product-img3.png" alt="product image"
+											class="" />
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ratio ratio-1x1 border">
+										<img src="./assets/images/product/product-img4.png" alt="product image"
+											class="" />
+									</div>
+								</div>
+
+								<!-- Add more thumbnails as needed -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Product details-->
+				<div class="col-lg-6">
+					<div class="ps-lg-6">
+						<div class="position-relative" id="zoomPane">
+							<span class="badge bg-info">New</span>
+							<div class="d-flex align-items-start justify-content-between mt-3 mb-2">
+								<div class="mb-3">
+									<h2>루아보(LUABO) 스튜디오</h2>
+									<span>봉천역3번 출구</span>
+								</div>
+								<div class="text-success d-flex align-items-center gap-2 mt-2">
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<path opacity="0.2"
+											d="M14 8C14 9.18669 13.6481 10.3467 12.9888 11.3334C12.3295 12.3201 11.3925 13.0892 10.2961 13.5433C9.19975 13.9974 7.99335 14.1162 6.82946 13.8847C5.66558 13.6532 4.59648 13.0818 3.75736 12.2426C2.91825 11.4035 2.3468 10.3344 2.11529 9.17054C1.88378 8.00666 2.0026 6.80026 2.45673 5.7039C2.91085 4.60754 3.67989 3.67047 4.66658 3.01118C5.65328 2.35189 6.81331 2 8 2C9.5913 2 11.1174 2.63214 12.2426 3.75736C13.3679 4.88258 14 6.4087 14 8Z"
+											fill="#16A34A" />
+										<path
+											d="M10.8538 6.14625C10.9002 6.19269 10.9371 6.24783 10.9623 6.30853C10.9874 6.36923 11.0004 6.43429 11.0004 6.5C11.0004 6.56571 10.9874 6.63077 10.9623 6.69147C10.9371 6.75217 10.9002 6.80731 10.8538 6.85375L7.35375 10.3538C7.30732 10.4002 7.25217 10.4371 7.19147 10.4623C7.13077 10.4874 7.06571 10.5004 7 10.5004C6.9343 10.5004 6.86923 10.4874 6.80853 10.4623C6.74783 10.4371 6.69269 10.4002 6.64625 10.3538L5.14625 8.85375C5.05243 8.75993 4.99972 8.63268 4.99972 8.5C4.99972 8.36732 5.05243 8.24007 5.14625 8.14625C5.24007 8.05243 5.36732 7.99972 5.5 7.99972C5.63268 7.99972 5.75993 8.05243 5.85375 8.14625L7 9.29313L10.1463 6.14625C10.1927 6.09976 10.2478 6.06288 10.3085 6.03772C10.3692 6.01256 10.4343 5.99961 10.5 5.99961C10.5657 5.99961 10.6308 6.01256 10.6915 6.03772C10.7522 6.06288 10.8073 6.09976 10.8538 6.14625ZM14.5 8C14.5 9.28558 14.1188 10.5423 13.4046 11.6112C12.6903 12.6801 11.6752 13.5132 10.4874 14.0052C9.29973 14.4972 7.99279 14.6259 6.73192 14.3751C5.47104 14.1243 4.31285 13.5052 3.40381 12.5962C2.49477 11.6872 1.8757 10.529 1.6249 9.26809C1.37409 8.00721 1.50282 6.70028 1.99479 5.51256C2.48676 4.32484 3.31988 3.30968 4.3888 2.59545C5.45772 1.88122 6.71442 1.5 8 1.5C9.72335 1.50182 11.3756 2.18722 12.5942 3.40582C13.8128 4.62441 14.4982 6.27665 14.5 8ZM13.5 8C13.5 6.9122 13.1774 5.84883 12.5731 4.94436C11.9687 4.03989 11.1098 3.33494 10.1048 2.91866C9.09977 2.50238 7.9939 2.39346 6.92701 2.60568C5.86011 2.8179 4.8801 3.34172 4.11092 4.11091C3.34173 4.8801 2.8179 5.86011 2.60568 6.927C2.39347 7.9939 2.50238 9.09977 2.91867 10.1048C3.33495 11.1098 4.0399 11.9687 4.94437 12.5731C5.84884 13.1774 6.91221 13.5 8 13.5C9.45819 13.4983 10.8562 12.9184 11.8873 11.8873C12.9184 10.8562 13.4983 9.45818 13.5 8Z"
+											fill="#16A34A" />
+									</svg>
+									예약 가능
+								</div>
+							</div>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="d-flex align-items-center gap-3">
+									<p class="mb-0">
+										<span class="text-">4000원/시간</span>
+
+									</p>
+									
+								</div>
+								<span class="">
+									4.3
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+										class="bi bi-star-fill align-baseline text-primary" viewBox="0 0 16 16">
+										<path
+											d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+										</path>
+									</svg>
+								</span>
+							</div>
+							<hr class="my-3" />
+							<div class="d-flex align-items-center mt-5 mb-2 justify-content-between">
+								<h3 class="fs-5">예약 날짜</h3>
+							</div>
+							<label for="accountInfoDate" class="form-label visually-hidden">Date of Birth</label>
+							<input type="date" id="accountInfoDate" class="form-control" placeholder="생년월일"
+								required />
+								<hr class="my-3" />
+							<div>
+								<a href="#!" class="btn btn-dark my-3">예약</a>
+								<a href="#!" class="btn btn-outline-dark">
+									<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+										class="bi bi-heart" viewBox="0 0 16 16">
+										<path
+											d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+									</svg>
+									즐겨찾기에 추가
+								</a>
+							</div>
+
+							<div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+								<div class="accordion-item">
+									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
+										data-bs-toggle="collapse" href="#flush-collapseOne" aria-expanded="false"
+										aria-controls="flush-collapseOne">
+										예약 선택
+										<span class="icon-shape icon-xs bg-light text-dark rounded-circle">
+											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+												fill="currentColor" class="bi bi-chevron-down chevron-down"
+												viewBox="0 0 16 16">
+												<path fill-rule="evenodd"
+													d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+											</svg>
+										</span>
+									</a>
+									<div id="flush-collapseOne" class="accordion-collapse collapse show"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body py-1">
+											<div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio"
+												checked>
+                                                <label class="form-check-label" for="flexRadio">
+                                                시간제 개인 연습실 (야마하 업라이트 피아노) ￦5,500/시간
+                                                </label><hr>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadio"
+                                                    id="flexRadio">
+                                                <label class="form-check-label" for="flexRadio">
+                                                시간제 개인 연습실 (목관악, 현악) ￦4,000/시간
+                                                </label><hr>
+                                            </div>
+											<div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio"
+                                                    >
+                                                <label class="form-check-label" for="flexRadio">
+                                                댄스, 무용 연습실 (보컬,악기 X) ￦7,000/시간                              
+                                                </label><hr>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadio"
+                                                    id="flexRadio">
+                                                <label class="form-check-label" for="flexRadio">
+                                                레슨실 ￦6,000/시간
+                                                </label>
+                                            </div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
+										data-bs-toggle="collapse" href="#flush-collapseTwo" aria-expanded="false"
+										aria-controls="flush-collapseTwo">
+										공간 상세
+										<span class="icon-shape icon-xs bg-light text-dark rounded-circle">
+											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+												fill="currentColor" class="bi bi-chevron-down chevron-down"
+												viewBox="0 0 16 16">
+												<path fill-rule="evenodd"
+													d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+											</svg>
+										</span>
+									</a>
+									<div id="flush-collapseTwo" class="accordion-collapse collapse"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body px-0">
+											<ul class="list-unstyled">
+											<li>
+												<ul>
+												<li>악기연습실 댄스연습실 레슨실</li><br>	
+												<li>개인 연습실 공간면적 2평
+												수용인원 1~2명</li><br>
+												<li>단체 연습실 공간면적 10평
+												수용인원 5~10명</li><br>
+												<li>최소 1시간 부터 예약 가능</li>
+												</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
+										data-bs-toggle="collapse" href="#flush-collapseThree" aria-expanded="false"
+										aria-controls="flush-collapseThree">
+										위치
+										<span class="icon-shape icon-xs bg-light text-dark rounded-circle">
+											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+												fill="currentColor" class="bi bi-chevron-down chevron-down"
+												viewBox="0 0 16 16">
+												<path fill-rule="evenodd"
+													d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+											</svg>
+										</span>
+									</a>
+									<div id="flush-collapseThree" class="accordion-collapse collapse"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body px-0">
+											<ul class="list-unstyled lh-lg">
+												<li class="d-flex align-items-center gap-2">
+													<gmp-map center="37.4220656,-122.0840897" zoom="10" map-id="DEMO_MAP_ID" style="height: 400px"></gmp-map>
+													<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=maps&v=beta" defer></script>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Product end-->
+	<!--Product tabs start-->
+	<section class="py-lg-8">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
+						<!-- nav item -->
+						<li class="nav-item" role="presentation">
+							<!-- btn -->
+							<button class="nav-link active" id="product-tab" data-bs-toggle="tab"
+								data-bs-target="#product-tab-pane" type="button" role="tab"
+								aria-controls="product-tab-pane" aria-selected="true">
+								공간소개
+							</button>
+						</li>
+						<!-- nav item -->
+						<li class="nav-item" role="presentation">
+							<!-- btn -->
+							<button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+								data-bs-target="#reviews-tab-pane" type="button" role="tab"
+								aria-controls="reviews-tab-pane" aria-selected="false">
+								예약시 주의사항
+							</button>
+						</li>
+						<!-- nav item -->
+						<li class="nav-item" role="presentation">
+							<!-- btn -->
+							<button class="nav-link" id="sellerInfo-tab" data-bs-toggle="tab"
+								data-bs-target="#sellerInfo-tab-pane" type="button" role="tab"
+								aria-controls="sellerInfo-tab-pane" aria-selected="false">
+								환불 정책
+							</button>
+						</li>
+					</ul>
+					<!-- tab content -->
+					<div class="tab-content" id="myTabContent">
+						<!-- tab pane -->
+						<div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel"
+							aria-labelledby="product-tab" tabindex="0">
+							<div class="my-6">
+								<div class="mb-5">
+									<!-- text -->
+									<h4 class="fw-bold mb-3">방음의 자신 있는 깔끔한 시간제 연습실</h4>
+									<ul class="list-unstyled lh-lg">
+										<li class="d-flex align-items-center gap-2 fw-bold">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+												<path
+													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+												<path
+													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+											</svg>
+											야마하 피아노/ 블루투스 스피커/ 보면대/ 의자/ 거울 등 연습의 필요한 것들이 준비 되어 있습니다.
+										</li>
+										<li class="d-flex align-items-center gap-2 fw-bold">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+												<path
+													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+												<path
+													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+											</svg>
+											방음의 신경 쓴 방음 퀄리티, 이중도어, 냉/난방 시공.
+										</li>
+										<li class="d-flex align-items-center gap-2 fw-bold">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+												<path
+													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+												<path
+													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+											</svg>
+											봉천역에서 80m 거리에 위치한 초 역세권 연습실입니다! 깔끔하고 청결에 신경을 많이 쓰는 연습실입니다!
+										</li>
+										
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+						<!-- tab pane -->
+						<div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab"
+							tabindex="0">
+							<div class="my-6">
+								<img src="./assets/images/png/graphics.png" alt="graphics" class="img-fluid" />
+							</div>
+						</div>
+						<!-- tab pane -->
+						<div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
+							tabindex="0">
+							<div class="my-6">
+								<div class="mb-5">
+									<ul class="list-unstyled">
+										<li>
+											<ul>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">상담 시간</span>오전 10시 ~ 오후8시 (문자문의만 가능, 전화불가)</li><br>	
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">문의 방법</span>문자로 "지점/날짜/룸/시간" 작성하여 발송</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">비밀 번호</span>결제시 10분 후 문자로 발송 (10분 후에도 문자가 오지 않을 경우 연락 요망) </li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">환불 규정</span>4일 전까지 100%, 2일전까지 50%, 1일전 및 당일 환불/변경 불가</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">금지 사항</span>음식물 반입 금지, 흡연/음주 금지 (적발시 환불없이 강제 퇴실)</li><br>	
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-7">주차</span>불가</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold">CCTV 촬영중 (복도, 각 방)</span></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- tab pane -->
+						<div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel"
+							aria-labelledby="sellerInfo-tab" tabindex="0">
+							<div class="my-6">
+								<div class="mb-5">
+									<p class="mb-0 text-danger fw-bold">이용당일 (첫 날) 이후에 환불 관련 사항은 담당자에게 직접 문의하셔야 합니다.</p><br>	
+									<p class="fw-bold">결제 후 2시간 이내에는 100% 환불이 가능합니다 (단. 이용시간 전까지만 가능)</p><br>
+									<ul class="list-unstyled">
+										<li>
+											<ul>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 8일 전</span> 총 금액의 100% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 7일 전</span> 총 금액의 100% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 6일 전</span> 총 금액의 100% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 5일 전</span> 총 금액의 100% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 4일 전</span> 총 금액의 100% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 3일 전</span> 총 금액의 50% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">이용 2일 전</span> 총 금액의 50% 환불</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-5">이용 전날</span>환불 불가</li><br>
+											<li class="fw-bold"><span class="text-body-secondary fw-bold me-5">이용 당일</span>환불 불가</li><br>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Reviews-->
+			<div class="row">
+				<div class="my-6">
+					<div class="mb-6">
+						<h3 class="mb-4">평가</h3>
+						<div class="my-2 p-4 bg-light">
+							<div class="row gy-4 gy-lg-0">
+								<div class="col-lg-6 col-md-10">
+									<!-- progress -->
+									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+										<div class="text-nowrap text-muted" style="width: 50px">
+											<span class="d-inline-block align-middle text-muted">5</span>
+											<i class="bi bi-star-fill ms-1 small text-primary"></i>
+										</div>
+										<div class="w-100">
+											<div class="progress" style="height: 6px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+										</div>
+										<span class="text-muted" style="width: 50px">22</span>
+									</div>
+									<!-- progress -->
+									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+										<div class="text-nowrap text-muted" style="width: 50px">
+											<span class="d-inline-block align-middle text-muted">4</span>
+											<i class="bi bi-star-fill ms-1 small text-primary"></i>
+										</div>
+										<div class="w-100">
+											<div class="progress" style="height: 6px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+													aria-valuemax="50"></div>
+											</div>
+										</div>
+										<span class="text-muted" style="width: 50px">19</span>
+									</div>
+									<!-- progress -->
+									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+										<div class="text-nowrap text-muted" style="width: 50px">
+											<span class="d-inline-block align-middle text-muted">3</span>
+											<i class="bi bi-star-fill ms-1 small text-primary"></i>
+										</div>
+										<div class="w-100">
+											<div class="progress" style="height: 6px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+													aria-valuemax="35"></div>
+											</div>
+										</div>
+										<span class="text-muted" style="width: 50px">15</span>
+									</div>
+									<!-- progress -->
+									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+										<div class="text-nowrap text-muted" style="width: 50px">
+											<span class="d-inline-block align-middle text-muted">2</span>
+											<i class="bi bi-star-fill ms-1 small text-primary"></i>
+										</div>
+										<div class="w-100">
+											<div class="progress" style="height: 6px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 22%" aria-valuenow="22" aria-valuemin="0"
+													aria-valuemax="22"></div>
+											</div>
+										</div>
+										<span class="text-muted" style="width: 50px">0</span>
+									</div>
+									<!-- progress -->
+									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+										<div class="text-nowrap text-muted" style="width: 50px">
+											<span class="d-inline-block align-middle text-muted">1</span>
+											<i class="bi bi-star-fill ms-1 small text-primary"></i>
+										</div>
+										<div class="w-100">
+											<div class="progress" style="height: 6px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 14%" aria-valuenow="14" aria-valuemin="0"
+													aria-valuemax="14"></div>
+											</div>
+										</div>
+										<span class="text-muted" style="width: 50px">0</span>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
+									<div class="d-flex align-items-center gap-3">
+										<div class="fs-2 text-dark fw-bold ">5</div>
+										<!-- rating -->
+										<div class="d-flex flex-column">
+											<small class="text-primary">
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</small>
+
+											<small>1개의 평가</small>
+										</div>
+									</div>
+								</div>
+								<div>
+									<form id="form" name="form" method="post" class="row needs-validation" novalidate>
+									
+										<div class="mb-3 col-12 py-5">
+											<h3 class="h6 pb-1">평가해주세요 *</h3>
+											<div class="rater"></div>
+										</div>
+										<div class="mb-3 col-12">
+											<label for="writeReview" class="form-label">평가를 작성해주세요 *</label>
+											<textarea id="writeReview" class="form-control" rows="5"
+												placeholder="연습실에 대한 평가를 해주세요" required></textarea>
+											<div class="invalid-feedback">평가를 써주세요.</div>
+										</div>
+										<div class="mb-3 col-12">
+											<label for="headline" class="form-label">제목을 작성해주세요 *</label>
+											<input type="text" id="headline" class="form-control"
+												placeholder="연습장에 대한 짧은 평가를 해주세요" required />
+											<div class="invalid-feedback">제목을 입력해주세요.</div>
+										</div>
+										<div class="mb-3 col-12 col-lg-6">
+											<label for="yourName" class="form-label">이름 *</label>
+											<input type="text" id="yourName" class="form-control" placeholder="" required />
+											<div class="invalid-feedback">이름을 입력해 주세요.</div>
+										</div>
+										<div class="mb-3 col-12 col-lg-6">
+											<label for="email" class="form-label">Email *</label>
+											<input type="email" id="email" class="form-control mb-1" placeholder="" required />
+											<div class="invalid-feedback">Email을 입력해주세요.</div>
+											<span class="form-text">평가 확인을 위한 Email을 보내드리겠습니다. 
+												</span>
+										</div>
+										<div class="mb-5 col-12">
+											<!-- Upload Button -->
+											<h3 class="h6 mb-3">업로드</h3>
+											<label class="btn btn-outline-primary d-inline-flex align-items-center gap-1"
+												for="fileInput">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+													class="bi bi-upload" viewBox="0 0 16 16">
+													<path
+														d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+													<path
+														d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+												</svg>
+												Upload
+											</label>
+											<input type="file" id="fileInput" />
+											<br />
+											<small class="mt-2 d-block">최대 10개의 이미지와 3개의 비디오를 업로드하세요 (최대 파일 크기 2GB)</small>
+			
+											<!-- Upload Status -->
+											<div id="uploadStatus"></div>
+			
+											<!-- Display Preview -->
+											<div id="previewContainer"></div>
+											
+										</div>
+										<div class="mb-3 col-12">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" id="gridCheck" required />
+												<label class="form-check-label" for="gridCheck">
+													<span>이용약관에 동의합니다 *</span>
+												</label>
+												<div class="invalid-feedback">
+													반드시 동의하셔야 합니다.
+												</div>
+											</div>
+										</div>
+										<div class="mb-3 col-12">
+											<div class="d-flex align-items-center justify-content-between">
+												<div>*필수 작성</div>
+												<div class="">
+													<button type="submit" class="btn btn-primary">평가 등록</button>
+												</div>
+											</div>
+										</div>
+									</form>
+							</div>
+						</div>
+					</div>
+					<!--Search-->
+					<div class="mb-6">
+						<form>
+							<div class="row g-3">
+								<div class="col-lg-4 col-xl-3 col-md-6 py-2">
+									<div class="position-relative">
+										<label for="searchInput" class="visually-hidden"></label>
+										<input type="search" id="searchInput" class="form-control ps-6"
+											placeholder="평가 검색" />
+										<span class="position-absolute top-50 start-0 translate-middle ms-4">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+												xmlns="http://www.w3.org/2000/svg">
+												<path
+													d="M16.1479 15.3519L12.6273 11.8321C13.6477 10.6071 14.1566 9.03577 14.048 7.44512C13.9394 5.85447 13.2217 4.36692 12.0443 3.29193C10.8668 2.21693 9.32029 1.63725 7.72635 1.67348C6.13241 1.7097 4.6138 2.35904 3.48642 3.48642C2.35904 4.6138 1.7097 6.13241 1.67348 7.72635C1.63725 9.32029 2.21693 10.8668 3.29193 12.0443C4.36692 13.2217 5.85447 13.9394 7.44512 14.048C9.03577 14.1566 10.6071 13.6477 11.8321 12.6273L15.3519 16.1479C15.4042 16.2001 15.4663 16.2416 15.5345 16.2699C15.6028 16.2982 15.676 16.3127 15.7499 16.3127C15.8238 16.3127 15.897 16.2982 15.9653 16.2699C16.0336 16.2416 16.0956 16.2001 16.1479 16.1479C16.2001 16.0956 16.2416 16.0336 16.2699 15.9653C16.2982 15.897 16.3127 15.8238 16.3127 15.7499C16.3127 15.676 16.2982 15.6028 16.2699 15.5345C16.2416 15.4663 16.2001 15.4042 16.1479 15.3519ZM2.81242 7.87492C2.81242 6.87365 3.10933 5.89487 3.6656 5.06234C4.22188 4.22982 5.01253 3.58094 5.93758 3.19778C6.86263 2.81461 7.88053 2.71435 8.86256 2.90969C9.84459 3.10503 10.7466 3.58718 11.4546 4.29519C12.1626 5.00319 12.6448 5.90524 12.8401 6.88727C13.0355 7.8693 12.9352 8.8872 12.5521 9.81225C12.1689 10.7373 11.52 11.528 10.6875 12.0842C9.85497 12.6405 8.87618 12.9374 7.87492 12.9374C6.53271 12.9359 5.24591 12.4021 4.29683 11.453C3.34775 10.5039 2.81391 9.21712 2.81242 7.87492Z"
+													fill="#B3ACA3" />
+											</svg>
+										</span>
+									</div>
+								</div>
+								<div class="col-lg-4 col-xl-2 col-md-6 py-2">
+									<label for="ratingInput" class="visually-hidden"></label>
+
+									<select id="ratingInput" class="" data-choices=""
+										data-choices-removeitembutton="true" aria-label="Default select example">
+										<option value="">모든 평점</option>
+
+										<option value="Top">높은 평점</option>
+										<option value="Medium">보통 평점</option>
+										<option value="Low">낮은 평점</option>
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="mb-6">
+						<div class="d-flex align-items-center justify-content-between mb-4">
+							<h3 class="mb-0 fs-4">5개의 연습실 평가</h3>
+							<div class="col-lg-3">
+								<label for="mostRaing" class="visually-hidden"></label>
+								<select id="mostRaing" class="" data-choices="" data-choices-removeitembutton="true"
+									aria-label="Default select example">
+									<option value="">분류 기준 : 가장 최근 평점</option>
+
+									<option value="Highest Rating">높은 평점</option>
+									<option value="Lowest Rating">낮은 평점</option>
+									<option value="Verified Purchase">검증된 연습실</option>
+								</select>
+							</div>
+						</div>
+						<div class="row g-4 mb-4">
+							<!--Review-->
+							<div class="col-xl-4 col-md-6">
+								<div class="card h-100">
+									<div class="card-body p-5">
+										<small class="text-warning">
+											<i class="bi bi-star-fill"></i>
+											<i class="bi bi-star-fill"></i>
+											<i class="bi bi-star-fill"></i>
+											<i class="bi bi-star-fill"></i>
+											<i class="bi bi-star-half"></i>
+										</small>
+										<h3 class="fs-4 my-3">괜찮은 연습실 만족스로운 평가</h3>
+										<p>피아노 상태 괜찮고 방음이 잘되어있어 연습할때 집중하기 좋았습니다. 하지만
+											한파라는 것을 감안하고 연습실이 너무 추워서 연습 내내 손이 얼어서 힘들었습니다
+										</p>
+										<p class="d-flex align-items-center gap-3">
+											나평가
+											<span class="small text-success d-flex align-items-center gap-1">
+												<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+													xmlns="http://www.w3.org/2000/svg">
+													<path opacity="0.2"
+														d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
+														fill="#15803D" />
+													<path
+														d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
+														fill="#15803D" />
+												</svg>
+												검증
+											</span>
+										</p>
+										<div class="d-flex flex-row gap-3 align-items-center">
+											<span>이 평가가 도움이 되었습니까?</span>
+											<div class="d-flex flex-row gap-2">
+												<a href="#!" class="">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+														fill="currentColor" class="bi bi-hand-thumbs-up"
+														viewBox="0 0 16 16">
+														<path
+															d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
+														</path>
+													</svg>
+													2
+												</a>
+												<a href="#!" class="">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+														fill="currentColor" class="bi bi-hand-thumbs-down"
+														viewBox="0 0 16 16">
+														<path
+															d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
+														</path>
+													</svg>
+													0
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--Review-->
+						<!--More reviews-->
+						<div class="collapse" id="collapseContent">
+							<div class="row g-4 mb-4">
+								<div class="col-xl-4 col-lg-6">
+									<div class="card h-100">
+										<div class="card-body p-5">
+											<small class="text-warning">
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</small>
+											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
+											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
+												and looks elegant in
+												my home. Assembly was straightforward too!</p>
+											<p class="d-flex align-items-center gap-3">
+												Sandip Chauhan
+												<span class="small text-success d-flex align-items-center gap-1">
+													<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+														xmlns="http://www.w3.org/2000/svg">
+														<path opacity="0.2"
+															d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
+															fill="#15803D" />
+														<path
+															d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
+															fill="#15803D" />
+													</svg>
+													Verified
+												</span>
+											</p>
+											<div class="d-flex flex-row gap-3 align-items-center">
+												<span>Was this review helpful?</span>
+												<div class="d-flex flex-row gap-2">
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-up"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
+															</path>
+														</svg>
+														1
+													</a>
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-down"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
+															</path>
+														</svg>
+														0
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-6">
+									<div class="card h-100">
+										<div class="card-body p-5">
+											<small class="text-warning">
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</small>
+											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
+											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
+												and looks elegant in
+												my home. Assembly was straightforward too!</p>
+											<p class="d-flex align-items-center gap-3">
+												Sandip Chauhan
+												<span class="small text-success d-flex align-items-center gap-1">
+													<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+														xmlns="http://www.w3.org/2000/svg">
+														<path opacity="0.2"
+															d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
+															fill="#15803D" />
+														<path
+															d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
+															fill="#15803D" />
+													</svg>
+													Verified
+												</span>
+											</p>
+											<div class="d-flex flex-row gap-3 align-items-center">
+												<span>Was this review helpful?</span>
+												<div class="d-flex flex-row gap-2">
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-up"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
+															</path>
+														</svg>
+														1
+													</a>
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-down"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
+															</path>
+														</svg>
+														0
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-6">
+									<div class="card h-100">
+										<div class="card-body p-5">
+											<small class="text-warning">
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</small>
+											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
+											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
+												and looks elegant in
+												my home. Assembly was straightforward too!</p>
+											<p class="d-flex align-items-center gap-3">
+												Sandip Chauhan
+												<span class="small text-success d-flex align-items-center gap-1">
+													<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+														xmlns="http://www.w3.org/2000/svg">
+														<path opacity="0.2"
+															d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
+															fill="#15803D" />
+														<path
+															d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
+															fill="#15803D" />
+													</svg>
+													Verified
+												</span>
+											</p>
+											<div class="d-flex flex-row gap-3 align-items-center">
+												<span>Was this review helpful?</span>
+												<div class="d-flex flex-row gap-2">
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-up"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
+															</path>
+														</svg>
+														1
+													</a>
+													<a href="#!" class="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-hand-thumbs-down"
+															viewBox="0 0 16 16">
+															<path
+																d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
+															</path>
+														</svg>
+														0
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<div class="text-center">
+									<a class="btn btn-outline-primary" id="toggleButton" data-bs-toggle="collapse"
+										href="#collapseContent" aria-expanded="false" aria-controls="collapseContent">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+											<path fill-rule="evenodd"
+												d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+											<path
+												d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+										</svg>
+										평가 더 보기
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Product tabs end-->
+	<!--Product start-->
+	<section class="pb-10">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<!--Heading-->
+					<div class="text-center mb-6">
+						<h2 class="mb-0">같은 유형의 연습실을 찾아보세요</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row gy-6 gx-4">
+				<!--Product-->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<div class="product-card">
+						<div class=" text-center product-card-img mb-4">
+							<a href="#!"><img src="./assets/images/product/product-img-1.jpg" alt="product image"
+									class="img-fluid">
+								<img src="./assets/images/product/product-img-hover-1.jpg" alt="product image"
+									class="img-fluid product-img-hover"></a>
+							<div class="product-card-btn">
+								<button type="button" class="btn btn-primary btn-icon btn-sm animate-pulse "
+									data-bs-toggle="modal" data-bs-target="#quickViewModal">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-eye animate-target" viewBox="0 0 16 16">
+										<path
+											d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+										<path
+											d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+									</svg>
+								</button>
+								<button type="button" class="btn btn-primary  btn-sm quick-add-btn"
+									data-product-name="Sofa with wood legs" data-product-price="34.00"
+									data-product-img="./assets/images/product/product-img-1.jpg">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+										class="bi bi-plus" viewBox="0 0 16 16">
+										<path
+											d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+									</svg>
+									Quick add
+								</button>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="small fw-medium text-uppercase">BRAND</span>
+							<div class="d-flex gap-3 align-items-center">
+								<span class="">
+									4.3
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+										class="bi bi-star-fill align-baseline text-warning" viewBox="0 0 16 16">
+										<path
+											d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+									</svg>
+								</span>
+								<button type="button" class="btn btn-light bg-transparent border-0 p-0 animate-pulse">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-heart animate-target" viewBox="0 0 16 16">
+										<path
+											d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mb-3">
+							<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate"> <a href="#!">Sofa with
+									wood
+									legs</a></h3>
+							<p class="mb-0 lh-1 text-dark fw-semibold">$34.00</p>
+						</div>
+
+						<div role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio1">
+							<label class="btn-color-swatch bg-primary" for="btnradio1"></label>
+
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+							<label class="btn-color-swatch bg-success" for="btnradio2"></label>
+
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio3" checked>
+							<label class="btn-color-swatch bg-danger" for="btnradio3"></label>
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio4">
+							<label class="btn-color-swatch bg-info" for="btnradio4"></label>
+						</div>
+					</div>
+				</div>
+				<!--Product-->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<div class="product-card">
+						<div class="text-center mb-4 product-card-img">
+							<a href="#!">
+								<img src="./assets/images/product/product-img-2.jpg" alt="product image"
+									class="img-fluid" />
+								<img src="./assets/images/product/product-img-hover-2.jpg" alt="product image"
+									class="img-fluid product-img-hover" />
+							</a>
+							<div class="product-card-btn">
+								<button type="button" class="btn btn-primary btn-icon btn-sm animate-pulse "
+									data-bs-toggle="modal" data-bs-target="#quickViewModal">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-eye animate-target" viewBox="0 0 16 16">
+										<path
+											d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+										<path
+											d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+									</svg>
+								</button>
+								<button type="button" class="btn btn-primary btn-sm quick-add-btn"
+									data-product-name="Floor Lamp" data-product-price="95.00"
+									data-product-img="./assets/images/product/product-img-2.jpg">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+										class="bi bi-plus" viewBox="0 0 16 16">
+										<path
+											d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+									</svg>
+									Quick add
+								</button>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="small fw-medium text-uppercase">BRAND</span>
+							<div class="d-flex gap-3 align-items-center">
+								<span class="">
+									4.2
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+										class="bi bi-star-fill align-baseline text-warning" viewBox="0 0 16 16">
+										<path
+											d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+									</svg>
+								</span>
+								<button type="button" class="btn btn-light bg-transparent border-0 p-0 animate-pulse">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-heart animate-target" viewBox="0 0 16 16">
+										<path
+											d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mb-3">
+							<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate"><a href="#!">Floor
+									Lamp</a></h3>
+							<p class="mb-0 lh-1 text-dark fw-semibold">$95.00</p>
+						</div>
+						<div>
+							<input type="radio" class="btn-check" name="btnradio2" id="btnradio5" checked />
+							<label class="btn-color-swatch bg-primary" for="btnradio5"></label>
+
+							<input type="radio" class="btn-check" name="btnradio2" id="btnradio6" />
+							<label class="btn-color-swatch bg-success" for="btnradio6"></label>
+						</div>
+					</div>
+				</div>
+				<!--Product-->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<div class="product-card">
+						<div class="text-center mb-4 product-card-img">
+							<a href="#!">
+								<img src="./assets/images/product/product-img-3.jpg" alt="product image"
+									class="img-fluid" />
+								<img src="./assets/images/product/product-img-hover-3.jpg" alt="product image"
+									class="img-fluid product-img-hover" />
+							</a>
+							<div class="product-card-btn">
+								<button type="button" class="btn btn-primary btn-icon btn-sm animate-pulse "
+									data-bs-toggle="modal" data-bs-target="#quickViewModal">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-eye animate-target" viewBox="0 0 16 16">
+										<path
+											d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+										<path
+											d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+									</svg>
+								</button>
+								<button type="button" class="btn btn-primary  btn-sm quick-add-btn"
+									data-product-name="Comfort Seat Chair" data-product-price="78.00"
+									data-product-img="./assets/images/product/product-img-3.jpg">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+										class="bi bi-plus" viewBox="0 0 16 16">
+										<path
+											d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+									</svg>
+									Quick add
+								</button>
+							</div>
+							<div class="position-absolute top-0 p-2 px-3">
+								<span class="badge bg-info">New</span>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="small fw-medium text-uppercase">BRAND</span>
+							<div class="d-flex gap-3 align-items-center">
+								<span class="">
+									4.3
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+										class="bi bi-star-fill align-baseline text-warning" viewBox="0 0 16 16">
+										<path
+											d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+									</svg>
+								</span>
+								<button type="button" class="btn btn-light bg-transparent border-0 p-0 animate-pulse">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-heart animate-target" viewBox="0 0 16 16">
+										<path
+											d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mb-3">
+							<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate"><a href="#!">Comfort Seat
+									Chair</a></h3>
+							<p class="mb-0 lh-1 text-dark fw-semibold">$78.00</p>
+						</div>
+						<div>
+							<input type="radio" class="btn-check" name="btnradio3" id="btnradio9" checked>
+							<label class="btn-color-swatch bg-primary" for="btnradio9"></label>
+						</div>
+					</div>
+				</div>
+				<!--Product-->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<div class="product-card">
+						<div class="text-center mb-4 product-card-img">
+							<a href="#!"><img src="./assets/images/product/product-img-4.jpg" alt="product image"
+									class="img-fluid" />
+								<img src="./assets/images/product/product-img-hover-4.jpg" alt="product image"
+									class="img-fluid product-img-hover" /></a>
+							<div class="product-card-btn">
+								<button type="button" class="btn btn-primary btn-icon btn-sm animate-pulse "
+									data-bs-toggle="modal" data-bs-target="#quickViewModal">
+
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-eye animate-target" viewBox="0 0 16 16">
+										<path
+											d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+										<path
+											d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+									</svg>
+								</button>
+								<button type="button" class="btn btn-primary  btn-sm quick-add-btn"
+									data-product-name="Armchair" data-product-price="75.00"
+									data-product-img="./assets/images/product/product-img-4.jpg">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+										class="bi bi-plus" viewBox="0 0 16 16">
+										<path
+											d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+									</svg>
+									Quick add
+								</button>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="small fw-medium text-uppercase">BRAND</span>
+							<div class="d-flex gap-3 align-items-center">
+								<span class="">
+									4.5
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+										class="bi bi-star-fill align-baseline text-warning" viewBox="0 0 16 16">
+										<path
+											d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+									</svg>
+								</span>
+								<button type="button" class="btn btn-light bg-transparent border-0 p-0 animate-pulse">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-heart animate-target" viewBox="0 0 16 16">
+										<path
+											d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="mb-3">
+							<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate"><a href="#!">Armchair</a>
+							</h3>
+							<p class="mb-0 lh-1 text-dark fw-semibold">
+								<span class="text-danger">$75.00</span>
+								<span class="text-decoration-line-through">$95.00</span>
+							</p>
+						</div>
+						<div>
+							<input type="radio" class="btn-check" name="btnradio4" id="btnradio13" checked />
+							<label class="btn-color-swatch bg-primary" for="btnradio13"></label>
+
+							<input type="radio" class="btn-check" name="btnradio4" id="btnradio14" />
+							<label class="btn-color-swatch bg-success" for="btnradio14"></label>
+
+							<input type="radio" class="btn-check" name="btnradio4" id="btnradio16" />
+							<label class="btn-color-swatch bg-info" for="btnradio16"></label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Product end-->
+	<div th:replace="~{usr/Include/usrindex/footer ::footer}"></div>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.uploaded.UploadedDao">
+
+ <resultMap id="resultMapObj" type="com.a6.module.uploaded.UploadedDto"></resultMap>
+ 
+ <!-- uploaded s -->
+	<sql id="insertUploaded">
+		INSERT INTO ${tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+<!-- 			<include refid="Base.insertRegColumn" /> -->
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+<!-- 			<include refid="Base.insertRegValue" /> -->
+			,#{pseq}
+		)
+	</sql>
+	<insert id ="insert">
+	INSERT INTO ${tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+<!-- 			<include refid="Base.insertRegColumn" /> -->
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+<!-- 			<include refid="Base.insertRegValue" /> -->
+			,#{pseq}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	
+	</insert>
+ 
+ 
+ 
+ </mapper>

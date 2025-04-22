@@ -24,4 +24,14 @@ public class ContentController {
 
 		return "xdm/content/ContentXdmView";
 	}
+	
+	@RequestMapping(value = "/usr/product/usrProductItem")
+	
+	public String usrProductItem() {
+		
+		
+//		model.addAttribute("item",contentService.selectOne(contentvo));
+
+		return "usr/product/usrProductItem";
+	}
 }
