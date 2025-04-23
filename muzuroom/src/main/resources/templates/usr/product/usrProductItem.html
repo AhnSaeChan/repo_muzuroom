@@ -522,8 +522,9 @@
 									</div>
 								</div>
 								<div>
-									<form id="form" name="form" method="post" class="row needs-validation" novalidate>
-									
+									<form id="form" name="form" method="post" enctype="multipart/form-data" class="row needs-validation" novalidate>
+<!-- 									<input type="file" name="uploadImg1" multiple="multiple"> -->
+									<input type="hidden" name="pseq" value="1" />
 										<div class="mb-3 col-12 py-5">
 											<h3 class="h6 pb-1">평가해주세요 *</h3>
 											<div class="rater"></div>
@@ -566,7 +567,9 @@
 												</svg>
 												Upload
 											</label>
-											<input type="file" id="fileInput" />
+											<input type="file" id="uploadImg1" name="uploadImg1"/>
+											<input type="hidden" id="uploadImg1Type" name="uploadImg1Type" value="1"/>
+											<input type="hidden" id="uploadImg1MaxNumber" name="uploadImg1MaxNumber" value="1"/>
 											<br />
 											<small class="mt-2 d-block">최대 10개의 이미지와 3개의 비디오를 업로드하세요 (최대 파일 크기 2GB)</small>
 			
@@ -592,7 +595,7 @@
 											<div class="d-flex align-items-center justify-content-between">
 												<div>*필수 작성</div>
 												<div class="">
-													<button type="submit" class="btn btn-primary">평가 등록</button>
+													<button type="button" id="bottonInput" class="btn btn-primary">평가 등록</button>
 												</div>
 											</div>
 										</div>

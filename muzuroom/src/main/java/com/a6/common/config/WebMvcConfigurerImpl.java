@@ -22,7 +22,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer  {
 				"/signoutXdmProc",
 				"/signinUsrProc",
 				"/signoutUsrProc",
-				"/usr/usrlogin/usrLoginUsrForm"
+				"/usr/usrlogin/usrLoginUsrForm",
+				"/content/upload"
 				
 );
 		

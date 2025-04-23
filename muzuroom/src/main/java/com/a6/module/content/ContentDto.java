@@ -1,6 +1,10 @@
 package com.a6.module.content;
 
-public class ContentDto {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.a6.module.uploaded.UploadedDto;
+
+public class ContentDto extends UploadedDto{
 	
 	private String seq;
 	private String roomIdCD;
@@ -19,12 +23,34 @@ public class ContentDto {
 	private String roomGuideline; 
 	private String refundPolicy;  
 	private Integer userInfo_seq;
+	
+	private MultipartFile[] uploadImg1;
+	
+	private Integer uploadImg1Type;
+	private Integer uploadImg1MaxNumber;
+	
 //---
-	/**
-	 * @return the seq
-	 */
+	
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getUploadImg1Type() {
+		return uploadImg1Type;
+	}
+	public void setUploadImg1Type(Integer uploadImg1Type) {
+		this.uploadImg1Type = uploadImg1Type;
+	}
+	public Integer getUploadImg1MaxNumber() {
+		return uploadImg1MaxNumber;
+	}
+	public void setUploadImg1MaxNumber(Integer uploadImg1MaxNumber) {
+		this.uploadImg1MaxNumber = uploadImg1MaxNumber;
+	}
+	public MultipartFile[] getUploadImg1() {
+		return uploadImg1;
+	}
+	public void setUploadImg1(MultipartFile[] uploadImg1) {
+		this.uploadImg1 = uploadImg1;
 	}
 	/**
 	 * @param seq the seq to set
