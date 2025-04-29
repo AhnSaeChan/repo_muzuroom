@@ -239,6 +239,28 @@
 		</selectKey>
  	</insert>
  	
+ 	<update id="updateInfo">
+ 	UPDATE userinfo SET
+		userFirstName = #{userFirstName},
+	    userName = #{userName},
+	    userGenderMF = #{userGenderMF},
+		mobileCarrier = #{mobileCarrier},
+        userPhoneNum = #{userPhoneNum},
+        userZipcode = #{userZipcode},
+        userAddress = #{userAddress},
+        streetAddress= #{streetAddress},
+        lotAddress = #{lotAddress},
+        addressRef = #{addressRef},
+        latitude = #{latitude},
+        longitude = #{longitude},
+        userEmail = #{userEmail},
+        userDOB = #{userDOB}
+		
+	WHERE seq = #{seq}
+ 	
+ 	
+ 	</update>
+ 	
  	
 	
 	

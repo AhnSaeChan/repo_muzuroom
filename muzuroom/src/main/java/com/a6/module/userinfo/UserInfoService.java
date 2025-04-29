@@ -37,5 +37,9 @@ public class UserInfoService {
 	public int selectDuplicateId(UserInfoDto userInfoDto) {
 		return userInfoDao.selectDuplicateId(userInfoDto);
 	}
+	
+	public int updateInfo(UserInfoDto userInfoDto) {
+		return userInfoDao.updateInfo(userInfoDto);
+	}
 
 }

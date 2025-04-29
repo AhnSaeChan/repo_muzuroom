@@ -254,12 +254,17 @@ public class UserInfoController {
 	@RequestMapping(value = "/usrMyInfoMod")
 	public String usrMyInfoMod(Model model, UserInfoVo userInfoVo, HttpSession session) {
 		  
-		  
-		  
-		
 		model.addAttribute("list",userInfoService.selectList(userInfoVo));
 		return "/usr/myaccount/usrMyInfoMod";
 	}
+	
+	@RequestMapping(value = "/updateInfo")
+	public String updateInfo(UserInfoDto userInfoVo) {
+		userInfoService.updateInfo(userInfoVo);
+		
+		return "/usr/myaccount/usrMyInfoMod";
+	}
+	
 	
 	
 	
