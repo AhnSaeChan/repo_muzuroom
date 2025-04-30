@@ -253,16 +253,22 @@ public class UserInfoController {
 	
 	@RequestMapping(value = "/usrMyInfoMod")
 	public String usrMyInfoMod(Model model, UserInfoVo userInfoVo, HttpSession session) {
-		  
+		
+		model.addAttribute("vo", userInfoVo);
+		
 		model.addAttribute("list",userInfoService.selectList(userInfoVo));
 		return "/usr/myaccount/usrMyInfoMod";
 	}
 	
 	@RequestMapping(value = "/updateInfo")
-	public String updateInfo(UserInfoDto userInfoVo) {
-		userInfoService.updateInfo(userInfoVo);
+	public String updateInfo(UserInfoDto userInfoDto) {
 		
-		return "/usr/myaccount/usrMyInfoMod";
+		 System.out.println(userInfoDto.getSeq());
+		
+		userInfoService.updateInfo(userInfoDto);
+		
+		return "redirect:/usrMyInfoMod";
+		
 	}
 	
 	

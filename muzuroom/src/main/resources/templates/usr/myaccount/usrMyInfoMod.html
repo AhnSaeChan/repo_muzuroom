@@ -176,6 +176,7 @@
 							<h1 class="mb-0 h2">개인정보 수정</h1>
 						</div>
 					</div>
+					
 					<!--Personal information-->
 					<div th:each="list : ${list}" class="row g-4">
 						<div class="col-12">
@@ -186,6 +187,7 @@
 									</div>
 									<div>
 										<form method="post" id="form" class="row needs-validation" novalidate>
+										<input type="hidden" name="seq" th:value="${session.sessSeqUsr}">
 											<div class="col-12 py-1">
 											    <div class="form-check form-check-inline">
 											        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"
@@ -200,19 +202,19 @@
 											</div>
 											<div class="mb-3 col-12 py-2">
 												<label for="accountInfoName" class="form-label visually-hidden">성</label>
-												<input type="text" class="form-control" th:value="${session.sessFirstNameUsr}" placeholder="성"
+												<input type="text" id="userFirstName" name ="userFirstName" class="form-control" th:value="${session.sessFirstNameUsr}" placeholder="성"
 													required />
 												<div class="invalid-feedback">성을 입력해 주세요.</div>
 											</div>
 											<div class="mb-3 col-12 ">
 												<label for="accountInfoLname" class="form-label visually-hidden">이름</label>
-												<input type="text" th:value="${session.sessNameUsr}"  id="accountInfoLname" class="form-control" placeholder="이름"
+												<input type="text" id="userName" name ="userName" th:value="${session.sessNameUsr}" class="form-control" placeholder="이름"
 													required />
 												<div class="invalid-feedback">이름을 입력해 주세요.</div>
 											</div>
 											<div class="mb-3 col-12 py-2">
 												<label for="accountInfoDate" class="form-label visually-hidden">Date of Birth</label>
-												<input type="text" id="shDateStart" name="shDateStart" th:value="${session.sessgetUserDOBUsr}" class="form-control" placeholder="생년월일"
+												<input type="text" id="userDOB" name="userDOB" th:value="${session.sessgetUserDOBUsr}" class="form-control" placeholder="생년월일"
 													required />
 												<div class="invalid-feedback">생년월일을 입력해 주세요.</div>
 											</div>
@@ -225,7 +227,7 @@
 											<div class="mb-3 col-12">
 												<label for="accountInfoEmail" class="form-label visually-hidden">Enter your
 													Email</label>
-												<input type="email" th:value="${session.sessEmailUsr}" id="accountInfoEmail" class="form-control"
+												<input type="email" th:value="${session.sessEmailUsr}" id="userEmail" name="userEmail" class="form-control"
 													placeholder="Email" required />
 												<div class="invalid-feedback">이메일 주소를 입력해주세요.</div>
 											</div>
@@ -240,7 +242,7 @@
 											<div class="col-md-9 col-12">
 												<label for="formSignupfphonenum" class="form-label visually-hidden">
 													</label>
-												<input type="text" th:value="${session.sessPhoneUsr}" class="form-control" id="formSignupfname"
+												<input type="text" th:value="${session.sessPhoneUsr}" class="form-control" id="userPhoneNum" name="userPhoneNum"
 													placeholder="" required />
 												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 											</div>
@@ -286,23 +288,23 @@
 												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 											</div>
 											<div  id="map" style="width:910px;height:200px; margin:0 auto; border: 1px solid black;"></div>
+<!-- 											<div class="col-md-4 col-12 py-3"> -->
+<!-- 												<label for="formSignupfphonenum" class="form-label visually-hidden"> -->
+<!-- 													</label> -->
+<!-- 												<input type="text" id="guide" name="latitude"  class="form-control"  -->
+<!-- 													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required /> -->
+<!-- 											</div> -->
 											<div class="col-md-4 col-12 py-3">
 												<label for="formSignupfphonenum" class="form-label visually-hidden">
 													</label>
-												<input type="text" id="guide" name="latitude"  class="form-control" 
-													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
-											</div>
-											<div class="col-md-4 col-12 py-3">
-												<label for="formSignupfphonenum" class="form-label visually-hidden">
-													</label>
-												<input type="text" id="postcode" name="latitude"  class="form-control" 
+												<input type="text" id="latitude" name="latitude"  class="form-control" 
 													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
 											</div>
 											<span id="guide" style="color:#999; display:none"></span>
 											<div class="col-md-4 col-12 py-3">
 												<label for="formSignupfphonenum" class="form-label visually-hidden">
 													</label>
-												<input type="text" id="userAddress" name="longitude" class="form-control" 
+												<input type="text" id="longitude" name="longitude" class="form-control" 
 													style="height:5px; color: lightgray;  border-color:transparent; font-size:10px;" placeholder="" required />
 													
 												<div class="invalid-feedback">전화번호를 입력해주세요.</div>
@@ -391,7 +393,7 @@
     //달력 
     $.datetimepicker.setLocale('ko'); //번역기
     jQuery(function(){
-    	 jQuery('#shDateStart').datetimepicker({
+    	 jQuery('#userDOB').datetimepicker({
     	  format:'Y-m-d',
     	  onShow:function( ct ){
     	   this.setOptions({
@@ -477,8 +479,8 @@
                             marker.setPosition(coords);
 
                             
-                            document.getElementById('postcode').value = result[0].y; 
-                            document.getElementById('userAddress').value = result[0].x; 
+                            document.getElementById('latitude').value = result[0].y; 
+                            document.getElementById('longitude').value = result[0].x; 
                         }
                     });
                 }
@@ -488,8 +490,11 @@
 </script>
 
 <script type="text/javascript">
-document.getElementById(btnUpdateInfo).onclick = function(){
-	
+let seq = document.querySelector("input[name=seq]");
+
+document.getElementById("btnUpdateInfo").onclick = function(){
+// 	alert("sads");
 	form.action = "/updateInfo";
+	form.submit();
 }
 </script>

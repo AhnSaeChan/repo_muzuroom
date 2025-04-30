@@ -243,8 +243,8 @@
  	UPDATE userinfo SET
 		userFirstName = #{userFirstName},
 	    userName = #{userName},
-	    userGenderMF = #{userGenderMF},
-		mobileCarrier = #{mobileCarrier},
+<!-- 	    userGenderMF = #{userGenderMF}, -->
+<!-- 		mobileCarrier = #{mobileCarrier}, -->
         userPhoneNum = #{userPhoneNum},
         userZipcode = #{userZipcode},
         userAddress = #{userAddress},

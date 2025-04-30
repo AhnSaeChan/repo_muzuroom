@@ -37,6 +37,29 @@ public class ContentController {
 		return "usr/product/usrProductItem";
 	}
 	
+	@RequestMapping(value = "/usrProductList")
+	
+		public String usrProductList() {
+		
+		
+
+
+		return "/usr/product/usrProductList";
+		
+	}
+	
+	@RequestMapping(value = "/usrProductCheckout")
+	
+	public String usrProductCheckout() {
+	
+	
+
+
+	return "/usr/product/usrProductCheckout";
+	
+	
+}
+	
 	
 
     @RequestMapping("/content/upload")
