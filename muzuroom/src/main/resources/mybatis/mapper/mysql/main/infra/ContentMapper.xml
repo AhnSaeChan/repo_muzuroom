@@ -9,6 +9,7 @@
  		FROM
 			room
 		WHERE 1=1
+		
 </sql>
 
 <select id="selectOneCount" resultType="Integer">

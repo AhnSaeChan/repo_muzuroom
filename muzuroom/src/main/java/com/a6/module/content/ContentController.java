@@ -12,10 +12,13 @@ public class ContentController {
 	@Autowired
 	ContentService contentService;
 	
-	@RequestMapping(value = "/xdm/content/ContentXdmList")
+	@RequestMapping(value = "/ContentXdmList")
+	
 	public String ContentXdmList(ContentVo vo, Model model) {
 		
-		return "xdm/content/ContentXdmList";
+		model.addAttribute("list",contentService.selectList(vo));
+		model.addAttribute("vo", vo);
+		return "/xdm/content/ContentXdmList";
 	}
 	
 	@RequestMapping(value = "/xdm/content/ContentXdmView")
