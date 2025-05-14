@@ -22,30 +22,32 @@ public class ContentController {
 	}
 	
 	@RequestMapping(value = "/xdm/content/ContentXdmView")
-	public String ContentXdmView(Model model, ContentVo contentvo) {
+	public String ContentXdmView(Model model, ContentVo vo) {
 		
 		
-		model.addAttribute("item",contentService.selectOne(contentvo));
-
+		model.addAttribute("item",contentService.selectOne(vo));
+		model.addAttribute("vo", vo);
+		
 		return "xdm/content/ContentXdmView";
 	}
 	
 	@RequestMapping(value = "/usr/product/usrProductItem")
 	
-	public String usrProductItem() {
+	public String usrProductItem(ContentVo vo, Model model) {
 		
 		
-//		model.addAttribute("item",contentService.selectOne(contentvo));
+		model.addAttribute("item",contentService.selectOne(vo));
 
 		return "usr/product/usrProductItem";
 	}
 	
 	@RequestMapping(value = "/usrProductList")
 	
-		public String usrProductList() {
+		public String usrProductList(ContentVo vo, Model model) {
 		
+		model.addAttribute("list",contentService.selectList(vo));
+		model.addAttribute("vo", vo);
 		
-
 
 		return "/usr/product/usrProductList";
 		

@@ -27,7 +27,7 @@ public class ContentService extends UploadedService {
 		return contentDao.selectList(contentVo);
 	}
 	
-	public int selectOne(ContentVo contentVo) {
+	public ContentDto selectOne(ContentVo contentVo) {
 		return contentDao.selectOne(contentVo);
 	}
 	

@@ -9,6 +9,10 @@
 				background-position: center;
 				background-size: cover;
 			">
+			<form name="formList" id="formList" method="post"  >
+		<input type = "hidden" name = "thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type = "hidden" id = "rowNumToShow" name = "rowNumToShow" th:value = "${vo.rowNumToShow}"/>
+		<input type = "hidden" name="seq">
 		<div class="container">
 			<div class="row align-items-center py-6">
 				<div class="col-lg-6">
@@ -51,6 +55,7 @@
 	</div>
 	<!--Filter button end-->
 	<!--Product list start-->
+	
 	<section class="py-md-6 pb-6">
 		<div class="container">
 			<div class="row">
@@ -503,6 +508,7 @@
 						</div>
 					</div>
 				</aside>
+				
 				<div class="col-lg-9">
 					<div class="row">
 						<div class="col-12">
@@ -531,6 +537,7 @@
 									</button>
 									<button type="button" class="btn btn-sm btn-focus-none">Clear all</button>
 								</div>
+								
 								<div class="col-sm-4 col-xxl-3">
 									<!--default select-->
 									<select class="form-select" aria-label="Default select
@@ -549,15 +556,17 @@
 							</div>
 						</div>
 					</div>
+					
+					<th:block th:each="list : ${list}">
 					<div class="row">
 						<!--Product-->
 						<div class="col-12 mb-6">
 							<div class="product-card d-flex flex-column flex-md-row align-items-center gap-4 gap-md-0">
 								<div class="text-center product-card-img col-lg-4 col-md-5">
 									<a href="#!">
-										<img src="/user/template/FreshCart-1.4.0/assets/images/product/product1.png" alt="product image"
+										<img th:src="${list.roomPic}" alt="product image"
 											class="img-fluid" />
-										<img src="/user/template/FreshCart-1.4.0/assets/images/product/product1.png" alt="product image"
+										<img th:src="${list.roomPic}" alt="product image"
 											class="img-fluid product-img-hover" />
 									</a>
 								</div>
@@ -588,17 +597,17 @@
 											</button>
 										</div>
 									</div>
-									<div class="mb-3">
-										<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate">
-											<a href="/usr/product/usrProductItem">루아보(LUABO) 스튜디오</a>
-										</h3>
-										<p class="mb-0 lh-1 text-dark fw-semibold">5000원/시간</p>
-									</div>
-									<div class="mb-4">
-										<p>방음 잘되는 깔끔하고 조용한 연습실
-											</p>
-										
-									</div>
+									
+										<div class="mb-3">
+											<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate">
+												<td><a href="javascript:void(0);" th:text="${list.roomName}" th:attr="onclick=|goForm('${list.seq}')|"></a>
+											</h3>
+											<p class="mb-0 lh-1 text-dark fw-semibold" th:text="${list.pricePerHour}"></p>
+										</div>
+										<div class="mb-4">
+											<p th:text="${list.shortDescript}">방음 잘되는 깔끔하고 조용한 연습실</p>
+										</div>
+									
 
 									<div class="d-flex align-items-center gap-4">
 										<button type="button" href="product-single-v5.html" class="btn btn-primary product-card-btn quick-add-btn"
@@ -612,11 +621,12 @@
 											예약하기
 										</button>
 
-										
+									</form>	
 									</div>
 								</div>
 							</div>
 						</div>
+						</th:block>
 						<!--Product-->
 						
 						<!--Product-->
@@ -640,7 +650,78 @@
 				</div>
 			</div>
 		</div>
+		</form>
 	</section>
 	<!--Product list end-->
-
+	
 	<div th:replace="~{usr/Include/usrindex/footer ::footer}"></div>
+	
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+	
+	<script type="text/javascript">
+
+// jQuery.datetimepicker.setLocale('kr');
+
+// jQuery(function(){
+// 	 jQuery('#shDateStart').datetimepicker({
+// 	  format:'Y-m-d',
+// 	  onShow:function( ct ){
+// 	   this.setOptions({
+// 	    maxDate:jQuery('#shDateEnd').val()?jQuery('#shDateEnd').val():false
+// 	   })
+// 	  },
+// 	  timepicker:false
+// 	 });
+// 	 jQuery('#shDateEnd').datetimepicker({
+// 	  datepicker:true,	
+// 	  format:'Y-m-d',
+// 	  onShow:function( ct ){
+// 	   this.setOptions({
+// 	    minDate:jQuery('#shDateStart').val()?jQuery('#shDateStart').val():false
+// 	   })
+// 	  },
+// 	  timepicker:false,
+// 	  format:'Y-m-d'
+// 	 });
+// 	});
+
+let seq = document.querySelector("input[name=seq]");	
+let form = document.querySelector("form[name=formList]");
+
+// document.getElementById("btnForm").onclick = function () {
+//     goForm(0);
+// }
+
+goForm = function (keyValue) {
+    seq.value = keyValue;
+    form.action = "/usr/product/usrProductItem";
+    form.submit();
+}
+
+// goList = function (thisPage) {
+//     document.querySelector("input[name=thisPage]").value = thisPage;
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("btnSearch").onclick = function () {
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("changeRowNum").onchange = function () {
+//     document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("btnReset").onclick = function () {
+// 	document.getElementById("shOption").value=""
+// 	document.getElementById("shValue").value=""
+// 	form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+</script>

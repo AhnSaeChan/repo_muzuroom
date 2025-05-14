@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,6 +98,56 @@ public class TestController {
 //		model.addAttribute(node);
 		
 		return "/tst/textSec";
+		
+	}
+	
+	@RequestMapping(value = "/publicCorona1JsonNodeListThr")
+	public String publicCorona1JsonNodeListThr(Model model) throws Exception {
+		
+		String apiUrl = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=ypV%2BIc0IdKPrc0ARu5HqM%2B1vQGs5eCO6y8g1AxfMBEKmaltQYGhonU4ivnxsDAwCu6LSbrI1FjCDA8L5s5OkIA%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=&sigunguCode=&cat1=A05&cat2=A0502&cat3=";
+		
+		URL url = new URL(apiUrl);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("GET");
+		
+		BufferedReader bufferedReader;
+		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		} else {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			System.out.println("line: " + line);
+			stringBuilder.append(line);
+		}
+
+		bufferedReader.close();
+		httpURLConnection.disconnect();
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode node = objectMapper.readTree(stringBuilder.toString());
+		
+		List<Map<String, Object>> areaList = new ArrayList<>();
+		JsonNode itemArray = node.get("response").get("body").get("items").get("item");
+
+		if (itemArray != null && itemArray.isArray()) {
+		    for (JsonNode item : itemArray) {
+		        Map<String, Object> map = new HashMap<>();
+		        map.put("rnum", item.get("rnum").asInt());
+		        map.put("code", item.get("code").asText());
+		        map.put("name", item.get("name").asText());
+		        areaList.add(map);
+		    }
+		}
+
+		model.addAttribute("areaList", areaList);
+		
+//		model.addAttribute(node);
+		
+		return "/tst/textthird";
 		
 	}
 	

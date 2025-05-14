@@ -11,7 +11,7 @@ public interface ContentDao extends UploadedDao{
 	
 	public int selectOneCount(ContentVo contentVo);
 	public List<ContentDto> selectList(ContentVo contentVo);
-	public int selectOne(ContentVo contentVo);
+	public ContentDto selectOne(ContentVo contentVo);
 	public int insertUploaded(ContentDto contentDto);
 //	public int insert(ContentDto contentDto);
 }

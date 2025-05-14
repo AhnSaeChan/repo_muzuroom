@@ -136,11 +136,13 @@
 										<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
 									</div>
 								</th>
-								<th class="min-w-30px">#</th>
-								<th class="min-w-30px">사용</th>
-								<th class="min-w-50px">대여실 이름</th>
-								<th class="text-start min-w-100px">가격</th>
-								<th class="text-start min-w-50px">별점</th>
+								<th >#</th>
+								<th >방 이미지</th>
+								<th >등록가능 여부</th>
+								<th >대여실 이름</th>
+								<th >가격</th>
+								<th >등록일</th>
+								<th >수정일</th>
 								
 							</tr>
 						</thead>
@@ -171,10 +173,12 @@
 									</div>
 								</td>
 								
-								<td th:text ="${list.reservAvailableYN}" class="text-start pe-0" ></td>
-								<td th:text ="${list.roomName}" class="text-start pe-0"></td>
-								<td th:text ="${list.pricePerHour}" class="text-start pe-0" ></td>
-								<td th:text ="${list.roomRating}" class="text-start pe-0" data-order="Scheduled"></td>
+								<td><img th:src="${list.roomPic}" alt="방 이미지" style="width:50px; height:auto;" /></td>
+								<td th:text ="${list.reservAvailableYN}"  ></td>
+								<td><a href="javascript:void(0);" th:text="${list.roomName}" th:attr="onclick=|goForm('${list.seq}')|"></a></td>
+								<td th:text ="${list.pricePerHour}" ></td>
+								<td th:text ="${list.roomRegTime}" ></td>
+								<td th:text ="${list.roomModTime}" ></td>
 								
 								
 									<!--begin::Menu-->
@@ -278,7 +282,7 @@ document.getElementById("btnForm").onclick = function () {
 
 goForm = function (keyValue) {
     seq.value = keyValue;
-    form.action = "/xdm/code/CodeXdmForm";
+    form.action = "/xdm/content/ContentXdmView";
     form.submit();
 }
 

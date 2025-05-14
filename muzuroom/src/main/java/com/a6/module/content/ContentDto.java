@@ -1,5 +1,7 @@
 package com.a6.module.content;
 
+import java.sql.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.a6.module.uploaded.UploadedDto;
@@ -7,21 +9,30 @@ import com.a6.module.uploaded.UploadedDto;
 public class ContentDto extends UploadedDto{
 	
 	private String seq;
+	private String roomPic;
 	private String roomIdCD;
 	private Integer reservAvailableYN;
 	private String roomName;
 	private String pricePerHour;
 	private Integer roomRating;  
 	private String shortDescript; 
-	private String roomDetailLocation; 
-	private String roomMap;  
-	private String distance; 
+	private String roomZipCode; 
+	private String roomStreetAddress; 
+	private String roomLotAddress;
+	private String roomAddressRef;
+	private String roomAddress;
+	
+	
+	private Double roomLatitude;
+	private Double roomLongitude;
 	private Integer favoriteYN; 
-	private String secectTime;  
+	  
 	private String roomDetail;  
 	private String roomIntro; 
 	private String roomGuideline; 
-	private String refundPolicy;  
+	
+	private Date roomRegTime;
+	private Date roomModTime;
 	private Integer userInfo_seq;
 	
 	private MultipartFile[] uploadImg1;
@@ -33,6 +44,66 @@ public class ContentDto extends UploadedDto{
 	
 	public String getSeq() {
 		return seq;
+	}
+	public String getRoomZipCode() {
+		return roomZipCode;
+	}
+	public void setRoomZipCode(String roomZipCode) {
+		this.roomZipCode = roomZipCode;
+	}
+	public String getRoomStreetAddress() {
+		return roomStreetAddress;
+	}
+	public void setRoomStreetAddress(String roomStreetAddress) {
+		this.roomStreetAddress = roomStreetAddress;
+	}
+	public String getRoomLotAddress() {
+		return roomLotAddress;
+	}
+	public void setRoomLotAddress(String roomLotAddress) {
+		this.roomLotAddress = roomLotAddress;
+	}
+	public String getRoomAddressRef() {
+		return roomAddressRef;
+	}
+	public void setRoomAddressRef(String roomAddressRef) {
+		this.roomAddressRef = roomAddressRef;
+	}
+	public String getRoomAddress() {
+		return roomAddress;
+	}
+	public void setRoomAddress(String roomAddress) {
+		this.roomAddress = roomAddress;
+	}
+	public String getRoomPic() {
+		return roomPic;
+	}
+	public void setRoomPic(String roomPic) {
+		this.roomPic = roomPic;
+	}
+	public Double getRoomLatitude() {
+		return roomLatitude;
+	}
+	public void setRoomLatitude(Double roomLatitude) {
+		this.roomLatitude = roomLatitude;
+	}
+	public Double getRoomLongitude() {
+		return roomLongitude;
+	}
+	public void setRoomLongitude(Double roomLongitude) {
+		this.roomLongitude = roomLongitude;
+	}
+	public Date getRoomRegTime() {
+		return roomRegTime;
+	}
+	public void setRoomRegTime(Date roomRegTime) {
+		this.roomRegTime = roomRegTime;
+	}
+	public Date getRoomModTime() {
+		return roomModTime;
+	}
+	public void setRoomModTime(Date roomModTime) {
+		this.roomModTime = roomModTime;
 	}
 	public Integer getUploadImg1Type() {
 		return uploadImg1Type;
@@ -130,42 +201,7 @@ public class ContentDto extends UploadedDto{
 	public void setShortDescript(String shortDescript) {
 		this.shortDescript = shortDescript;
 	}
-	/**
-	 * @return the roomDetailLocation
-	 */
-	public String getRoomDetailLocation() {
-		return roomDetailLocation;
-	}
-	/**
-	 * @param roomDetailLocation the roomDetailLocation to set
-	 */
-	public void setRoomDetailLocation(String roomDetailLocation) {
-		this.roomDetailLocation = roomDetailLocation;
-	}
-	/**
-	 * @return the roomMap
-	 */
-	public String getRoomMap() {
-		return roomMap;
-	}
-	/**
-	 * @param roomMap the roomMap to set
-	 */
-	public void setRoomMap(String roomMap) {
-		this.roomMap = roomMap;
-	}
-	/**
-	 * @return the distance
-	 */
-	public String getDistance() {
-		return distance;
-	}
-	/**
-	 * @param distance the distance to set
-	 */
-	public void setDistance(String distance) {
-		this.distance = distance;
-	}
+	
 	/**
 	 * @return the favoriteYN
 	 */
@@ -178,18 +214,7 @@ public class ContentDto extends UploadedDto{
 	public void setFavoriteYN(Integer favoriteYN) {
 		this.favoriteYN = favoriteYN;
 	}
-	/**
-	 * @return the secectTime
-	 */
-	public String getSecectTime() {
-		return secectTime;
-	}
-	/**
-	 * @param secectTime the secectTime to set
-	 */
-	public void setSecectTime(String secectTime) {
-		this.secectTime = secectTime;
-	}
+	
 	/**
 	 * @return the roomDetail
 	 */
@@ -226,18 +251,7 @@ public class ContentDto extends UploadedDto{
 	public void setRoomGuideline(String roomGuideline) {
 		this.roomGuideline = roomGuideline;
 	}
-	/**
-	 * @return the refundPolicy
-	 */
-	public String getRefundPolicy() {
-		return refundPolicy;
-	}
-	/**
-	 * @param refundPolicy the refundPolicy to set
-	 */
-	public void setRefundPolicy(String refundPolicy) {
-		this.refundPolicy = refundPolicy;
-	}
+	
 	/**
 	 * @return the userInfo_seq
 	 */

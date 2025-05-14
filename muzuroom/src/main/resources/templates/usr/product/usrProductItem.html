@@ -31,7 +31,7 @@
 							data-breakpoints='{"480": {"slidesPerView": 1}, "768": {"slidesPerView": 1}, "1024": {"slidesPerView": 1}}'>
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
-									<img src="/user/template/FreshCart-1.4.0/assets/images/product/product1.png"
+									<img th:src="${item.roomPic}"
 										data-zoom="/user/template/FreshCart-1.4.0/assets/images/product/product1.png" alt="Preview"
 										class="drift w-100" data-zoom-options='{
 										"paneSelector": "#zoomPane",
@@ -80,8 +80,8 @@
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="ratio ratio-1x1 border">
-										<img src="/user/template/FreshCart-1.4.0/assets/images/product/product1.png" alt="product image"
-											class="" />
+										<img th:src="${item.roomPic}" alt="product image"
+											class="img-fluid" />
 									</div>
 								</div>
 								<div class="swiper-slide">
@@ -98,8 +98,8 @@
 								</div>
 								<div class="swiper-slide">
 									<div class="ratio ratio-1x1 border">
-										<img src="/user/template/FreshCart-1.4.0/assets/images/product/product-img4.png" alt="product image"
-											class="" />
+										<img th:src="${item.roomPic}" alt="product image"
+											class="img-fluid" />
 									</div>
 								</div>
 
@@ -109,13 +109,14 @@
 					</div>
 				</div>
 				<!--Product details-->
+				
 				<div class="col-lg-6">
 					<div class="ps-lg-6">
 						<div class="position-relative" id="zoomPane">
 							<span class="badge bg-info">New</span>
 							<div class="d-flex align-items-start justify-content-between mt-3 mb-2">
 								<div class="mb-3">
-									<h2>루아보(LUABO) 스튜디오</h2>
+									<h2 th:text="${item.roomName}"></h2>
 									<span>봉천역3번 출구</span>
 								</div>
 								<div class="text-success d-flex align-items-center gap-2 mt-2">
@@ -134,12 +135,12 @@
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="d-flex align-items-center gap-3">
 									<p class="mb-0">
-										<span class="text-">4000원/시간</span>
+										<span class="text-" th:text="${item.pricePerHour}"></span>
 
 									</p>
 									
 								</div>
-								<span class="">
+								<span class="" th:text="${item.roomRating}">
 									4.3
 									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
 										class="bi bi-star-fill align-baseline text-primary" viewBox="0 0 16 16">
@@ -170,54 +171,7 @@
 							</div>
 
 							<div class="accordion accordion-flush mt-3" id="accordionFlushExample">
-								<div class="accordion-item">
-									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
-										data-bs-toggle="collapse" href="#flush-collapseOne" aria-expanded="false"
-										aria-controls="flush-collapseOne">
-										예약 선택
-										<span class="icon-shape icon-xs bg-light text-dark rounded-circle">
-											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-												fill="currentColor" class="bi bi-chevron-down chevron-down"
-												viewBox="0 0 16 16">
-												<path fill-rule="evenodd"
-													d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-											</svg>
-										</span>
-									</a>
-									<div id="flush-collapseOne" class="accordion-collapse collapse show"
-										data-bs-parent="#accordionFlushExample">
-										<div class="accordion-body py-1">
-											<div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio"
-												checked>
-                                                <label class="form-check-label" for="flexRadio">
-                                                시간제 개인 연습실 (야마하 업라이트 피아노) ￦5,500/시간
-                                                </label><hr>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadio"
-                                                    id="flexRadio">
-                                                <label class="form-check-label" for="flexRadio">
-                                                시간제 개인 연습실 (목관악, 현악) ￦4,000/시간
-                                                </label><hr>
-                                            </div>
-											<div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio"
-                                                    >
-                                                <label class="form-check-label" for="flexRadio">
-                                                댄스, 무용 연습실 (보컬,악기 X) ￦7,000/시간                              
-                                                </label><hr>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadio"
-                                                    id="flexRadio">
-                                                <label class="form-check-label" for="flexRadio">
-                                                레슨실 ￦6,000/시간
-                                                </label>
-                                            </div>
-										</div>
-									</div>
-								</div>
+								
 								<div class="accordion-item">
 									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
 										data-bs-toggle="collapse" href="#flush-collapseTwo" aria-expanded="false"
@@ -283,6 +237,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<!--Product end-->
 	<!--Product tabs start-->
 	<section class="py-lg-8">

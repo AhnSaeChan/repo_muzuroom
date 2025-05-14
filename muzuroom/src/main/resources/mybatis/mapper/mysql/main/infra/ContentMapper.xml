@@ -22,21 +22,26 @@
  	
  	SELECT
 			seq, 
+			roomPic,
 			roomIdCD,
 			reservAvailableYN,
 			roomName, 
 			pricePerHour,
 			roomRating,
 			shortDescript,
-			roomDetailLocation,
-			roomMap, 
-			distance,
+			roomZipCode,
+			roomStreetAddress,
+			roomLotAddress,
+			roomAddressRef,
+			roomAddress,
+			roomLatitude,
+			roomLongitude,
 			favoriteYN,
-			secectTime,
 			roomDetail,
 			roomIntro,
 			roomGuideline,
-			refundPolicy,
+			roomRegTime,
+			roomModTime,
 			userInfo_seq
 			<include refid="selectCommon"/>
 			ORDER BY seq DESC
@@ -58,8 +63,27 @@
  
  <select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			seq,
-		    roomName
+			seq, 
+			roomPic,
+			roomIdCD,
+			reservAvailableYN,
+			roomName, 
+			pricePerHour,
+			roomRating,
+			shortDescript,
+			roomZipCode,
+			roomStreetAddress,
+			roomLotAddress,
+			roomAddressRef,
+			roomAddress,
+			roomLatitude,
+			roomLongitude,
+			favoriteYN,
+			roomDetail,
+			roomIntro,
+			roomGuideline,
+			roomRegTime,
+			roomModTime
 		FROM
 			room
 		WHERE 1=1
@@ -67,50 +91,57 @@
 		ORDER BY seq DESC
  </select>
  
-<!--  <insert id="insert"> -->
-<!-- 	 INSERT INTO room( -->
-		
-<!-- 		roomIdCD, -->
-<!-- 		reservAvailableYN, -->
-<!-- 		roomName, -->
-<!-- 		pricePerHour, -->
-<!-- 		roomRating, -->
-<!-- 		shortDescript, -->
-<!-- 		roomDetailLocation, -->
-<!-- 		roomMap, -->
-<!-- 		distance, -->
-<!-- 		favoriteYN, -->
-<!-- 		secectTime, -->
-<!-- 		roomDetail, -->
-<!--         roomIntro, -->
-<!--         roomGuideline, -->
-<!--         refundPolicy, -->
-<!--         userInfo_seq -->
+ <insert id="insert">
+	 insert into room(
         
-<!-- 	)VALUES( -->
-		
-<!--         #{roomIdCD}, -->
-<!--         #{reservAvailableYN}, -->
-<!--         #{roomName}, -->
-<!--         #{pricePerHour}, -->
-<!--         #{roomRating}, -->
-<!--         #{shortDescript}, -->
-<!--         #{roomDetailLocation}, -->
-<!--         #{roomMap}, -->
-<!--         #{distance}, -->
-<!--         #{favoriteYN}, -->
-<!--         #{secectTime}, -->
-<!--         #{roomDetail}, -->
-<!--         #{roomIntro}, -->
-<!--         #{roomGuideline}, -->
-<!--         #{refundPolicy}, -->
-<!--         #{userInfo_seq} -->
-		
-<!-- 	) -->
-<!--  	<selectKey resultType="String" keyProperty="seq" order="AFTER"> -->
-<!-- 			SELECT last_insert_id() -->
-<!-- 		</selectKey> -->
-<!--  	</insert> -->
+        roomPic,
+        roomIdCD,
+        reservAvailableYN,
+        roomName,
+        pricePerHour,
+        roomRating,
+        shortDescript,
+        roomZipCode,
+        roomStreetAddress,
+        roomLotAddress,
+        roomAddressRef,
+        roomAddress,
+        roomLatitude,
+        roomLongitude,
+        favoriteYN,
+        roomDetail,
+        roomIntro,
+        roomGuideline,
+        roomRegTime,
+        roomModTime,
+        userInfo_seq
+        )VALUES(
+        #{roomPic},
+        #{roomIdCD},
+        #{reservAvailableYN},
+        #{roomName},
+        #{pricePerHour},
+        #{roomRating},
+        #{shortDescript},
+        #{roomZipCode},
+        #{roomStreetAddress},
+        #{roomLotAddress},
+        #{roomAddressRef},
+        #{roomAddress},
+        #{roomLatitude},
+        #{roomLongitude},
+        #{favoriteYN},
+        #{roomDetail},
+        #{roomIntro},
+        #{roomGuideline},
+        now(),
+        now(),
+        1
+        )
+ 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+ 	</insert>
 
 <insert id="insertUploaded">
 		INSERT INTO ${tableName} (
