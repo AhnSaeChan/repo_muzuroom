@@ -236,7 +236,7 @@
 						
 						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-2 m" >
 						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-3 me-2"></i></a>	
-						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-3 me-2"></i></a>	
+						<button type="button" id="excelConvert" name="excelConvert" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-3 me-2"></i></button>	
 						<a href="/xdm/userinfo/UserInfoXdmForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-3 me-2"></i></a>
 						</div>
 						<!--end::Add product-->
@@ -310,5 +310,11 @@ document.getElementById("btnReset").onclick = function () {
 	document.getElementById("shValue").value=""
 	form.action = "/xdm/userinfo/UserInfoXdmList";
     form.submit();
+}
+
+document.getElementById("excelConvert").onclick = function () {
+	
+	form.action = "/userInfoXdmExcel";
+	form.submit();
 }
 </script>

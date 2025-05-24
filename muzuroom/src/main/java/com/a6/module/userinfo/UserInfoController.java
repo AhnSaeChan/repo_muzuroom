@@ -1,6 +1,8 @@
 package com.a6.module.userinfo;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.a6.common.util.UtilDateTime;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -257,7 +260,7 @@ public class UserInfoController {
 		model.addAttribute("vo", userInfoVo);
 		
 		model.addAttribute("list",userInfoService.selectList(userInfoVo));
-		return "/usr/myaccount/usrMyInfoMod";
+		return "usr/myaccount/usrMyInfoMod";
 	}
 	
 	@RequestMapping(value = "/updateInfo")
@@ -269,6 +272,38 @@ public class UserInfoController {
 		
 		return "redirect:/usrMyInfoMod";
 		
+	}
+	
+	@RequestMapping(value = "/userInfoXdmExcel")
+	public void exportBlogsToCsv(HttpServletResponse response,UserInfoVo vo) throws Exception {
+		vo.setParamsPaging(userInfoService.selectOneCount(vo));
+	    List<UserInfoDto> users = userInfoService.selectList(vo);
+
+	    response.setContentType("text/xls; charset=UTF-8");
+	    response.setHeader("Content-Disposition", "attachment; filename = users.xls");
+	   
+	    PrintWriter writer = response.getWriter();
+	    writer.write('\uFEFF');  //윈도우 사용자 한글깨짐 방지
+	    writer.println("#,성,이름,성별,ID,PASSWORD,통신사,전화번호,주거구역,전자메일,생년월일,등록일자");
+
+	    for (UserInfoDto user : users) {
+	        writer.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+	        		user.getSeq(),
+	        		user.getUserFirstName(),
+	        		user.getUserName(),
+	        		user.getUserGenderMF(),
+	        		user.getUserId(),
+	        		user.getUserPassword(),
+	        		user.getMobileCarrier(),
+	        		user.getUserPhoneNum(),
+	        		user.getAdminDistrict(),
+	        		user.getUserEmail(),
+	        		user.getUserDOB(),
+	        		user.getUserRegDate()
+	        );
+	    }
+	    writer.flush();
+	    writer.close();
 	}
 	
 	

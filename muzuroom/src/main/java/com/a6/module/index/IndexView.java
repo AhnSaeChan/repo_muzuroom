@@ -9,13 +9,13 @@ public class IndexView {
 	@RequestMapping(value = "/xdm/index/IndexView")
 	public String IndexView() {
 		
-		return "/xdm/index/IndexView";
+		return "xdm/index/IndexView";
 	}
 	
 	@RequestMapping(value = "/usr/usrindex/usrIndexView")
 	public String usrIndexView() {
 			
-		return "/usr/usrindex/usrIndexView";
+		return "usr/usrindex/usrIndexView";
 	}
 }
 

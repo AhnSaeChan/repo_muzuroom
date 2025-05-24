@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{usr/Include/usrindex/head ::head}"></div>
-
+<div th:replace="~{usr/include/usrindex/head ::head}"></div>
+<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
 
 	<div class="container py-4">
 		<div class="row">
@@ -117,7 +117,7 @@
 							<div class="d-flex align-items-start justify-content-between mt-3 mb-2">
 								<div class="mb-3">
 									<h2 th:text="${item.roomName}"></h2>
-									<span>봉천역3번 출구</span>
+									<span th:text="${item.roomAddressRef}">봉천역3번 출구</span>
 								</div>
 								<div class="text-success d-flex align-items-center gap-2 mt-2">
 									<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -154,9 +154,7 @@
 							<div class="d-flex align-items-center mt-5 mb-2 justify-content-between">
 								<h3 class="fs-5">예약 날짜</h3>
 							</div>
-							<label for="accountInfoDate" class="form-label visually-hidden">Date of Birth</label>
-							<input type="date" id="accountInfoDate" class="form-control" placeholder="생년월일"
-								required />
+							<input type="text" id="reservDate" name="reservDate" class="form-control" placeholder="예약 날짜를 선택해 주세요"/>
 								<hr class="my-3" />
 							<div>
 								<a href="/usrProductCheckout" class="btn btn-dark my-3">예약</a>
@@ -173,37 +171,27 @@
 							<div class="accordion accordion-flush mt-3" id="accordionFlushExample">
 								
 								<div class="accordion-item">
-									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
-										data-bs-toggle="collapse" href="#flush-collapseTwo" aria-expanded="false"
-										aria-controls="flush-collapseTwo">
-										공간 상세
-										<span class="icon-shape icon-xs bg-light text-dark rounded-circle">
-											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-												fill="currentColor" class="bi bi-chevron-down chevron-down"
-												viewBox="0 0 16 16">
-												<path fill-rule="evenodd"
-													d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-											</svg>
-										</span>
-									</a>
-									<div id="flush-collapseTwo" class="accordion-collapse collapse"
-										data-bs-parent="#accordionFlushExample">
-										<div class="accordion-body px-0">
-											<ul class="list-unstyled">
-											<li>
-												<ul>
-												<li>악기연습실 댄스연습실 레슨실</li><br>	
-												<li>개인 연습실 공간면적 2평
-												수용인원 1~2명</li><br>
-												<li>단체 연습실 공간면적 10평
-												수용인원 5~10명</li><br>
-												<li>최소 1시간 부터 예약 가능</li>
-												</ul>
-												</li>
-											</ul>
-										</div>
-									</div>
+								  <a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
+								     data-bs-toggle="collapse" href="#flush-collapseTwo" aria-expanded="false"
+								     aria-controls="flush-collapseTwo">
+								    공간 상세
+								    <span class="icon-shape icon-xs bg-light text-dark rounded-circle">
+								      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+								           fill="currentColor" class="bi bi-chevron-down chevron-down"
+								           viewBox="0 0 16 16">
+								        <path fill-rule="evenodd"
+								              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+								      </svg>
+								    </span>
+								  </a>
+								  <div id="flush-collapseTwo" class="accordion-collapse collapse"
+								       data-bs-parent="#accordionFlushExample">
+								    <div class="accordion-body px-0">
+								      <div th:utext="${item?.roomDetail}"></div>
+								    </div>
+								  </div>
 								</div>
+
 								<div class="accordion-item">
 									<a class="collapsed px-0 fs-5 fw-bold d-flex justify-content-between align-items-center py-3"
 										data-bs-toggle="collapse" href="#flush-collapseThree" aria-expanded="false"
@@ -279,44 +267,7 @@
 						<div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel"
 							aria-labelledby="product-tab" tabindex="0">
 							<div class="my-6">
-								<div class="mb-5">
-									<!-- text -->
-									<h4 class="fw-bold mb-3">방음의 자신 있는 깔끔한 시간제 연습실</h4>
-									<ul class="list-unstyled lh-lg">
-										<li class="d-flex align-items-center gap-2 fw-bold">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-												<path
-													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-												<path
-													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
-											</svg>
-											야마하 피아노/ 블루투스 스피커/ 보면대/ 의자/ 거울 등 연습의 필요한 것들이 준비 되어 있습니다.
-										</li>
-										<li class="d-flex align-items-center gap-2 fw-bold">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-												<path
-													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-												<path
-													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
-											</svg>
-											방음의 신경 쓴 방음 퀄리티, 이중도어, 냉/난방 시공.
-										</li>
-										<li class="d-flex align-items-center gap-2 fw-bold">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-												<path
-													d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-												<path
-													d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
-											</svg>
-											봉천역에서 80m 거리에 위치한 초 역세권 연습실입니다! 깔끔하고 청결에 신경을 많이 쓰는 연습실입니다!
-										</li>
-										
-									</ul>
-									
-								</div>
+								<div th:utext="${item?.roomIntro}"></div>
 							</div>
 						</div>
 						<!-- tab pane -->
@@ -330,21 +281,7 @@
 						<div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
 							tabindex="0">
 							<div class="my-6">
-								<div class="mb-5">
-									<ul class="list-unstyled">
-										<li>
-											<ul>
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">상담 시간</span>오전 10시 ~ 오후8시 (문자문의만 가능, 전화불가)</li><br>	
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">문의 방법</span>문자로 "지점/날짜/룸/시간" 작성하여 발송</li><br>
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">비밀 번호</span>결제시 10분 후 문자로 발송 (10분 후에도 문자가 오지 않을 경우 연락 요망) </li><br>
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">환불 규정</span>4일 전까지 100%, 2일전까지 50%, 1일전 및 당일 환불/변경 불가</li><br>
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-3">금지 사항</span>음식물 반입 금지, 흡연/음주 금지 (적발시 환불없이 강제 퇴실)</li><br>	
-											<li class="fw-bold"><span class="text-body-secondary fw-bold me-7">주차</span>불가</li><br>
-											<li class="fw-bold"><span class="text-body-secondary fw-bold">CCTV 촬영중 (복도, 각 방)</span></li>
-											</ul>
-										</li>
-									</ul>
-								</div>
+								<div th:utext="${item?.roomGuideline}"></div>
 							</div>
 						</div>
 						<!-- tab pane -->
@@ -869,4 +806,27 @@
 	<!--Product start-->
 	
 	<!--Product end-->
-	<div th:replace="~{usr/Include/usrindex/footer ::footer}"></div>
+	
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+	<script type="text/javascript">
+
+jQuery.datetimepicker.setLocale('kr');
+
+jQuery(function(){
+	 jQuery('#reservDate').datetimepicker({
+	  format:'Y-m-d',
+	  onShow:function( ct ){
+	   this.setOptions({
+	    
+	   })
+	  },
+	  timepicker:false
+	 });
+	 
+	});
+
+
+</script>
+	<div th:replace="~{usr/include/usrindex/footer ::footer}"></div>

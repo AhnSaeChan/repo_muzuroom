@@ -34,8 +34,9 @@
 							<!--begin::Container-->
 							<div class="container-xxl">
 								<!--begin::Form-->
-								<form method="post" id="form" class="form d-flex flex-column flex-lg-row "  >
+								<form method="post" id="form" enctype="multipart/form-data" class="form d-flex flex-column flex-lg-row " novalidate="novalidate" >
 									<input type="hidden" name="seq" th:value="${vo.seq}">
+									<input type="hidden" name="pseq" value="1" />
 									<!--begin::Main column-->
 									<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
 										
@@ -77,23 +78,25 @@
 															<label class="form-label ms-3">사진 주소</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeNameEng" id="codeNameEng" th:value="${item?.roomPic}"  class="form-control" placeholder="영대소문자,숫자"   />
+															<input type="text" name="codeNameEng" id="codeNameEng" th:value="${item?.roomPic}" disabled  class="form-control" placeholder="사진 등록시 자동 입력"   />
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="form-label ms-3">방 타입</label>
+															<label class="form-label ms-3 required">방 타입</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeAlt" id="codeAlt" th:value="${item?.roomIdCD}" class="form-control" placeholder="영대소문자, 숫자" required />
+															<input type="text" name="roomIdCD" id="roomIdCD" th:value="${item?.roomIdCD}" class="form-control" placeholder=""  />
+															<div class="invalid-feedback">방 형태를 선택해 주세요.</div>
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="form-label ms-3">방 대여상태</label>
+															<label class="form-label ms-3 required">방 대여상태</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cdName" id="cdName" th:value="${item?.reservAvailableYN}" class="form-control" placeholder="한글,영대소문자,숫자" />
+															<input type="text" name="reservAvailableYN" id="reservAvailableYN" th:value="${item?.reservAvailableYN}" class="form-control" placeholder="" />
+															<div class="invalid-feedback">방 대여 현황을 선택해 주세요.</div>
 															<!--end::Input-->
 														</div>
 													</div>
@@ -111,18 +114,20 @@
 														<div class="d-flex flex-wrap flex-sm-nowrap gap-3">
 															<div class="flex-row-fluid">
 															<!--begin::Label-->
-															<label class="form-label ms-3">방 이름</label>
+															<label class="form-label ms-3 required">방 이름</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="seq" id="seq" th:value="${item?.roomName}" disabled  class="form-control"  placeholder="자동생성" />
+															<input type="text" name="roomName" id="roomName" th:value="${item?.roomName}" class="form-control"  placeholder="" />
+															<div class="invalid-feedback">방 이름을 입력해 주세요.</div>
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="form-label ms-3">시간 당 가격</label>
+															<label class="form-label ms-3 required">시간 당 가격</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeNameEng" id="codeNameEng" th:value="${item?.pricePerHour}"  class="form-control" placeholder="영대소문자,숫자"   />
+															<input type="text" name="pricePerHour" id="pricePerHour" th:value="${item?.pricePerHour}"  class="form-control" placeholder=""   />
+															<div class="invalid-feedback">시간당 가격을 입력해 주세요.</div>
 															<!--end::Input-->
 														</div>
 														<div class="fv-row flex-row-fluid">
@@ -130,9 +135,12 @@
 															<label class="form-label ms-3">위치 요약</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeAlt" id="codeAlt" th:value="${item?.shortDescript}" class="form-control" placeholder="영대소문자, 숫자" required />
+															<input type="text" name="roomAddressRef" id="roomAddressRef" th:value="${item?.roomAddressRef}" readonly
+															 class="form-control" placeholder="우편번호 검색 시 자동입력"  />
+															 <div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
 															<!--end::Input-->
 														</div>
+														
 														</div>
 																	<!--end::Input-->
 																	<!--begin::Description-->
@@ -144,39 +152,50 @@
 															<!--begin::Input group-->
 															
 															<div class="d-flex flex-column flex-md-row gap-5 mt-4">
-														<div class="flex-row-fluid">
-															<!--begin::Label-->
-															<label class="required form-label ms-3">우편번호</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="codeOrder" id="codeOrder" th:value="${item?.roomZipCode}"  class="form-control" />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3">도로명 주소</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="codeRegDate" id="codeRegDate" th:value="${item?.roomStreetAddress}"  class="form-control" placeholder="영대소문자, 숫자" />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3">지번 주소</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="codeCorrectDate" id="codeCorrectDate" th:value="${item?.roomLotAddress}"  class="form-control" placeholder="한글,영대소문자,숫자"  />
-															<!--end::Input-->
-														</div>
-														<div class="fv-row flex-row-fluid">
-															<!--begin::Label-->
-															<label class="form-label ms-3" >상세주소</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input type="text" name="codeGroup_seq" id="codeGroup_seq" th:value="${item?.roomAddress}"  class="form-control" placeholder="영대소문자,숫자"  />
-															<!--end::Input-->
-														</div>
-													</div>
+															    <div class="flex-row-fluid">
+															        <!-- 우편번호 필드와 버튼을 묶은 div -->
+															        <div class="d-flex align-items-end gap-3">
+															            <div class="flex-grow-1 mb-3">
+															                <!--begin::Label-->
+															                <label class="required form-label ms-3 ">우편번호</label>
+															                <!--end::Label-->
+															                <!--begin::Input-->
+															                <input type="text"
+															                 name="roomZipCode" id="roomZipCode" th:value="${item?.roomZipCode}" readonly class="form-control" placeholder="우편번호 검색 시 자동입력"/>
+															                <!--end::Input-->
+															            </div>
+															            <div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
+															            <div class="py-3 mt-5">
+															                <button class="btn btn-primary" id="zipcodeButton" style="width: 80px;" type="button" onclick="sample4_execDaumPostcode()">검색</button>
+															            </div>
+															        </div>
+															    </div>
+															
+															    <div class="fv-row flex-row-fluid">
+															        <label class="form-label ms-3">도로명 주소</label>
+															        <input type="text" name="roomStreetAddress" id="roomStreetAddress" th:value="${item?.roomStreetAddress}" readonly class="form-control" placeholder="우편번호 검색 시 자동입력" />
+															        <div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
+															    </div>
+															
+															    <div class="fv-row flex-row-fluid">
+															        <label class="form-label ms-3">지번 주소</label>
+															        <input type="text" name="roomLotAddress" id="roomLotAddress" th:value="${item?.roomLotAddress}" readonly class="form-control" placeholder="우편번호 검색 시 자동입력" />
+															        <div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
+															    </div>
+															
+															    <div class="fv-row flex-row-fluid">
+															        <label class="form-label ms-3">상세주소</label>
+															        <input type="text" name="roomAddress" id="roomAddress" th:value="${item?.roomAddress}" class="form-control" placeholder="상세 주소 직접입력" />
+															        <div class="invalid-feedback">상세 주소를 입력해 주세요.</div>
+															        
+															    </div>
+															    
+															    
+															</div>
+<!-- 															<input type="hidden" id="roomLatitude" th:value="${item?.roomLatitude}" /> -->
+<!-- 															<input type="hidden" id="roomLongitude" th:value="${item?.roomLongitude}" /> -->
+															<div id="map" style="width:1150px;height:200px; margin:0 auto; border: 1px solid black;"></div>
+		
 																	<div class="fv-row">
 																<div class="d-flex flex-column flex-md-row gap-5 mt-4">
 														<div class="flex-row-fluid">
@@ -184,23 +203,26 @@
 															<label class="form-label ms-3">위도</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cdDelNY" id="cdDelNY" th:value="${item?.roomLatitude}" class="form-control"/>
+															<input type="text" name="roomLatitude" id="roomLatitude" th:value="${item?.roomLatitude}" readonly class="form-control" placeholder="우편번호 검색 시 자동입력"/>
 															<!--end::Input-->
 														</div>
+														<div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
 															<label class="form-label ms-3">경도</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeGroupCd" id="codeGroupCd" th:value="${item?.roomLongitude}" class="form-control" placeholder="영대소문자, 숫자" />
+															<input type="text" name="roomLongitude" id="roomLongitude" th:value="${item?.roomLongitude}" readonly class="form-control" placeholder="우편번호 검색 시 자동입력" />
 															<!--end::Input-->
 														</div>
+														<div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
+														<span id="guide" style="color:#999; display:none"></span>
 														<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
 															<label class="form-label ms-3">등록일</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeGroupName" id="codeGroupName" th:value="${item?.roomRegTime}" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input type="text" name="roomRegTime" id="roomRegTime" th:value="${item?.roomRegTime}" disabled class="form-control" placeholder="등록시 자동 입력"  />
 															<!--end::Input-->
 															<div class="invalid-feedback">
 															입력해주세요
@@ -211,34 +233,55 @@
 															<label class="form-label ms-3">수정일</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="codeCD" id="codeCD" th:value="${item?.roomModTime}" class="form-control"  placeholder="영대소문자,숫자"  />
+															<input type="text" name="roomModTime" id="roomModTime" th:value="${item?.roomModTime}" disabled class="form-control"  placeholder="수정시 자동 입력"  />
 															<!--end::Input-->
 														</div>
 													</div>
 													<div class="row">
 															    <div class="col-6">
 															        <!-- 첫 번째 Textarea -->
-															        <label class="form-label mt-5 ms-3">공간 상세</label>
+															        <label class="form-label mt-5 ms-3 required">공간 상세</label>
 															        <div class="min-h-200px mb-2" style="border-radius:30px">
-															            <textarea style="width: 100%; height:150px; border-width:2px; border-radius:30px" class="border border-secondary"></textarea>
+															            <textarea id="roomDetail" name="roomDetail" th:text="${item?.roomDetail}" style="width: 100%; height:150px; " class="border border-secondary form-control"></textarea>
 															        </div>
+															        <div class="invalid-feedback">연습실에 대한 설명이 없습니다.</div>
 															    </div>
 															
 															    <div class="col-6">
 															        <!-- 두 번째 Textarea -->
-															        <label class="form-label mt-5 ms-3">공간 소개</label>
+															        <label class="form-label mt-5 ms-3 required">공간 소개</label>
 															        <div class="min-h-200px mb-2" style="border-radius:30px">
-															            <textarea style="width: 100%; height:150px; border-width:2px; border-radius:30px" class="border border-secondary"></textarea>
+															            <textarea id="roomIntro" name="roomIntro" th:text="${item?.roomIntro}" style="width: 100%; height:150px; " class="border border-secondary form-control"></textarea>
 															        </div>
+															        <div class="invalid-feedback">연습실에 대한 설명이 없습니다.</div>
 															    </div>
+															    
+															    
 															</div>
 															<div class="row">
 															    <div class="col-6">
 															        <!-- 첫 번째 Textarea -->
-															        <label class="form-label mt-5 ms-3">주의사항</label>
+															        <label class="form-label mt-5 ms-3 required">주의사항</label>
 															        <div class="min-h-200px mb-2" style="border-radius:30px">
-															            <textarea style="width: 100%; height:150px; border-width:2px; border-radius:30px" class="border border-secondary"></textarea>
+															            <textarea id="roomGuideline" name="roomGuideline" th:text="${item?.roomGuideline}" style="width: 100%; height:150px; " class="border border-secondary form-control"></textarea>
 															        </div>
+															        <div class="invalid-feedback">연습실에 대한 설명이 없습니다.</div>
+															    </div>
+															    
+															    <div class="col-6">
+															        <!-- 두 번째 Textarea -->
+															        <label class="form-label mt-5 ms-3 required">이미지 등록</label>
+															        
+															        <div class="image-container " style="width: 100%; height: 150px; border-radius: 30px; overflow: hidden; position: relative; margin-bottom: 10px;">
+																	    <img id="roomPic" name="roomPic" th:src="${item?.roomPic}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+																	</div>
+<!-- 																	<div class="invalid-feedback">이미지를 입력해 주세요</div> -->
+																	
+																	<div>
+																	    <input type="file" id="uploadImg1" name="uploadImg1" style="display: block; margin-bottom: 5px;" onchange="previewImage(event)"  />
+																	    <input type="hidden" id="uploadImg1Type" name="uploadImg1Type" value="1" />
+																	    <input type="hidden" id="uploadImg1MaxNumber" name="uploadImg1MaxNumber" value="1" />
+																	</div>
 															    </div>
 															</div>
 													
@@ -363,8 +406,150 @@
 <!--     </div> -->
 <!-- </div> -->
 					<!--end::Content-->
-		
-					<script type="text/javascript">
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	
+<div th:replace="~{xdm/Include/footer ::footer}"></div>	
+<script>
+window.onload = function () {
+    // 위도, 경도 값 가져오기
+    const latStr = document.getElementById('roomLatitude')?.value;
+    const lngStr = document.getElementById('roomLongitude')?.value;
+
+    const lat = parseFloat(latStr);
+    const lng = parseFloat(lngStr);
+
+    // 유효한 좌표인지 확인
+    const hasValidCoordinates = !isNaN(lat) && !isNaN(lng);
+
+    // 기본 위치: 서울 시청
+    const defaultLat = 37.5665;
+    const defaultLng = 126.9780;
+
+    // 지도 옵션 설정
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+        center: new kakao.maps.LatLng(
+            hasValidCoordinates ? lat : defaultLat,
+            hasValidCoordinates ? lng : defaultLng
+        ),
+        level: 3
+    };
+
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커 표시
+    const markerPosition = new kakao.maps.LatLng(
+        hasValidCoordinates ? lat : defaultLat,
+        hasValidCoordinates ? lng : defaultLng
+    );
+
+    const marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    marker.setMap(map);
+};
+</script>
+	
+	<script type="text/javascript">
+	let map; // 전역으로 선언
+	let marker;
+	let geocoder;
+
+	window.onload = function () {
+	    const latStr = document.getElementById('roomLatitude')?.value;
+	    const lngStr = document.getElementById('roomLongitude')?.value;
+
+	    const lat = parseFloat(latStr);
+	    const lng = parseFloat(lngStr);
+
+	    const hasValidCoordinates = !isNaN(lat) && !isNaN(lng);
+
+	    const defaultLat = 37.5665;
+	    const defaultLng = 126.9780;
+
+	    const mapContainer = document.getElementById('map');
+	    const mapOption = {
+	        center: new kakao.maps.LatLng(
+	            hasValidCoordinates ? lat : defaultLat,
+	            hasValidCoordinates ? lng : defaultLng
+	        ),
+	        level: 3
+	    };
+
+	    // 지도 초기화
+	    map = new kakao.maps.Map(mapContainer, mapOption);
+
+	    // 마커 초기화
+	    marker = new kakao.maps.Marker({
+	        position: mapOption.center,
+	        map: map
+	    });
+
+	    // 지오코더 초기화
+	    geocoder = new kakao.maps.services.Geocoder();
+	};
+
+	// 다음 주소 검색 → 위도/경도 설정 및 지도 이동
+	function sample4_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function (data) {
+	            var roadAddr = data.roadAddress;
+	            var extraRoadAddr = '';
+
+	            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+	                extraRoadAddr += data.bname;
+	            }
+	            if (data.buildingName !== '' && data.apartment === 'Y') {
+	                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	            }
+
+	            document.getElementById('roomZipCode').value = data.zonecode;
+	            document.getElementById('roomStreetAddress').value = roadAddr;
+	            document.getElementById('roomLotAddress').value = data.jibunAddress;
+	            document.getElementById('roomAddressRef').value = extraRoadAddr || '';
+
+	            // 예상 주소 안내
+	            var guideTextBox = document.getElementById("guide");
+	            if (data.autoRoadAddress) {
+	                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+	                guideTextBox.style.display = 'block';
+	            } else if (data.autoJibunAddress) {
+	                guideTextBox.innerHTML = '(예상 지번 주소 : ' + data.autoJibunAddress + ')';
+	                guideTextBox.style.display = 'block';
+	            } else {
+	                guideTextBox.innerHTML = '';
+	                guideTextBox.style.display = 'none';
+	            }
+
+	            // 위도/경도 검색
+	            if (roadAddr !== '') {
+	                geocoder.addressSearch(roadAddr, function (result, status) {
+	                    if (status === kakao.maps.services.Status.OK) {
+	                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	                        // 지도 이동
+	                        map.setCenter(coords);
+
+	                        // 마커 이동
+	                        marker.setPosition(coords);
+
+	                        // 좌표 저장
+	                        document.getElementById('roomLatitude').value = result[0].y;
+	                        document.getElementById('roomLongitude').value = result[0].x;
+	                    }
+	                });
+	            }
+	        }
+	    }).open();
+	}
+	</script>
+	<script type="text/javascript">
 
 		let name = document.getElementById("cgName")
 		let form = document.getElementById("form");
@@ -372,13 +557,154 @@
  		var modal = document.getElementById("myModal");
 		var close = document.getElementById("closebtn");
 		
+		function Validation() {
+	        var isValid = true;
+			var roomIdCD = $("#roomIdCD").val();
+	        var reservAvailableYN = $("#reservAvailableYN").val();
+	        var roomName = $("#roomName").val();
+	        var pricePerHour = $("#pricePerHour").val();
+	        var roomAddressRef = $("#roomAddressRef").val();
+	        var roomZipCode = $("#roomZipCode").val();
+	        var roomStreetAddress = $("#roomStreetAddress").val();
+	        var roomLotAddress = $("#roomLotAddress").val();
+	        var roomLatitude = $("#roomLatitude").val();
+	        var roomLongitude = $("#roomLongitude").val();
+	        var roomDetail = $("#roomDetail").val();
+	        var roomIntro = $("#roomIntro").val();
+	        var roomGuideline = $("#roomGuideline").val();
+// 	        var roomPic = $("#roomPic").val();
+	        
+
+	       	if (roomIdCD === "") {
+	            $("#roomIdCD").addClass("is-invalid");  
+	            $("#roomIdCD").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomIdCD").removeClass("is-invalid");  
+	            $("#roomIdCD").css("border-color", "");  
+	        }
+
+	        if (reservAvailableYN === "") {
+	            $("#reservAvailableYN").addClass("is-invalid"); 
+	          	$("#reservAvailableYN").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#reservAvailableYN").removeClass("is-invalid");  
+	            $("#reservAvailableYN").css("border-color", ""); 
+	        }
+	        
+	        if (roomName === "") {
+	            $("#roomName").addClass("is-invalid");  
+	            $("#roomName").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomName").removeClass("is-invalid");  
+	            $("#roomName").css("border-color", ""); 
+	            
+	        }if (pricePerHour === "") {
+	            $("#pricePerHour").addClass("is-invalid");  
+	            $("#pricePerHour").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#pricePerHour").removeClass("is-invalid");  
+	            $("#pricePerHour").css("border-color", "");  
+	        
+	        }if (roomAddressRef === "") {
+	            $("#roomAddressRef").addClass("is-invalid");  
+	            $("#roomAddressRef").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomAddressRef").removeClass("is-invalid");  
+	            $("#roomAddressRef").css("border-color", "");  
+	            
+	        }if (roomZipCode === "") {
+	            $("#roomZipCode").addClass("is-invalid");  
+	            $("#roomZipCode").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomZipCode").removeClass("is-invalid");  
+	            $("#roomZipCode").css("border-color", "");
+	            
+	        }if (roomStreetAddress === "") {
+	            $("#roomStreetAddress").addClass("is-invalid");  
+	            $("#roomStreetAddress").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomStreetAddress").removeClass("is-invalid");  
+	            $("#roomStreetAddress").css("border-color", "");  
+	            
+	        }if (roomLotAddress === "") {
+	            $("#roomLotAddress").addClass("is-invalid");  
+	            $("#roomLotAddress").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomLotAddress").removeClass("is-invalid");  
+	            $("#roomLotAddress").css("border-color", "");  
+	            
+	        }if (roomLatitude === "") {
+	            $("#roomLatitude").addClass("is-invalid");  
+	            $("#roomLatitude").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomLatitude").removeClass("is-invalid");  
+	            $("#roomLatitude").css("border-color", ""); 
+	            
+	        }if (roomLongitude === "") {
+	            $("#roomLongitude").addClass("is-invalid");  
+	            $("#roomLongitude").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomLongitude").removeClass("is-invalid");  
+	            $("#roomLongitude").css("border-color", ""); 
+	            
+	        }if (roomDetail === "") {
+	            $("#roomDetail").addClass("is-invalid");  
+	            $("#roomDetail").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomDetail").removeClass("is-invalid");  
+	            $("#roomDetail").css("border-color", ""); 
+	            
+	        }if (roomIntro === "") {
+	            $("#roomIntro").addClass("is-invalid");  
+	            $("#roomIntro").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomIntro").removeClass("is-invalid");  
+	            $("#roomIntro").css("border-color", ""); 
+	            
+	        }if (roomGuideline === "") {
+	            $("#roomGuideline").addClass("is-invalid");  
+	            $("#roomGuideline").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#roomGuideline").removeClass("is-invalid");  
+	            $("#roomGuideline").css("border-color", "");  
+	            
+// 	        }if (roomPic === "") {
+// 	            $("#roomPic").addClass("is-invalid");  
+// 	            $("#roomPic").css("border-color", "#dc3545");
+// 	            isValid = false;
+// 	        } else {
+// 	            $("#roomPic").removeClass("is-invalid");  
+// 	            $("#roomPic").css("border-color", "");  
+	       
+	        }
+	        return isValid; 
+	        
+	    }
+		
+		
 		(document.getElementById("btnForm"))
 			if(seq.value == "0" || seq.value == "") {
 				document.querySelector("#btnUelete").style.display = 'none';
 			} else {
 	 			
-				document.querySelector("#btnSubmit").style.display = 'none';
+				document.querySelector("#btnSubmit").style.display = 'none'
+				document.querySelector("#zipcodeButton").style.display = 'none';
 			}
+		
+		
 		
 		
 // 		if(document.getElementById("btnUelete")){
@@ -533,8 +859,43 @@
 // 		}
 		
 		
-			</script>
+	</script>
 <!-- 			<div th:replace="~{xdm/Include/code/codevo ::vo}"></div> -->
-			<div th:replace="~{xdm/Include/footer ::footer}"></div>
+
+	
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            const imgElement = document.getElementById("roomPic");
+            imgElement.src = reader.result;
+        };
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 					
-					
+<script>
+
+// 	document.getElementById("btnSubmit").onclick= function(){
+// 		form.action="/content/upload";
+// 		form.submit();
+// 	}
+document.getElementById("btnSubmit").onclick = function () {
+	if (Validation()) {
+		form.action = "/content/upload";
+		form.submit();
+	} else {
+		// 유효성 검사 실패 시 아무 일도 하지 않음
+		console.warn("폼 유효성 검사 실패!");
+	}
+};
+	</script>
+	
+	
+	
+						

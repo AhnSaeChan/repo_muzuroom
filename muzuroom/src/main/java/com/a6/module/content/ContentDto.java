@@ -13,9 +13,9 @@ public class ContentDto extends UploadedDto{
 	private String roomIdCD;
 	private Integer reservAvailableYN;
 	private String roomName;
-	private String pricePerHour;
+	private Integer pricePerHour;
 	private Integer roomRating;  
-	private String shortDescript; 
+	 
 	private String roomZipCode; 
 	private String roomStreetAddress; 
 	private String roomLotAddress;
@@ -44,6 +44,12 @@ public class ContentDto extends UploadedDto{
 	
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getPricePerHour() {
+		return pricePerHour;
+	}
+	public void setPricePerHour(Integer pricePerHour) {
+		this.pricePerHour = pricePerHour;
 	}
 	public String getRoomZipCode() {
 		return roomZipCode;
@@ -165,18 +171,7 @@ public class ContentDto extends UploadedDto{
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-	/**
-	 * @return the pricePerHour
-	 */
-	public String getPricePerHour() {
-		return pricePerHour;
-	}
-	/**
-	 * @param pricePerHour the pricePerHour to set
-	 */
-	public void setPricePerHour(String pricePerHour) {
-		this.pricePerHour = pricePerHour;
-	}
+	
 	/**
 	 * @return the roomRating
 	 */
@@ -189,18 +184,7 @@ public class ContentDto extends UploadedDto{
 	public void setRoomRating(Integer roomRating) {
 		this.roomRating = roomRating;
 	}
-	/**
-	 * @return the shortDescript
-	 */
-	public String getShortDescript() {
-		return shortDescript;
-	}
-	/**
-	 * @param shortDescript the shortDescript to set
-	 */
-	public void setShortDescript(String shortDescript) {
-		this.shortDescript = shortDescript;
-	}
+	
 	
 	/**
 	 * @return the favoriteYN

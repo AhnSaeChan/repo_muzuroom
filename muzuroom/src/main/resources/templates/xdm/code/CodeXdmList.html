@@ -128,7 +128,7 @@
 				<!--begin::Card body-->
 				<div class="card-body pt-0">
 					<!--begin::Table-->
-					<table class="table align-middle table-row-dashed fs-6 gy-5" >
+					<table id="myTable" class="table align-middle table-row-dashed fs-6 gy-5" >
 						<thead>
 							<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
 								<th class="w-10px pe-2">
@@ -229,8 +229,8 @@
 							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-2 me-1"></i></a>
 						
 						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-3" >
-						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-2 me-1"></i></a>	
-						<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-2 me-1"></i></a>	
+						<a class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-2 me-1"></i></a>	
+						<button type="button" name="excelConvert" id="excelConvert"  class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-2 me-1"></i></button>	
 						<button type="button" id="btnForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-2 me-1"></i></button>
 						</div>
 						<!--end::Add product-->
@@ -251,6 +251,8 @@
 <script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
 <script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
 <script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <script type="text/javascript">
 
@@ -315,5 +317,24 @@ document.getElementById("btnReset").onclick = function () {
 	form.action = "/xdm/code/CodeXdmList";
     form.submit();
 }
+
+$(document).ready(function(){
+	$("#excelConvert").on('click' , function(){
+		const table = document.getElementById("myTable");
+	    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+	    XLSX.writeFile(workbook, "table_data.xlsx");
+	});
+});
+
+
+//   function exportToExcel() {
+    
+//     var table = document.getElementById("myTable");
+//     var workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+//     XLSX.writeFile(workbook, "table_data.xlsx");
+//   }
+
 
 </script>

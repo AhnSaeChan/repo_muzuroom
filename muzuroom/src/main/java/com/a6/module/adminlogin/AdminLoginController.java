@@ -19,6 +19,6 @@ public class AdminLoginController {
 	@RequestMapping(value = "/usrLoginUsrForm")
 	public String usrLoginUsrForm() {
 		
-		return "/usr/usrlogin/usrLoginUsrForm";
+		return "usr/usrlogin/usrLoginUsrForm";
 	}
 }
