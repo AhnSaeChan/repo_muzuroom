@@ -80,6 +80,21 @@ public class CodeController{
 		return "redirect:/xdm/code/CodeXdmList";
 	}
 	
+	@RequestMapping(value = "/xdm/code/CodeExcelUploadForm")
+	
+	public String CodeExcelUploadForm(@ModelAttribute("vo") CodeVo vo, Model model) {
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		
+		if (vo.getShDelNy() == null) {
+		    vo.setShDelNy(0);
+		}
+		
+		vo.setParamsPaging(codeService.selectOneCount(vo));
+		
+		return "/xdm/code/CodeExcelUploadForm";
+	}
+	
 	
 	
 	

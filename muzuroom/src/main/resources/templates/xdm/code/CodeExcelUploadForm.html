@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{xdm/Include/head ::head}"></div>
+<link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
+
+					<!--begin::Content-->
+<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+	<form name="formList" id="formList" method="post"  >
+		<input type = "hidden" name = "thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type = "hidden" id = "rowNumToShow" name = "rowNumToShow" th:value = "${vo.rowNumToShow}"/>
+		<input type = "hidden" name="seq">
+	<!--begin::Toolbar-->
+	<div class="toolbar" id="kt_toolbar">
+		<div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+				<!--begin::Title-->
+				<h1 class="text-gray-900 fw-bold my-1 fs-2">Code</h1>
+				<!--end::Title-->
+				<!--begin::Breadcrumb-->
+				<ul class="breadcrumb fw-semibold fs-base my-1">
+					<li class="breadcrumb-item text-muted">
+						<a href="index.html" class="text-muted text-hover-primary">Home</a>
+					</li>
+					<li class="breadcrumb-item text-muted">eCommerce</li>
+					<li class="breadcrumb-item text-muted">Catalog</li>
+					<li class="breadcrumb-item text-gray-900">Code</li>
+				</ul>
+				<!--end::Breadcrumb-->
+			</div>
+			<!--end::Info-->
+			<!--begin::Actions-->
+			
+			<!--end::Actions-->
+		</div>
+		
+		<div class="container-fluid  d-flex flex-stack flex-wrap flex-sm-nowrap py-4 ms-20" >
+			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap ms-20" >
+			<div class="fv-row mt-10">
+	<form id="form" th:action="@{/excel/preview}" method="post" enctype="multipart/form-data">
+    <label class="form-label">엑셀 파일 업로드 (.xls/.xlsx)</label>
+    <input type="file" name="excelFile" id="excelFile" class="form-control" accept=".xls, .xlsx" />
+    <div class="form-text text-muted">5MB 이하 파일만 업로드 가능합니다.</div>
+</div>
+<div class="mt-5">
+    <button type="button" class="btn btn-primary" onclick="handleExcelUpload()">엑셀 미리보기</button>
+</div>
+</form>
+			</div>
+			
+			
+			  
+				</div>
+			
+			
+            
+				
+				
+				
+                           
+	<div class="toolbar" id="kt_toolbar"></div>
+	<!--end::Toolbar-->
+	<!--begin::Post-->
+	<div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+		<!--begin::Container-->
+		<div class="container-xxl">
+			<!--begin::Products-->
+			<div class="card card-flush">
+				<!--begin::Card header-->
+				<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+					<!--begin::Card title-->
+					<div class="card-title">
+						<!--begin::Search-->
+						<div class="d-flex align-items-center position-relative my-1">
+							<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+								<span class="path1"></span>
+								
+							</i>
+							<h1 class="ms-5">Total</h1>
+						</div>
+						<!--end::Search-->
+					</div>
+					<!--end::Card title-->
+					<!--begin::Card toolbar-->
+					<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+						<div class="w-100 mw-150px">
+							<!--begin::Select2-->
+							<select class="form-select"  id="changeRowNum" name="changeRowNum" aria-label="Default select example">
+							<option value="5"  th:selected="${vo.rowNumToShow eq 5}">5</option>
+							<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
+							<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
+							<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
+							</select>
+							<!--end::Select2-->
+						</div>
+						
+					</div>
+					<!--end::Card toolbar-->
+				</div>
+				<!--end::Card header-->
+				<!--begin::Card body-->
+				<div class="card-body pt-0">
+					<!--begin::Table-->
+					<table id="myTable" class="table align-middle table-row-dashed fs-6 gy-5" >
+						<thead>
+							<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+								<th class="w-10px pe-2">
+									<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+										<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
+									</div>
+								</th>
+								<th class="min-w-30px">#</th>
+								<th class="min-w-30px">사용</th>
+								<th class="min-w-50px">코드그룹 코드</th>
+								<th class="text-start min-w-100px">코드구룹 이름</th>
+								<th class="text-start min-w-50px">코드</th>
+								<th class="text-end min-w-50px">대체 코드</th>
+								<th class="text-center min-w-100px">코드 이름</th>
+								<th class="text-center min-w-100px">코드 이름(영문)</th>
+								<th class="text-start min-w-40px">순서</th>
+								<th class="text-start min-w-40px">등록일</th>
+								<th class="text-start min-w-40px">수정일</th>
+							</tr>
+						</thead>
+						<tbody class="fw-semibold text-gray-600">
+							<tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+								<td colspan="10">
+									<p class="fs-0" style="padding-top: 12px">There are no data</p>
+								</td>	
+							</tr>
+							<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+								<td>
+									<div class="form-check form-check-sm form-check-custom form-check-solid">
+										<input class="form-check-input" type="checkbox" value="1" />
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<!--begin::Thumbnail-->
+										<a th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}">
+											
+										</a>
+										<!--end::Thumbnail-->
+										<div class="ms-5">
+											<!--begin::Title-->
+											
+											<!--end::Title-->
+										</div>
+									</div>
+								</td>
+								
+								<td  class="text-start pe-0" ></td>
+								<td  class="text-start pe-0"></td>
+								<td  class="text-start pe-0" ></td>
+								<td  class="text-start pe-0" data-order="Scheduled"></td>
+								<td  class="text-center pe-0">
+								<td class="text-center pe-0 cdName"></td>
+								<td  class="text-center pe-0">
+								<td  class="text-start pe-0">
+								<td  class="text-start pe-0">
+								<td  class="text-start pe-0">
+								
+									<!--begin::Menu-->
+									<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+										<!--begin::Menu item-->
+										<div class="menu-item px-3">
+											<a href="apps/ecommerce/catalog/edit-product.html" class="menu-link px-3">Edit</a>
+										</div>
+										<!--end::Menu item-->
+										<!--begin::Menu item-->
+										<div class="menu-item px-3">
+											<a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Delete</a>
+										</div>
+										<!--end::Menu item-->
+									</div>
+									<!--end::Menu-->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--begin::Add product-->
+					<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-Center flex-sm-nowrap py-2 m" >
+					<div class="justify-content-center col-12">
+						<nav aria-label="Page navigation example">
+						<ul class="pagination">
+<!-- 							<li class="page-item"> -->
+							
+<!-- 							</li> -->
+<!-- 							<li th:if = "${vo.startPage gt vo. pageNumToShow}" class="page-item" style="cursor:pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" -->
+<!-- 							th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li> -->
+<!-- 							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor:pointer"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}" >${i.index}</a></li> -->
+<!-- 							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li> -->
+<!-- 							<li class="page-item"> -->
+							
+<!-- 							</li> -->
+						</ul>
+						</nav>
+						</div>
+						</div>
+						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-start flex-sm-nowrap py-3" >
+							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-xmark fs-2x ps-2 me-1"></i></a>	
+							<a href="apps/ecommerce/catalog/add-product.html" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-2 me-1"></i></a>
+						
+						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-3" >
+						<button type="button" id="btnExcelUpload" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-2 me-1"></i></button>	
+						<button type="button" name="excelConvert" id="excelConvert"  class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-2 me-1"></i></button>	
+						<button type="button" id="btnForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-2 me-1"></i></button>
+						</div>
+						<!--end::Add product-->
+					<!--end::Table-->
+				</div>
+				<!--end::Card body-->
+			</div>
+			<!--end::Products-->
+		</div>
+		<!--end::Container-->
+	</div>
+	<!--end::Post-->
+</div>
+</form>
+<!--end::Content-->
+<div th:replace="~{xdm/Include/footer ::footer}"></div>
+ 
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
+<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.min.css"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+
+<script>
+function handleExcelUpload() {
+    const fileInput = document.getElementById('excelFile');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("없음");
+        return;
+    }
+
+    // 확장자 확인
+    const allowedExtensions = ['xls', 'xlsx'];
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    if (!allowedExtensions.includes(fileExtension)) {
+        alert("맞지않음");
+        fileInput.value = ''; // 초기화
+        return;
+    }
+
+    // 용량 확인 (5MB 제한)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+        alert("초과");
+        fileInput.value = ''; // 초기화
+        return;
+    }
+
+    // 미리보기 로직: form 전송 없이 AJAX로 서버에 전송하거나 파싱 가능
+    // 다음 단계로 넘기기 위한 form 제출 또는 fetch로 미리보기 구현 가능
+    alert("됨");
+    // document.getElementById('form').submit(); // 실제 전송시
+}
+</script>
+<script type="text/javascript">
+
+// jQuery.datetimepicker.setLocale('kr');
+
+// jQuery(function(){
+// 	 jQuery('#shDateStart').datetimepicker({
+// 	  format:'Y-m-d',
+// 	  onShow:function( ct ){
+// 	   this.setOptions({
+// 	    maxDate:jQuery('#shDateEnd').val()?jQuery('#shDateEnd').val():false
+// 	   })
+// 	  },
+// 	  timepicker:false
+// 	 });
+// 	 jQuery('#shDateEnd').datetimepicker({
+// 	  datepicker:true,	
+// 	  format:'Y-m-d',
+// 	  onShow:function( ct ){
+// 	   this.setOptions({
+// 	    minDate:jQuery('#shDateStart').val()?jQuery('#shDateStart').val():false
+// 	   })
+// 	  },
+// 	  timepicker:false,
+// 	  format:'Y-m-d'
+// 	 });
+// 	});
+
+// let seq = document.querySelector("input[name=seq]");	
+// let form = document.querySelector("form[name=formList]");
+
+// document.getElementById("btnForm").onclick = function () {
+//     goForm(0);
+// }
+
+// goForm = function (keyValue) {
+//     seq.value = keyValue;
+//     form.action = "/xdm/code/CodeXdmForm";
+//     form.submit();
+// }
+
+// goList = function (thisPage) {
+//     document.querySelector("input[name=thisPage]").value = thisPage;
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("btnExcelUpload").onclick = function () {
+// 	form.action = "/xdm/code/CodeExcelUploadForm";
+// 	form.submit();
+// }
+
+// document.getElementById("btnSearch").onclick = function () {
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("changeRowNum").onchange = function () {
+//     document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+//     form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// document.getElementById("btnReset").onclick = function () {
+// 	document.getElementById("shOption").value=""
+// 	document.getElementById("shValue").value=""
+// 	form.action = "/xdm/code/CodeXdmList";
+//     form.submit();
+// }
+
+// $(document).ready(function(){
+// 	$("#excelConvert").on('click' , function(){
+// 		const table = document.getElementById("myTable");
+// 	    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+// 	    XLSX.writeFile(workbook, "table_data.xlsx");
+// 	});
+// });
+
+
+//   function exportToExcel() {
+    
+//     var table = document.getElementById("myTable");
+//     var workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+//     XLSX.writeFile(workbook, "table_data.xlsx");
+//   }
+
+
+</script>
