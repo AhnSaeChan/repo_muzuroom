@@ -1,10 +1,20 @@
 package com.a6.module.code;
 
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.annotation.PostConstruct;
 
@@ -41,6 +51,10 @@ public class CodeService {
 	public int uelete(CodeDto codeDto) {
 		return codeDao.uelete(codeDto);
 	}
+	
+	
+	
+	
 	 @PostConstruct
 		public void selectListCachedCodeArrayList() throws Exception {
 			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();
@@ -80,4 +94,102 @@ public class CodeService {
 			}
 			return rt;
 		}
+		
+		public List<CodeDto> parseExcel(MultipartFile file) throws Exception {
+		    System.out.println("🟢 [Service] parseExcel() 진입");
+
+		    List<CodeDto> list = new ArrayList<>();
+		    try (InputStream inputStream = file.getInputStream();
+		         Workbook workbook = WorkbookFactory.create(inputStream)) {
+
+		        Sheet sheet = workbook.getSheetAt(0);
+		        int totalRows = sheet.getLastRowNum();
+		        System.out.println("📄 [Service] 총 행 수: " + totalRows);
+
+		        for (int rowIndex = 1; rowIndex <= totalRows; rowIndex++) {
+		            Row row = sheet.getRow(rowIndex);
+		            if (row == null) {
+		                System.out.println("⚠️ [Service] " + rowIndex + "행은 비어 있음");
+		                continue;
+		            }
+
+		            CodeDto dto = new CodeDto();
+
+		            try {
+		                System.out.println("🔎 [Service] " + rowIndex + "행 파싱 시작");
+
+		                dto.setCodeUsedNY((int) getNumericValue(row.getCell(0)));
+
+		                String setCodeGroupCdStr = getStringValue(row.getCell(1));
+		                dto.setCodeGroupCd(setCodeGroupCdStr.isEmpty() ? null : Integer.parseInt(setCodeGroupCdStr));
+
+		                dto.setCodeGroupName(getStringValue(row.getCell(2)));
+
+		                String setCodeCDStr = getStringValue(row.getCell(3));
+		                dto.setCodeCD(setCodeCDStr.isEmpty() ? null : Integer.parseInt(setCodeCDStr));
+
+		                String codeAltStr = getStringValue(row.getCell(4));
+		                dto.setCodeAlt(codeAltStr.isEmpty() ? null : Integer.parseInt(codeAltStr));
+
+		                dto.setCdName(getStringValue(row.getCell(5)));
+		                dto.setCodeNameEng(getStringValue(row.getCell(6)));
+		                dto.setCodeOrder((int) getNumericValue(row.getCell(7)));
+
+		                dto.setCodeRegDate(toSqlDate(getStringValue(row.getCell(8))));
+		                dto.setCodeCorrectDate(toSqlDate(getStringValue(row.getCell(9))));
+
+		                list.add(dto);
+		                System.out.println("✅ [Service] " + rowIndex + "행 파싱 완료, 누적 개수: " + list.size());
+		            } catch (Exception rowEx) {
+		                System.out.println("❌ [Service] " + rowIndex + "행 파싱 중 예외: " + rowEx.getMessage());
+		            }
+		        }
+		    } catch (Exception ex) {
+		        System.out.println("❌ [Service] 엑셀 파싱 전체 실패: " + ex.getMessage());
+		        throw ex;
+		    }
+
+		    System.out.println("🔚 [Service] parseExcel() 종료, 총 파싱된 행 수: " + list.size());
+		    return list;
+		}
+	    
+
+	    // 엑셀 미리보기 확정 후 DB에 일괄 저장
+	    public void insertExcelList(List<CodeDto> previewList) {
+	        for (CodeDto dto : previewList) {
+	            codeDao.insert(dto);
+	        }
+	    }
+
+	    // 셀에서 문자열 추출
+	    private String getStringValue(Cell cell) {
+	        return (cell == null) ? "" : cell.toString().trim();
+	    }
+
+	    // 셀에서 숫자 추출
+	    private double getNumericValue(Cell cell) {
+	        if (cell == null) return 0;
+	        if (cell.getCellType() == CellType.NUMERIC) {
+	            return cell.getNumericCellValue();
+	        }
+	        try {
+	            return Double.parseDouble(cell.toString());
+	        } catch (NumberFormatException e) {
+	            return 0;
+	        }
+	    }
+
+	    // 문자열 yyyy-MM-dd → java.sql.Date로 변환
+	    private Date toSqlDate(String dateStr) {
+	        try {
+	            if (dateStr == null || dateStr.isEmpty()) return null;
+	            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	            java.util.Date utilDate = format.parse(dateStr);
+	            return new Date(utilDate.getTime());
+	        } catch (Exception e) {
+	            return null;
+	        }
+	    }
+	    
+	    
 }

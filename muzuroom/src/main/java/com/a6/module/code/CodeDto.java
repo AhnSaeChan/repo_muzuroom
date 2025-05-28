@@ -1,9 +1,9 @@
 package com.a6.module.code;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Date;
 public class CodeDto {
 	
 	private String seq;
@@ -20,6 +20,7 @@ public class CodeDto {
     private Date codeCorrectDate;
     private Integer codeGroup_seq;
     
+    
     public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 	/**
 	 * 
@@ -31,6 +32,7 @@ public class CodeDto {
 	public String getSeq() {
 		return seq;
 	}
+	
 	/**
 	 * @return the codeRegDate
 	 */

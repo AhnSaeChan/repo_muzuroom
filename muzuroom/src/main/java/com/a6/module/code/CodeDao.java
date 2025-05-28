@@ -16,6 +16,8 @@ public interface CodeDao {
 	public int update (CodeDto codeDto);
 	public int delete (CodeDto codeDto);
 	public int uelete (CodeDto codeDto);
+	void insertCodeList(List<CodeDto> list); 
+	void insertExcelList(List<CodeDto> list);
 	
 	
 	public List<CodeDto> selectListCachedCodeArrayList();

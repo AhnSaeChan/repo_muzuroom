@@ -156,6 +156,41 @@
 		
 		WHERE seq = #{seq}
 	</update>
+	
+	<insert id="insertCodeList">
+        INSERT INTO code (
+            cdDelNY, 
+            codeUsedNY, 
+            codeGroupCd, 
+            codeGroupName, 
+            codeCD,
+            codeAlt, 
+            cdName, 
+            codeNameEng, 
+            codeOrder, 
+            codeRegDate,
+            codeCorrectDate, 
+            codeGroup_seq
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.cdDelNY}, 
+                #{item.codeUsedNY}, 
+                #{item.codeGroupCd},
+                #{item.codeGroupName},
+                #{item.codeCD}, 
+                #{item.codeAlt},
+                #{item.cdName}, 
+                #{item.codeNameEng}, 
+                #{item.codeOrder},
+                #{item.codeRegDate}, 
+                #{item.codeCorrectDate}, 
+                #{item.codeGroup_seq}
+            )
+        </foreach>
+    </insert>
+	
+	
  	
  	
 
