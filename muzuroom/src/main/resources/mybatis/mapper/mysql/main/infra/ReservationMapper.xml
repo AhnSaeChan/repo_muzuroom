@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.reservation.ReservationDao">
+
+ <resultMap id="resultMapObj" type="com.a6.module.reservation.ReservationDto"></resultMap>
+ <sql id="selectCommon" >
+ 		FROM
+			roomReserv 
+		WHERE 1=1
+<!-- 		<if test="shUseNy != null and !shUseNy.equals('')">AND code.codeUsedNY = #{shUseNy}</if> -->
+<!--         <if test="shDelNy != null and !shDelNy.equals('')">AND code.cdDelNY = #{shDelNy}</if> -->
+				
+<!-- 				<choose> -->
+<!-- 					<when test="shOptionDate == 1">AND code.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 					<when test="shOptionDate == 2">AND code.codeCorrectDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!--  				</choose> -->
+ 				
+<!--         <choose> -->
+<!--             <when test="shOption == 1">AND code.codeGroupCd = #{shValue}</when> -->
+<!--             <when test="shOption == 2">AND code.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when> -->
+<!--             <when test="shOption == 3">AND code.codeCD LIKE CONCAT('%',#{shValue},'%')</when> -->
+<!--             <when test="shOption == 4">AND code.codeAlt LIKE CONCAT('%',#{shValue},'%')</when> -->
+<!--             <when test="shOption == 5">AND code.cdName LIKE CONCAT('%',#{shValue},'%')</when> -->
+<!--             <when test="shOption == 6">AND code.codeNameEng LIKE CONCAT('%',#{shValue},'%')</when> -->
+<!--         </choose> -->
+</sql>
+
+<select id="selectOneCount" resultType="Integer">
+	SELECT COUNT(*)
+ 	<include refid="selectCommon"/>
+ </select>
+ 
+ <select id="selectList" resultMap="resultMapObj">
+ 
+ select roomReserv.* from(
+ 
+ SELECT
+			seq,
+            reservDate,
+		    reservName,
+		    reservTell,
+			reservTime,
+            totalPrice,
+            reservStat,
+            reservDelNY,
+            userinfo_seq,
+            room_seq
+            
+            <include refid="selectCommon"/>
+           ORDER BY seq DESC
+		) roomReserv
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+ </select>
+ 
+ 
+ 
+	
+	
+	
+</mapper>

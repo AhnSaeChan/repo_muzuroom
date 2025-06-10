@@ -117,46 +117,45 @@ public class CodeController{
 	}
 
 	@RequestMapping(value = "/xdm/code/CodeExcelUploadPreview")
-	public String CodeExcelUploadPreview(@RequestParam("file") MultipartFile file, Model model) {
-	    System.out.println("🟢 [Controller] CodeExcelUploadPreview 진입");
+	public String CodeExcelUploadPreview(@RequestParam("file") MultipartFile file, Model model, HttpSession session) {
+	    System.out.println("🟢 업로드 프리뷰 컨트롤러 진입");
+
 	    try {
 	        if (file.isEmpty()) {
-	            System.out.println("❌ [Controller] 업로드된 파일이 비어 있음");
 	            model.addAttribute("error", "업로드된 파일이 없습니다.");
+	            model.addAttribute("vo", new CodeVo());
 	            return "/xdm/code/CodeExcelUploadForm";
 	        }
 
-	        String originalFilename = file.getOriginalFilename();
-	        System.out.println("📄 [Controller] 파일명: " + originalFilename);
-	        System.out.println("📏 [Controller] 파일 크기: " + file.getSize());
-
-	        if (!originalFilename.endsWith(".xls") && !originalFilename.endsWith(".xlsx")) {
-	            System.out.println("❌ [Controller] 엑셀 형식 아님");
+	        if (!file.getOriginalFilename().endsWith(".xls") && !file.getOriginalFilename().endsWith(".xlsx")) {
 	            model.addAttribute("error", "엑셀 파일만 업로드 가능합니다.");
+	            model.addAttribute("vo", new CodeVo());
 	            return "/xdm/code/CodeExcelUploadForm";
 	        }
 
 	        if (file.getSize() > 5 * 1024 * 1024) {
-	            System.out.println("❌ [Controller] 파일 크기 초과");
 	            model.addAttribute("error", "파일 용량은 5MB 이하만 가능합니다.");
+	            model.addAttribute("vo", new CodeVo());
 	            return "/xdm/code/CodeExcelUploadForm";
 	        }
 
-	        System.out.println("🟢 [Controller] parseExcel 호출 직전");
 	        List<CodeDto> previewList = codeService.parseExcel(file);
-	        System.out.println("✅ [Controller] parseExcel 정상 호출 완료");
-
+	        session.setAttribute("previewList", previewList);
 	        model.addAttribute("previewList", previewList);
-	        System.out.println("✅ [Controller] previewList 모델 등록 완료");
+
+	        model.addAttribute("vo", new CodeVo()); // ✅ 이거 없으면 thymeleaf 에러
 
 	        return "/xdm/code/CodeExcelUploadForm";
+
 	    } catch (Exception e) {
-	        System.out.println("❌ [Controller] 예외 발생: " + e.getMessage());
-	        e.printStackTrace();
-	        model.addAttribute("error", "엑셀 파일 처리 중 오류 발생: " + e.getMessage());
+	        model.addAttribute("error", "엑셀 처리 오류: " + e.getMessage());
+	        model.addAttribute("vo", new CodeVo());
 	        return "/xdm/code/CodeExcelUploadForm";
 	    }
 	}
+
+
+	
 
 
 	@RequestMapping(value = "/xdm/code/CodeExcelUploadConfirm")

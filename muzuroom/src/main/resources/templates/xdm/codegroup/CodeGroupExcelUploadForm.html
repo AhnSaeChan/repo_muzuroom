@@ -15,7 +15,7 @@
 			<!--begin::Info-->
 			<div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
 				<!--begin::Title-->
-				<h1 class="text-gray-900 fw-bold my-1 fs-2">Code</h1>
+				<h1 class="text-gray-900 fw-bold my-1 fs-2">Code Group</h1>
 				<!--end::Title-->
 				<!--begin::Breadcrumb-->
 				<ul class="breadcrumb fw-semibold fs-base my-1">
@@ -41,15 +41,9 @@
     <label class="form-label">엑셀 파일 업로드 (.xls/.xlsx)</label>
     <input type="file" name="file" id="excelFile" class="form-control" accept=".xls, .xlsx" required />
     <div class="form-text text-muted">5MB 이하 파일만 업로드 가능합니다.</div>
-    <div class="mt-5 d-flex align-items-center gap-3">
-    <button type="button" class="btn btn-primary" onclick="handleExcelUpload()">엑셀 미리보기</button>
-    
-    <button type="button" name="excelConvert" id="excelConvert" class="btn btn-success d-flex align-items-center btn-sm">
-        <i class="fa-solid fa-file-excel fs-2x ps-2 me-1"></i>
-        <span>등록 폼 다운로드</span>
-    </button>
-</div>
-
+    <div class="mt-5">
+        <button type="button" class="btn btn-primary" onclick="handleExcelUpload()">엑셀 미리보기</button>
+    </div>
 </form>
 
         </div>
@@ -120,12 +114,11 @@
             </div>
 
             <div class="card-body pt-0">
-                <form id="confirmForm" method="post" th:action="@{/xdm/code/CodeExcelUploadConfirm}" onsubmit="return validateBeforeSubmit()">
+                <form method="post" th:action="@{/xdm/code/CodeExcelUploadConfirm}">
                     <table class="table align-middle table-row-dashed fs-6 gy-5">
                         <thead>
                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                
-                                <th>사용여부</th>
+                                <th>사용</th>
                                 <th>그룹코드 코드</th>
                                 <th>코드구룹 이름</th>
                                 <th>코드</th>
@@ -140,28 +133,25 @@
                         <tbody>
                         <tr th:if="${#lists.isEmpty(previewList)}">
 						    <td colspan="10" class="text-center text-danger">미리보기할 데이터가 없습니다.</td>
-						<tr th:each="item : ${previewList}">
-<!-- 						    <td th:classappend="${item.cdDelNY == null} ? 'border border-danger'" th:text="${item.cdDelNY}"></td> -->
-						    <td th:classappend="${item.codeUsedNY == null} ? 'border border-danger'" th:text="${item.codeUsedNY}"></td>
-						    <td th:classappend="${item.codeGroupCd == null} ? 'border border-danger'" th:text="${item.codeGroupCd}"></td>
-						    <td th:classappend="${item.codeGroupName == null} ? 'border border-danger'" th:text="${item.codeGroupName}"></td>
-						    <td th:classappend="${item.codeCD == null} ? 'border border-danger'" th:text="${item.codeCD}"></td>
-						    <td th:classappend="${item.codeAlt == null} ? 'border border-danger'" th:text="${item.codeAlt}"></td>
-						    <td th:classappend="${item.cdName == null} ? 'border border-danger'" th:text="${item.cdName}"></td>
-						    <td th:classappend="${item.codeNameEng == null} ? 'border border-danger'" th:text="${item.codeNameEng}"></td>
-						    <td th:classappend="${item.codeOrder == null} ? 'border border-danger'" th:text="${item.codeOrder}"></td>
-						    <td th:classappend="${item.codeRegDate == null} ? 'border border-danger'" th:text="${#dates.format(item.codeRegDate, 'yyyy-MM-dd')}"></td>
-						    <td th:classappend="${item.codeCorrectDate == null} ? 'border border-danger'" th:text="${#dates.format(item.codeCorrectDate, 'yyyy-MM-dd')}"></td>
 						</tr>
+                            <tr th:each="item : ${previewList}">
+                                <td th:text="${item.codeUsedNY}"></td>
+                                <td th:text="${item.codeGroupCd}"></td>
+                                <td th:text="${item.codeGroupName}"></td>
+                                <td th:text="${item.codeCD}"></td>
+                                <td th:text="${item.codeAlt}"></td>
+                                <td th:text="${item.cdName}"></td>
+                                <td th:text="${item.codeNameEng}"></td>
+                                <td th:text="${item.codeOrder}"></td>
+                                <td th:text="${#dates.format(item.codeRegDate, 'yyyy-MM-dd')}"></td>
+                                <td th:text="${#dates.format(item.codeCorrectDate, 'yyyy-MM-dd')}"></td>
+                            </tr>
                         </tbody>
                     </table>
-                     <div class="mt-4" id="confirmButtons">
-        <button type="submit" id="submitBtn" class="btn btn-success">확정 등록</button>
-        <a href="/xdm/code/CodeExcelUploadForm" class="btn btn-secondary">취소</a>
-    </div>
-
-
-
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success">확정 등록</button>
+                        <a href="/xdm/code/CodeExcelUploadForm" class="btn btn-secondary">취소</a>
+                    </div>
 <!--                 </form> -->
             </div>
         </div>
@@ -185,40 +175,6 @@
   </div>
 </div>
 
-						<table hidden id="myTable" class="table align-middle table-row-dashed fs-6 gy-5">
-                        <thead>
-                            <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                
-                                <th>codeUsedNY</th>
-                                <th>codeGroupCd</th>
-                                <th>codeGroupName</th>
-                                <th>codeCD</th>
-                                <th>codeAlt</th>
-                                <th>cdName</th>
-                                <th>codeNameEng</th>
-                                <th>codeOrder</th>
-                                <th>codeRegDate</th>
-                                <th>codeCorrectDate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:if="${#lists.isEmpty(previewList)}">
-						    <td colspan="10" class="text-center text-danger">미리보기할 데이터가 없습니다.</td>
-						<tr th:each="item : ${previewList}">
-<!-- 						    <td th:classappend="${item.cdDelNY == null} ? 'border border-danger'" th:text="${item.cdDelNY}"></td> -->
-						    <td th:classappend="${item.codeUsedNY == null} ? 'border border-danger'" th:text="${item.codeUsedNY}"></td>
-						    <td th:classappend="${item.codeGroupCd == null} ? 'border border-danger'" th:text="${item.codeGroupCd}"></td>
-						    <td th:classappend="${item.codeGroupName == null} ? 'border border-danger'" th:text="${item.codeGroupName}"></td>
-						    <td th:classappend="${item.codeCD == null} ? 'border border-danger'" th:text="${item.codeCD}"></td>
-						    <td th:classappend="${item.codeAlt == null} ? 'border border-danger'" th:text="${item.codeAlt}"></td>
-						    <td th:classappend="${item.cdName == null} ? 'border border-danger'" th:text="${item.cdName}"></td>
-						    <td th:classappend="${item.codeNameEng == null} ? 'border border-danger'" th:text="${item.codeNameEng}"></td>
-						    <td th:classappend="${item.codeOrder == null} ? 'border border-danger'" th:text="${item.codeOrder}"></td>
-						    <td th:classappend="${item.codeRegDate == null} ? 'border border-danger'" th:text="${#dates.format(item.codeRegDate, 'yyyy-MM-dd')}"></td>
-						    <td th:classappend="${item.codeCorrectDate == null} ? 'border border-danger'" th:text="${#dates.format(item.codeCorrectDate, 'yyyy-MM-dd')}"></td>
-						</tr>
-                        </tbody>
-                    </table>
 			<!--end::Products-->
 		</div>
 		<!--end::Container-->
@@ -265,47 +221,7 @@ function handleExcelUpload() {
 
     document.getElementById('form').submit();
 }
-
-$(document).ready(function(){
-	$("#excelConvert").on('click' , function(){
-		const table = document.getElementById("myTable");
-	    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-
-	    XLSX.writeFile(workbook, "table_data.xlsx");
-	});
-});
 </script>
-
-<script>
-function validateBeforeSubmit() {
-    const rows = document.querySelectorAll('tbody tr');
-    let hasEmpty = false;
-
-    rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        cells.forEach(cell => {
-            const text = cell.textContent.trim();
-            if (text === '' || text === 'null') {
-                cell.classList.add('border', 'border-danger');
-                hasEmpty = true;
-            }
-        });
-    });
-
-    if (hasEmpty) {
-        const buttonContainer = document.getElementById('confirmButtons');
-        if (buttonContainer) {
-            buttonContainer.innerHTML = '<span class="text-danger fw-bold">입력값 누락으로 등록할 수 없습니다.</span>';
-        }
-        return false; // ✅ 여기서 submit 차단
-    }
-
-    return true; // ✅ 이상 없으면 submit 허용
-}
-</script>
-
-
-
 
 <script type="text/javascript">
 

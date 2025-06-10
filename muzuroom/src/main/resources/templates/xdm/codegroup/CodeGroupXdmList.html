@@ -217,6 +217,7 @@ License: For each use you must have a valid license purchased only from above li
 							<a href="" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-xmark fs-2x ps-3 me-2"></i></a>	
 							<a href="" class="btn btn-danger d-flex ms-8 btn-sm"><i class="fa-solid fa-trash-can fs-2x ps-3 me-2"></i></a>
 						<div class="container-fluid  d-flex flex-stack flex-wrap justify-content-end flex-sm-nowrap py-2 m" >
+						<button type="button" id="btnExcelUpload" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-u fs-2x ps-2 me-1"></i></button>
 						<button type="button" href="" class="btn btn-success d-flex ms-8 btn-sm"><i class="fa-solid fa-solid fa-file-excel fs-2x ps-3 me-2"></i></button>	
 						<button type="button" id="btnForm" class="btn btn-primary d-flex ms-8 btn-sm"><i class="fa-solid fa-folder-plus fs-2x ps-3 me-2"></i></button>
 						</div>
@@ -300,6 +301,11 @@ document.getElementById("btnReset").onclick = function () {
 	document.getElementById("shValue").value=""
 	form.action = "/xdm/codegroup/CodeGroupXdmList";
     form.submit();
+}
+
+document.getElementById("btnExcelUpload").onclick = function () {
+	form.action = "/xdm/codegroup/CodeGroupExcelUploadForm";
+	form.submit();
 }
 
 </script>

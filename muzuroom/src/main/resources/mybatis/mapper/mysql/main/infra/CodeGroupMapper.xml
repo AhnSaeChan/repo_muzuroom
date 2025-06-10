@@ -134,4 +134,6 @@
 		WHERE seq = #{seq}
 	</update>
 	
+	
+	
 </mapper>

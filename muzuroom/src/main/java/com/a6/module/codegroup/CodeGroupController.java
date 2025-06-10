@@ -1,23 +1,19 @@
 package com.a6.module.codegroup;
 
-import java.util.List;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.a6.common.util.UtilDateTime;
-
-import jakarta.servlet.http.HttpServletResponse;
+import com.a6.module.code.CodeVo;
 
 @Controller
 public class CodeGroupController {
@@ -90,6 +86,74 @@ public class CodeGroupController {
 		codeGroupService.uelete(codeGroupDto);
 		
 		return "redirect:/xdm/codegroup/CodeGroupXdmList";
+	}
+	
+	@RequestMapping(value = "/xdm/codegroup/CodeGroupExcelUploadForm")
+	public String CodeGroupExcelUploadForm(@ModelAttribute("vo") CodeVo vo, Model model) {
+	    vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart().equals("") ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+	    vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd().equals("") ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+	    
+	    if (vo.getShDelNy() == null) {
+	        vo.setShDelNy(0);
+	    }
+
+//	    vo.setParamsPaging(codeGroupService.selectOneCount(vo));
+	    model.addAttribute("vo", vo);
+	    
+	    return "/xdm/codegroup/CodeGroupExcelUploadForm"; // 업로드 페이지
+	    
+	}
+	
+	@RequestMapping(value = "/readExcel")
+	public String readExcel(CodeGroupDto codeGroupDto,@RequestParam("file") MultipartFile file) throws Exception { 
+
+		XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+		
+		for(int i=1;i<worksheet.getPhysicalNumberOfRows() ;i++) {
+			CodeGroupDto excel = new CodeGroupDto();
+		       
+		    
+		    DataFormatter formatter = new DataFormatter();		        
+		    XSSFRow row = worksheet.getRow(i);
+		    	    	
+		    String seq = formatter.formatCellValue(row.getCell(0));
+		    String codeGroupCode = formatter.formatCellValue(row.getCell(1));
+		    String cgName = formatter.formatCellValue(row.getCell(2));
+		    String cgNameEng = formatter.formatCellValue(row.getCell(3));
+		    String groupUsedNY = formatter.formatCellValue(row.getCell(4));
+		    String count = formatter.formatCellValue(row.getCell(5));
+		    String order = formatter.formatCellValue(row.getCell(6));
+	        String cgRegDate = formatter.formatCellValue(row.getCell(7));
+	        String cgCorrectDate = formatter.formatCellValue(row.getCell(8));
+	        
+		
+//			if (delNy.equals("N")) {
+//				delNy = "0";
+//			} else {
+//				delNy = "1";
+//			}
+			
+			if (groupUsedNY.equals("N")) {
+				groupUsedNY = "0";
+			} else {
+				groupUsedNY = "1";
+			}
+			
+//			excel.setIfcgSeq(seq);
+//			excel.setIfcdSeq(codeGroupCode);
+//			excel.setIfcdName(cgName);
+//			excel.setIfcdName(cgNameEng);
+//			excel.setIfcdUseNy(Integer.parseInt(groupUsedNY));
+//			excel.setIfcdUseNy(Integer.parseInt(count));
+//			excel.setIfcdOrder(Integer.parseInt(order));
+//	        excel.setRegDateTime(UtilDateTime.stringToDateTime(cgRegDate));
+//	        excel.setModDateTime(UtilDateTime.stringToDateTime(cgCorrectDate));
+	
+	        codeGroupService.insert(excel);
+		} 
+		
+		return "codeXdmList";
 	}
 	
 //	@RequestMapping("/excelDownload")

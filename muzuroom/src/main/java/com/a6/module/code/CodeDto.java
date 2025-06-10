@@ -3,7 +3,7 @@ package com.a6.module.code;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+import java.sql.Date;
 public class CodeDto {
 	
 	private String seq;

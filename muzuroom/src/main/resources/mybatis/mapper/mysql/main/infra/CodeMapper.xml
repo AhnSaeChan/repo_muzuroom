@@ -188,8 +188,16 @@
                 #{item.codeGroup_seq}
             )
         </foreach>
+        <selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
     </insert>
 	
+<select id="selectCodeGroupSeqByGroupCd" parameterType="int" resultType="int">
+    SELECT seq
+    FROM codegroup
+    WHERE codeGroupCode = #{codeGroupCd}
+</select>
 	
  	
  	

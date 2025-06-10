@@ -3,7 +3,7 @@ package com.a6.module.code;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -95,91 +95,89 @@ public class CodeService {
 			return rt;
 		}
 		
+		
+
 		public List<CodeDto> parseExcel(MultipartFile file) throws Exception {
 		    System.out.println("🟢 [Service] parseExcel() 진입");
 
 		    List<CodeDto> list = new ArrayList<>();
+
 		    try (InputStream inputStream = file.getInputStream();
 		         Workbook workbook = WorkbookFactory.create(inputStream)) {
 
 		        Sheet sheet = workbook.getSheetAt(0);
-		        int totalRows = sheet.getLastRowNum();
-		        System.out.println("📄 [Service] 총 행 수: " + totalRows);
+		        int rowCount = sheet.getLastRowNum();
+		        System.out.println("📄 [Service] 총 행 수: " + rowCount);
 
-		        for (int rowIndex = 1; rowIndex <= totalRows; rowIndex++) {
-		            Row row = sheet.getRow(rowIndex);
-		            if (row == null) {
-		                System.out.println("⚠️ [Service] " + rowIndex + "행은 비어 있음");
-		                continue;
-		            }
-
-		            CodeDto dto = new CodeDto();
+		        for (int rowIndex = 1; rowIndex <= rowCount; rowIndex++) {
+		            System.out.println("🔎 [Service] " + rowIndex + "행 파싱 시작");
 
 		            try {
-		                System.out.println("🔎 [Service] " + rowIndex + "행 파싱 시작");
+		                Row row = sheet.getRow(rowIndex);
+		                if (row == null) continue;
 
-		                dto.setCodeUsedNY((int) getNumericValue(row.getCell(0)));
+		                CodeDto dto = new CodeDto();
 
-		                String setCodeGroupCdStr = getStringValue(row.getCell(1));
-		                dto.setCodeGroupCd(setCodeGroupCdStr.isEmpty() ? null : Integer.parseInt(setCodeGroupCdStr));
+		                dto.setCdDelNY(getIntegerValue(row.getCell(0))); 
+		                dto.setCodeUsedNY(getIntegerValue(row.getCell(1)));
+		                dto.setCodeGroupCd(getIntegerValue(row.getCell(2)));
+		                dto.setCodeGroupName(getStringValue(row.getCell(3)));
+		                dto.setCodeCD(getIntegerValue(row.getCell(4)));
+		                dto.setCodeAlt(getIntegerValue(row.getCell(5)));
+		                dto.setCdName(getStringValue(row.getCell(6)));
+		                dto.setCodeNameEng(getStringValue(row.getCell(7)));
+		                dto.setCodeOrder(getIntegerValue(row.getCell(8)));
+		                dto.setCodeRegDate(toSqlDate(getStringValue(row.getCell(9))));
+		                dto.setCodeCorrectDate(toSqlDate(getStringValue(row.getCell(10))));
 
-		                dto.setCodeGroupName(getStringValue(row.getCell(2)));
-
-		                String setCodeCDStr = getStringValue(row.getCell(3));
-		                dto.setCodeCD(setCodeCDStr.isEmpty() ? null : Integer.parseInt(setCodeCDStr));
-
-		                String codeAltStr = getStringValue(row.getCell(4));
-		                dto.setCodeAlt(codeAltStr.isEmpty() ? null : Integer.parseInt(codeAltStr));
-
-		                dto.setCdName(getStringValue(row.getCell(5)));
-		                dto.setCodeNameEng(getStringValue(row.getCell(6)));
-		                dto.setCodeOrder((int) getNumericValue(row.getCell(7)));
-
-		                dto.setCodeRegDate(toSqlDate(getStringValue(row.getCell(8))));
-		                dto.setCodeCorrectDate(toSqlDate(getStringValue(row.getCell(9))));
+		                Integer codeGroupSeq = codeDao.selectCodeGroupSeqByGroupCd(dto.getCodeGroupCd());
+		                dto.setCodeGroup_seq(codeGroupSeq);
 
 		                list.add(dto);
-		                System.out.println("✅ [Service] " + rowIndex + "행 파싱 완료, 누적 개수: " + list.size());
-		            } catch (Exception rowEx) {
-		                System.out.println("❌ [Service] " + rowIndex + "행 파싱 중 예외: " + rowEx.getMessage());
+		                System.out.println("✅ [Service] " + rowIndex + "행 파싱 완료");
+		            } catch (Exception e) {
+		                System.out.println("❌ [Service] " + rowIndex + "행 파싱 중 예외: " + e.getMessage());
 		            }
 		        }
-		    } catch (Exception ex) {
-		        System.out.println("❌ [Service] 엑셀 파싱 전체 실패: " + ex.getMessage());
-		        throw ex;
 		    }
 
 		    System.out.println("🔚 [Service] parseExcel() 종료, 총 파싱된 행 수: " + list.size());
 		    return list;
 		}
+
+
+
+
 	    
 
-	    // 엑셀 미리보기 확정 후 DB에 일괄 저장
+	    // 엑셀 미리보기 확정 후 sql에 저장
 	    public void insertExcelList(List<CodeDto> previewList) {
 	        for (CodeDto dto : previewList) {
 	            codeDao.insert(dto);
 	        }
 	    }
 
-	    // 셀에서 문자열 추출
 	    private String getStringValue(Cell cell) {
 	        return (cell == null) ? "" : cell.toString().trim();
 	    }
 
-	    // 셀에서 숫자 추출
-	    private double getNumericValue(Cell cell) {
-	        if (cell == null) return 0;
-	        if (cell.getCellType() == CellType.NUMERIC) {
-	            return cell.getNumericCellValue();
-	        }
+	    private Integer getIntegerValue(Cell cell) {
 	        try {
-	            return Double.parseDouble(cell.toString());
-	        } catch (NumberFormatException e) {
-	            return 0;
+	            if (cell == null) return null;
+	            if (cell.getCellType() == CellType.NUMERIC) {
+	                return (int) cell.getNumericCellValue(); // 1001.0 → 1001
+	            } else {
+	                String value = cell.toString().trim();
+	                if (value.contains(".")) {
+	                    return (int) Double.parseDouble(value); // "1001.0" → 1001
+	                }
+	                return Integer.parseInt(value);
+	            }
+	        } catch (Exception e) {
+	            return null;
 	        }
 	    }
 
-	    // 문자열 yyyy-MM-dd → java.sql.Date로 변환
 	    private Date toSqlDate(String dateStr) {
 	        try {
 	            if (dateStr == null || dateStr.isEmpty()) return null;
@@ -190,6 +188,9 @@ public class CodeService {
 	            return null;
 	        }
 	    }
+
+
+
 	    
 	    
 }

@@ -90,6 +90,8 @@ public class ContentController {
 
 	    return "redirect:/ContentXdmList?seq=" + contentDto.getSeq();
 	}
+	
+	
 
 
 }
