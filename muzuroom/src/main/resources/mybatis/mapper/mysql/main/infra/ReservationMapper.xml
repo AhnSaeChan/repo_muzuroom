@@ -4,55 +4,63 @@
 <mapper namespace="com.a6.module.reservation.ReservationDao">
 
  <resultMap id="resultMapObj" type="com.a6.module.reservation.ReservationDto"></resultMap>
- <sql id="selectCommon" >
- 		FROM
-			roomReserv 
-		WHERE 1=1
-<!-- 		<if test="shUseNy != null and !shUseNy.equals('')">AND code.codeUsedNY = #{shUseNy}</if> -->
-<!--         <if test="shDelNy != null and !shDelNy.equals('')">AND code.cdDelNY = #{shDelNy}</if> -->
-				
-<!-- 				<choose> -->
-<!-- 					<when test="shOptionDate == 1">AND code.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
-<!-- 					<when test="shOptionDate == 2">AND code.codeCorrectDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
-<!--  				</choose> -->
- 				
-<!--         <choose> -->
-<!--             <when test="shOption == 1">AND code.codeGroupCd = #{shValue}</when> -->
-<!--             <when test="shOption == 2">AND code.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when> -->
-<!--             <when test="shOption == 3">AND code.codeCD LIKE CONCAT('%',#{shValue},'%')</when> -->
-<!--             <when test="shOption == 4">AND code.codeAlt LIKE CONCAT('%',#{shValue},'%')</when> -->
-<!--             <when test="shOption == 5">AND code.cdName LIKE CONCAT('%',#{shValue},'%')</when> -->
-<!--             <when test="shOption == 6">AND code.codeNameEng LIKE CONCAT('%',#{shValue},'%')</when> -->
-<!--         </choose> -->
-</sql>
+ 
+ 
 
 <select id="selectOneCount" resultType="Integer">
 	SELECT COUNT(*)
- 	<include refid="selectCommon"/>
+	FROM
+		roomReserv
+	WHERE
+		userinfo_seq = #{userinfo_seq}
+ 	
  </select>
  
  <select id="selectList" resultMap="resultMapObj">
  
- select roomReserv.* from(
+ 		SELECT
+ 			b.roomPic,
+ 			b.roomName,
+			a.reservDate,
+		    a.reservName,
+		    a.reservTell,
+			a.reservTime,
+            a.totalPrice,
+            a.reservStat,
+            a.reservDelNY,
+            a.userinfo_seq,
+            a.room_seq,
+            b.seq
+            FROM
+            roomReserv AS a
+            left join room As b ON b.seq = a.room_seq
+<!-- 			left join uploaded AS c ON b.seq= c.pSeq -->
+		WHERE
+<!-- 				c.defaultNy = 1 -->
+			a.userinfo_seq = #{userinfo_seq}
+</select>
  
- SELECT
-			seq,
-            reservDate,
-		    reservName,
-		    reservTell,
-			reservTime,
-            totalPrice,
-            reservStat,
-            reservDelNY,
-            userinfo_seq,
-            room_seq
-            
-            <include refid="selectCommon"/>
-           ORDER BY seq DESC
-		) roomReserv
-		limit #{rowNumToShow} offset #{startRnumForMysql}
- </select>
- 
+ <insert id="insert">
+	INSERT INTO roomReserv(
+		reservDate,
+		reservName,
+		reservTell,
+		reservTime,
+		totalPrice
+		userinfo_seq,
+		room_seq
+	)VALUES(
+		#{reservDate},
+		#{reservName},
+		#{reservTell},
+		#{reservTime},
+		#{totalPrice},
+		1,
+		0,
+		#{userinfo_seq},
+		#{room_seq}
+	)
+</insert>
  
  
 	

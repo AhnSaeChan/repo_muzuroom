@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{usr/include/usrindex/head ::head}"></div>
+
+	<input type="hidden" id="roomSeq" name="seq" />
+	<input type="hidden" id="orderId" name="orderId" th:value="${orderId}"/>
+<!-- 	<input type="hidden" id="TotalPrice" th:value="${reservationData.totalPrice}"/> -->
 	<!--Breadcrumb start-->
 	<div class="container">
 		<div class="row">

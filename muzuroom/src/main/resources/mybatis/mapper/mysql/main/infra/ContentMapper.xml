@@ -134,7 +134,7 @@
         #{roomGuideline},
         now(),
         now(),
-        1
+        #{userInfo_seq}
         )
  	<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
@@ -168,6 +168,49 @@
 		,#{pseq}
 	)
 </insert>
+
+<insert id="insertPay">
+		INSERT INTO stay(
+		stayName,
+		stayZipCode,
+		stayAddress,
+		stayAddressDetail,
+		stayLatitude,
+		stayHardness,
+		stayIntroMemo,
+		stayServiceMemo,
+		stayNoticeMemo,
+		regDateTime,
+		modDateTime,
+		regionCd,
+		activeCd,
+		member_memSeq,
+		stayPrice,
+		stayPersonnel,
+		stDeNy
+		)VALUES(
+		#{stayName},
+		#{stayZipCode},
+		#{stayAddress},
+		#{stayAddressDetail},
+		#{stayLatitude},
+		#{stayHardness},
+		#{stayIntroMemo},
+		#{stayServiceMemo},
+		#{stayNoticeMemo},
+		now(),
+		now(),
+		#{regionCd},
+		9,
+		#{member_memSeq},
+		#{stayPrice},
+		#{stayPersonnel},
+		0
+		)
+		<selectKey resultType="String" keyProperty="staySeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
  	
 	
  	

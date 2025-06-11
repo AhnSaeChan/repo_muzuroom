@@ -14,7 +14,9 @@
 							<!--Heading-->
 							<h1 class="mb-0 h2">예약 현황</h1>
 						</div>
-						
+						<form id="formList">
+								<input type="hidden" id="thisPage" name="thisPage"  th:value="${vo.thisPage}" default="1"/>
+								<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />
 						<div class="col-lg-3 col-md-6 col-12">
 							<select data-choices data-choices-removeitembutton="true"
 								data-choices-classname="form-select">
@@ -37,15 +39,15 @@
 						</div>
 						<div class="card-body px-3 py-3">
 							<div class="row gy-4">
-								<div class="col-lg-5">
+								<div class="col-lg-3">
 									<div class="d-flex gap-2">
-										<img src="./assets/images/product/product1.png" alt=""
+										<img th:src="${list.roomPic}" alt=""
 											class="icon-shape icon-xl">
 									</div>
 								</div>
-								<div class="col-lg-7">
+								<div class="col-lg-9">
 									<div class="row align-items-center gy-3">
-										<div class="col-lg-5">
+										<div class="col-lg-4">
 											<div class="d-flex flex-column">
 												<span>예약 날짜</span>
 												<span th:text ="${list.reservDate}" class="text-dark fw-medium">2025-02-25</span>
@@ -53,16 +55,25 @@
 											</div>
 
 										</div>
-										<div class="col-lg-4">
-											<div class="d-flex flex-column">
-												<span>사용 총 시간</span>
-												<span th:text ="${list.reservTime}" class="text-dark fw-medium">￦8000</span>
+										<div class="col-lg-3">
+											<div class="d-flex flex-column ">
+												<span>예약 시간</span>
+												<span th:text ="${list.reservTime} + '시간'" class="text-dark fw-medium">￦8000</span>
 
 											</div>
 
 										</div>
 										
 										<div class="col-lg-3">
+											<div class="d-flex flex-column">
+												<span>총 가격</span>
+												<span th:text ="${list.totalPrice} + '원'" class="text-dark fw-medium">2025-02-25</span>
+
+											</div>
+
+										</div>
+										
+										<div class="col-lg-2">
 											<div class="d-flex flex-column">
 
 												<a class="text-link" href="account-notification.html" 
@@ -82,188 +93,10 @@
 						</div>
 
 
-
+					</form>
 					</div>
-					<!--Order-->
-					<div class="card mb-3">
-						<div class="card-header d-flex justify-content-between px-3 py-3">
-							<span class="text-dark fw-semibold">Order ID: 56H78G90F12</span>
-							<span class="badge text-bg-success">Delivered</span>
-
-						</div>
-						<div class="card-body px-3 py-3">
-							<div class="row gy-4">
-								<div class="col-lg-5">
-									<div class="d-flex gap-2">
-										<img src="./assets/images/product/product-img-4.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-5.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-6.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-7.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-8.jpg" alt=""
-											class="icon-shape icon-xl">
-									</div>
-								</div>
-								<div class="col-lg-7">
-									<div class="row align-items-center gy-3">
-										<div class="col-lg-5">
-											<div class="d-flex flex-column">
-												<span>Estimated Arrival</span>
-												<span class="text-dark fw-medium">Des 12, 2024</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-4">
-											<div class="d-flex flex-column">
-												<span>Order value</span>
-												<span class="text-dark fw-medium">$369.00</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-3">
-											<div class="d-flex flex-column">
-												<a class="text-link" href="#!" data-bs-toggle="offcanvas"
-													data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">View
-													Details</a>
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-
-
-
-					</div>
-					<!--Order-->
-					<div class="card mb-3">
-						<div class="card-header d-flex justify-content-between px-3 py-3">
-							<span class="text-dark fw-semibold">Order ID: 45C6789D123</span>
-							<span class="badge text-bg-danger">Canceled</span>
-
-						</div>
-						<div class="card-body px-3 py-3">
-							<div class="row gy-4">
-								<div class="col-lg-5">
-									<div class="d-flex gap-2">
-										<img src="./assets/images/product/product-img-9.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-10.jpg" alt=""
-											class="icon-shape icon-xl">
-
-									</div>
-								</div>
-								<div class="col-lg-7">
-									<div class="row align-items-center gy-3">
-										<div class="col-lg-5">
-											<div class="d-flex flex-column">
-												<span>Estimated Arrival</span>
-												<span class="text-dark fw-medium">Feb 6, 2025</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-4">
-											<div class="d-flex flex-column">
-												<span>Order value</span>
-												<span class="text-dark fw-medium">$69.00</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-3">
-											<div class="d-flex flex-column">
-												<a class="text-link" href="#!" data-bs-toggle="offcanvas"
-													data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">View
-													Details</a>
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-
-
-
-					</div>
-					<!--Order-->
-					<div class="card mb-5">
-						<div class="card-header d-flex justify-content-between px-3 py-3">
-							<span class="text-dark fw-semibold">Order ID: 12H34G56F78</span>
-							<span class="badge text-bg-success">Delivered</span>
-
-						</div>
-						<div class="card-body px-3 py-3">
-							<div class="row gy-4">
-								<div class="col-lg-5">
-									<div class="d-flex gap-2">
-										<img src="./assets/images/product/product-img-2.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-3.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-4.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-5.jpg" alt=""
-											class="icon-shape icon-xl">
-										<img src="./assets/images/product/product-img-6.jpg" alt=""
-											class="icon-shape icon-xl">
-
-
-									</div>
-								</div>
-								<div class="col-lg-7">
-									<div class="row align-items-center gy-3">
-										<div class="col-lg-5">
-											<div class="d-flex flex-column">
-												<span>Estimated Arrival</span>
-												<span class="text-dark fw-medium">Des 12, 2024</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-4">
-											<div class="d-flex flex-column">
-												<span>Order value</span>
-												<span class="text-dark fw-medium">$369.00</span>
-
-											</div>
-
-										</div>
-										<div class="col-lg-3">
-											<div class="d-flex flex-column">
-												<a class="text-link" href="#!" data-bs-toggle="offcanvas"
-													data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">View
-													Details</a>
-
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-
-
-
-					</div>
+					
+					
 					<div>
 						<!--Pagination-->
 						<nav aria-label="Page navigation example">

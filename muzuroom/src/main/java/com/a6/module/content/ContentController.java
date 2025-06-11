@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ContentController {
 	@Autowired
@@ -49,7 +51,7 @@ public class ContentController {
 	@RequestMapping(value = "/usrProductList")
 	
 		public String usrProductList(ContentVo vo, Model model) {
-		
+		vo.setParamsPaging(contentService.selectOneCount(vo));
 		model.addAttribute("list",contentService.selectList(vo));
 		model.addAttribute("vo", vo);
 		
@@ -79,13 +81,13 @@ public class ContentController {
 //    }
     
 	@RequestMapping("/content/upload")
-	public String contentUpload(@ModelAttribute ContentDto contentDto,
+	public String contentUpload(@ModelAttribute ContentDto contentDto, HttpSession httpSession,
 	                            @RequestParam(value = "uploadImg1", required = false) MultipartFile[] uploadImg1) throws Exception {
 
 	    if (uploadImg1 != null && uploadImg1.length > 0) {
 	        contentDto.setUploadImg1(uploadImg1);
 	    }
-
+	    contentDto.setUserInfo_seq((String) httpSession.getAttribute("sessSeqXdm"));
 	    contentService.insert(contentDto); 
 
 	    return "redirect:/ContentXdmList?seq=" + contentDto.getSeq();

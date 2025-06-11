@@ -2,7 +2,10 @@ package com.a6.module.reservation;
 
 import java.sql.Date;
 
-public class ReservationDto {
+import com.a6.module.content.ContentDto;
+import com.a6.module.userinfo.UserInfoDto;
+
+public class ReservationDto extends ReservationVo {
 	
 	private String seq;
 	private Date reservDate;
@@ -12,14 +15,40 @@ public class ReservationDto {
 	private Integer totalPrice;
 	private Integer reservStat;
 	private Integer reservDelNY;
-	private Integer userinfo_seq;
-	private Integer room_seq;
+	private String userinfo_seq;
+	private String room_seq;
+	
+	private UserInfoDto userInfo;
+	private ContentDto roomInfo;
+	
+	private String roomPic;
 	
 //-----
 	
 	
 	public String getSeq() {
 		return seq;
+	}
+	
+	public String getRoomPic() {
+		return roomPic;
+	}
+
+	public void setRoomPic(String roomPic) {
+		this.roomPic = roomPic;
+	}
+
+	public UserInfoDto getUserInfo() {
+		return userInfo;
+	}
+	public void setUserInfo(UserInfoDto userInfo) {
+		this.userInfo = userInfo;
+	}
+	public ContentDto getRoomInfo() {
+		return roomInfo;
+	}
+	public void setRoomInfo(ContentDto roomInfo) {
+		this.roomInfo = roomInfo;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;
@@ -66,18 +95,19 @@ public class ReservationDto {
 	public void setReservDelNY(Integer reservDelNY) {
 		this.reservDelNY = reservDelNY;
 	}
-	public Integer getUserinfo_seq() {
+	public String getUserinfo_seq() {
 		return userinfo_seq;
 	}
-	public void setUserinfo_seq(Integer userinfo_seq) {
+	public void setUserinfo_seq(String userinfo_seq) {
 		this.userinfo_seq = userinfo_seq;
 	}
-	public Integer getRoom_seq() {
+	public String getRoom_seq() {
 		return room_seq;
 	}
-	public void setRoom_seq(Integer room_seq) {
+	public void setRoom_seq(String room_seq) {
 		this.room_seq = room_seq;
 	}
+	
 
 	
 	

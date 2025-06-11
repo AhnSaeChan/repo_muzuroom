@@ -573,8 +573,8 @@
 								<div class="col-lg-8 col-md-7 ps-md-6">
 									<div class="d-flex justify-content-between mb-4">
 										<div class="d-flex flex-column">
-											<span class="small fw-medium text-uppercase">봉천역 3번출구</span>
-											<span class="">
+											<span class="small fw-medium text-uppercase" th:text="${list.roomAddress}">봉천역 3번출구</span>
+											<span class="" th:text="${list.roomRating}">
 												4.3
 												<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
 													fill="currentColor"
@@ -602,10 +602,11 @@
 											<h3 class="fs-6 mb-0 product-heading d-inline-block text-truncate">
 												<td><a href="javascript:void(0);" th:text="${list.roomName}" th:attr="onclick=|goForm('${list.seq}')|"></a>
 											</h3>
-											<p class="mb-0 lh-1 text-dark fw-semibold" th:text="${list.pricePerHour}"></p>
+											<p class="mb-0 lh-1 text-dark fw-semibold" th:text="${#numbers.formatDecimal((list.pricePerHour != null ? list.pricePerHour : 0) / 1000.0, 1, 3)} + '원'"></p>
+
 										</div>
 										<div class="mb-4">
-											<p s>방음 잘되는 깔끔하고 조용한 연습실</p>
+<!-- 											<p th:utext="${list?.roomDetail}">방음 잘되는 깔끔하고 조용한 연습실</p> -->
 										</div>
 									
 
@@ -636,15 +637,19 @@
 						<!--Pagination-->
 						<div class="col-12 mt-8">
 							<nav aria-label="Page navigation example">
-								<ul class="pagination">
-									<li class="page-item"><a class="page-link disabled" href="#!">Previous</a></li>
-									<li class="page-item"><a class="page-link active" href="#!">1</a></li>
-									<li class="page-item"><a class="page-link" href="#!">2</a></li>
-									<li class="page-item"><a class="page-link" href="#!">...</a></li>
-									<li class="page-item"><a class="page-link" href="#!">6</a></li>
-									<li class="page-item"><a class="page-link" href="#!">Next</a></li>
-								</ul>
-							</nav>
+						<ul class="pagination">
+							<li class="page-item">
+							
+							</li>
+							<li th:if = "${vo.startPage gt vo. pageNumToShow}" class="page-item" style="cursor:pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"
+							th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor:pointer"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}" ><!-- ${i.index} --></a></li>
+							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+							<li class="page-item">
+							
+							</li>
+						</ul>
+						</nav>
 						</div>
 					</div>
 				</div>
@@ -700,22 +705,23 @@ goForm = function (keyValue) {
     form.submit();
 }
 
-// goList = function (thisPage) {
-//     document.querySelector("input[name=thisPage]").value = thisPage;
-//     form.action = "/xdm/code/CodeXdmList";
-//     form.submit();
-// }
+goList = function (thisPage) {
+    document.querySelector("input[name=thisPage]").value = thisPage;
+    form.action = "/usrProductList";
+    
+    form.submit();
+}
 
 // document.getElementById("btnSearch").onclick = function () {
 //     form.action = "/xdm/code/CodeXdmList";
 //     form.submit();
 // }
 
-// document.getElementById("changeRowNum").onchange = function () {
-//     document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-//     form.action = "/xdm/code/CodeXdmList";
-//     form.submit();
-// }
+document.getElementById("changeRowNum").onchange = function () {
+    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+    form.action = "/usrProductList";
+    form.submit();
+}
 
 // document.getElementById("btnReset").onclick = function () {
 // 	document.getElementById("shOption").value=""

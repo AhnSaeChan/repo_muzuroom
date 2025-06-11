@@ -10,8 +10,16 @@ public class ReservationService {
 	@Autowired
 	ReservationDao reservationDao;
 	
-	public List<ReservationDto> selectList(ReservationVo reservationVo){
-		return reservationDao.selectList(reservationVo);
+	public List<ReservationDto> selectList(ReservationDto reservationDto){
+		return reservationDao.selectList(reservationDto);
 		
+	}
+	
+	public int selectOneCount(ReservationDto reservationDto) {
+		return reservationDao.selectOneCount(reservationDto);
+	}
+	
+	public int insert(ReservationDto Dto) {
+		return reservationDao.insert(Dto);
 	}
 }

@@ -33,7 +33,7 @@ public class ContentDto extends UploadedDto{
 	
 	private Date roomRegTime;
 	private Date roomModTime;
-	private Integer userInfo_seq;
+	private String userInfo_seq;
 	
 	private MultipartFile[] uploadImg1;
 	
@@ -44,6 +44,12 @@ public class ContentDto extends UploadedDto{
 	
 	public String getSeq() {
 		return seq;
+	}
+	public String getUserInfo_seq() {
+		return userInfo_seq;
+	}
+	public void setUserInfo_seq(String userInfo_seq) {
+		this.userInfo_seq = userInfo_seq;
 	}
 	public Integer getPricePerHour() {
 		return pricePerHour;
@@ -236,18 +242,7 @@ public class ContentDto extends UploadedDto{
 		this.roomGuideline = roomGuideline;
 	}
 	
-	/**
-	 * @return the userInfo_seq
-	 */
-	public Integer getUserInfo_seq() {
-		return userInfo_seq;
-	}
-	/**
-	 * @param userInfo_seq the userInfo_seq to set
-	 */
-	public void setUserInfo_seq(Integer userInfo_seq) {
-		this.userInfo_seq = userInfo_seq;
-	}
+	
 	
 	
 	
