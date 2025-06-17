@@ -11,10 +11,11 @@ public class ContentDto extends UploadedDto{
 	private String seq;
 	private String roomPic;
 	private String roomIdCD;
+	private Integer reginCD;
 	private Integer reservAvailableYN;
 	private String roomName;
 	private Integer pricePerHour;
-	private Integer roomRating;  
+	 
 	 
 	private String roomZipCode; 
 	private String roomStreetAddress; 
@@ -25,7 +26,7 @@ public class ContentDto extends UploadedDto{
 	
 	private Double roomLatitude;
 	private Double roomLongitude;
-	private Integer favoriteYN; 
+	 
 	  
 	private String roomDetail;  
 	private String roomIntro; 
@@ -40,10 +41,74 @@ public class ContentDto extends UploadedDto{
 	private Integer uploadImg1Type;
 	private Integer uploadImg1MaxNumber;
 	
+	private String reSeq; //리뷰 Seq
+	private Integer starScore; // 리뷰 별점
+	private String reTitle; // 리뷰 제목
+	private String reText; // 리뷰 내용
+	private String reDelNy; // 리뷰 업데이트 삭제
+	private String room_seq; // 스테이 Seq
+	
+	private String userName;
+	
+	private Double averageRating;
 //---
 	
 	public String getSeq() {
 		return seq;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public Double getAverageRating() {
+		return averageRating;
+	}
+	public void setAverageRating(Double averageRating) {
+		this.averageRating = averageRating;
+	}
+	public String getReSeq() {
+		return reSeq;
+	}
+	public void setReSeq(String reSeq) {
+		this.reSeq = reSeq;
+	}
+	public Integer getStarScore() {
+		return starScore;
+	}
+	public void setStarScore(Integer starScore) {
+		this.starScore = starScore;
+	}
+	public String getReTitle() {
+		return reTitle;
+	}
+	public void setReTitle(String reTitle) {
+		this.reTitle = reTitle;
+	}
+	public String getReText() {
+		return reText;
+	}
+	public void setReText(String reText) {
+		this.reText = reText;
+	}
+	public String getReDelNy() {
+		return reDelNy;
+	}
+	public void setReDelNy(String reDelNy) {
+		this.reDelNy = reDelNy;
+	}
+	public String getRoom_seq() {
+		return room_seq;
+	}
+	public void setRoom_seq(String room_seq) {
+		this.room_seq = room_seq;
+	}
+	public Integer getReginCD() {
+		return reginCD;
+	}
+	public void setReginCD(Integer reginCD) {
+		this.reginCD = reginCD;
 	}
 	public String getUserInfo_seq() {
 		return userInfo_seq;
@@ -176,33 +241,6 @@ public class ContentDto extends UploadedDto{
 	 */
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
-	}
-	
-	/**
-	 * @return the roomRating
-	 */
-	public Integer getRoomRating() {
-		return roomRating;
-	}
-	/**
-	 * @param roomRating the roomRating to set
-	 */
-	public void setRoomRating(Integer roomRating) {
-		this.roomRating = roomRating;
-	}
-	
-	
-	/**
-	 * @return the favoriteYN
-	 */
-	public Integer getFavoriteYN() {
-		return favoriteYN;
-	}
-	/**
-	 * @param favoriteYN the favoriteYN to set
-	 */
-	public void setFavoriteYN(Integer favoriteYN) {
-		this.favoriteYN = favoriteYN;
 	}
 	
 	/**

@@ -8,28 +8,50 @@ import com.a6.module.userinfo.UserInfoDto;
 public class ReservationDto extends ReservationVo {
 	
 	private String seq;
-	private Date reservDate;
-	private String reservName;
-	private String reservTell;
-	private Integer reservTime;
-	private Integer totalPrice;
-	private Integer reservStat;
-	private Integer reservDelNY;
-	private String userinfo_seq;
-	private String room_seq;
-	
-	private UserInfoDto userInfo;
-	private ContentDto roomInfo;
-	
-	private String roomPic;
+    private Date reservDate;
+    private String reservName;
+    private String reservTell;
+    private Integer reservTime;
+    private Integer totalPrice;
+    private Integer reservStat;
+    private Integer reservDelNY;
+    private String userinfo_seq;
+    private String room_seq;
+    private String staySeq;
+    private Integer pricePerHour;
+
+    private ContentDto roomInfo;
+    private UserInfoDto userInfo;
+    
+    private String roomPic;
+
+    private String paymentKey;
 	
 //-----
+    
+    
 	
 	
 	public String getSeq() {
 		return seq;
 	}
 	
+	public String getPaymentKey() {
+		return paymentKey;
+	}
+
+	public void setPaymentKey(String paymentKey) {
+		this.paymentKey = paymentKey;
+	}
+
+	public Integer getPricePerHour() {
+		return pricePerHour;
+	}
+
+	public void setPricePerHour(Integer pricePerHour) {
+		this.pricePerHour = pricePerHour;
+	}
+
 	public String getRoomPic() {
 		return roomPic;
 	}
@@ -107,6 +129,21 @@ public class ReservationDto extends ReservationVo {
 	public void setRoom_seq(String room_seq) {
 		this.room_seq = room_seq;
 	}
+	
+	public String getStaySeq() {
+        return staySeq;
+    }
+
+    public void setStaySeq(String staySeq) {
+        this.staySeq = staySeq;
+
+        // staySeq가 들어오면 roomInfo.seq와 room_seq 자동 연결
+        if (this.roomInfo == null) {
+            this.roomInfo = new ContentDto();
+        }
+        this.roomInfo.setSeq(staySeq);
+        this.room_seq = staySeq; // insert용 FK도 같이 설정
+    }
 	
 
 	

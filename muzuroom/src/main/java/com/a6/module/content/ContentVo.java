@@ -24,6 +24,9 @@ public class ContentVo {
 	private String shDateEnd;
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shValue;
+	
+	private String shRating;  // ex: "5,4"
+	private String shStar;
 //	-----
 	
 	/**
@@ -31,6 +34,22 @@ public class ContentVo {
 	 */
 	public int getThisPage() {
 		return thisPage;
+	}
+
+	public String getShRating() {
+		return shRating;
+	}
+
+	public void setShRating(String shRating) {
+		this.shRating = shRating;
+	}
+
+	public String getShStar() {
+		return shStar;
+	}
+
+	public void setShStar(String shStar) {
+		this.shStar = shStar;
 	}
 
 	public String getSeq() {

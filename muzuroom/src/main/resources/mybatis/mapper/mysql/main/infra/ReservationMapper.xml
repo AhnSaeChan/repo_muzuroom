@@ -40,27 +40,31 @@
 			a.userinfo_seq = #{userinfo_seq}
 </select>
  
- <insert id="insert">
-	INSERT INTO roomReserv(
+ <insert id="insert" parameterType="com.a6.module.reservation.ReservationDto">
+	INSERT INTO roomReserv (
 		reservDate,
 		reservName,
 		reservTell,
 		reservTime,
-		totalPrice
+		totalPrice,
+		reservStat,
 		userinfo_seq,
-		room_seq
-	)VALUES(
+		room_seq,
+		reservDelNY
+	)
+	VALUES (
 		#{reservDate},
 		#{reservName},
 		#{reservTell},
 		#{reservTime},
 		#{totalPrice},
 		1,
-		0,
 		#{userinfo_seq},
-		#{room_seq}
+		#{room_seq},
+		0
 	)
 </insert>
+
  
  
 	

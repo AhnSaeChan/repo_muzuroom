@@ -155,6 +155,7 @@ public class UserInfoController {
 	        String hashedPassword = rtMember.getUserPassword();
 	        
 	        if (matchesBcrypt(inputPassword, hashedPassword, 10)) {
+	        	
 			httpSession.setAttribute("sessSeqUsr",rtMember.getSeq());
 			httpSession.setAttribute("sessIdUsr",rtMember.getUserId());
 			httpSession.setAttribute("sessNameUsr",rtMember.getUserName());

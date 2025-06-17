@@ -68,7 +68,15 @@
 <select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			seq,
-		    cgName
+			groupUsedNY,
+			codeGroupCode,
+		    cgName,
+		    cgNameEng,
+		    count,
+		    cgOrder,
+		    cgRegDate,
+		    cgCorrectDate,
+		    cgDelNY
 		   
 		FROM
 			codegroup

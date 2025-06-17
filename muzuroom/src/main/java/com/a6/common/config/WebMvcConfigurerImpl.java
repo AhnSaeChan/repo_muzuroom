@@ -25,6 +25,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer  {
 				"/usr/usrlogin/usrLoginUsrForm",
 				"/content/upload"
 				
+				
 );
 		
 		WebMvcConfigurer.super.addInterceptors(registry);

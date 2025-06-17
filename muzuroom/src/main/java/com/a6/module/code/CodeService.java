@@ -1,13 +1,15 @@
 package com.a6.module.code;
 
 import java.io.InputStream;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -127,8 +129,9 @@ public class CodeService {
 		                dto.setCdName(getStringValue(row.getCell(6)));
 		                dto.setCodeNameEng(getStringValue(row.getCell(7)));
 		                dto.setCodeOrder(getIntegerValue(row.getCell(8)));
-		                dto.setCodeRegDate(toSqlDate(getStringValue(row.getCell(9))));
-		                dto.setCodeCorrectDate(toSqlDate(getStringValue(row.getCell(10))));
+		                dto.setCodeRegDate(toSqlDate(row.getCell(9)));
+		                dto.setCodeCorrectDate(toSqlDate(row.getCell(10)));
+
 
 		                Integer codeGroupSeq = codeDao.selectCodeGroupSeqByGroupCd(dto.getCodeGroupCd());
 		                dto.setCodeGroup_seq(codeGroupSeq);
@@ -142,7 +145,17 @@ public class CodeService {
 		    }
 
 		    System.out.println("🔚 [Service] parseExcel() 종료, 총 파싱된 행 수: " + list.size());
+		    
+//		 // 1. 파싱 끝나고
+//		    System.out.println("🔚 [Service] parseExcel() 종료, 정렬 시작");
+//
+//		    // 2. codeOrder 기준 정렬
+//		    list.sort(Comparator.comparing(CodeDto::getCodeOrder, Comparator.nullsLast(Integer::compareTo)));
+
+		    // 3. 정렬 후 리턴
 		    return list;
+
+		    
 		}
 
 
@@ -178,16 +191,25 @@ public class CodeService {
 	        }
 	    }
 
-	    private Date toSqlDate(String dateStr) {
+	    private Date toSqlDate(Cell cell) {
 	        try {
-	            if (dateStr == null || dateStr.isEmpty()) return null;
-	            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	            java.util.Date utilDate = format.parse(dateStr);
-	            return new Date(utilDate.getTime());
+	            if (cell == null) return null;
+
+	            if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
+	                return new Date(cell.getDateCellValue().getTime());
+	            } else {
+	                String dateStr = cell.toString().trim();
+	                if (dateStr.isEmpty()) return null;
+	                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	                java.util.Date utilDate = format.parse(dateStr);
+	                return new Date(utilDate.getTime());
+	            }
 	        } catch (Exception e) {
+	            System.out.println("❌ 날짜 파싱 실패: " + e.getMessage());
 	            return null;
 	        }
 	    }
+
 
 
 

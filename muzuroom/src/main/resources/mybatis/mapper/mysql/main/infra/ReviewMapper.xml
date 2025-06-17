@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.a6.module.review.ReviewDao">
+
+	<resultMap id="resultMapObj" type="com.a6.module.review.ReviewDto">
+
+    <!-- 기본 ReviewDto 필드 매핑 -->
+    <id     property="reSeq"        column="reSeq"/>
+    <result property="reTitle"      column="reTitle"/>
+    <result property="reText"       column="reText"/>
+    <result property="regDateTime"  column="regDateTime"/>
+    <result property="reDelNy"      column="reDelNy"/>
+    <result property="room_seq"     column="room_seq"/>
+    <result property="userinfo_seq" column="userInfo_seq"/>
+
+    <!-- roomInfo: ContentDto 매핑 -->
+    <association property="roomInfo" javaType="com.a6.module.content.ContentDto">
+        <id     property="seq"      column="room_seq"/>        <!-- 연결용 PK -->
+        <result property="roomName" column="roomName"/>
+    </association>
+
+    <!-- userInfo: UserInfoDto 매핑 -->
+    <association property="userInfo" javaType="com.a6.module.userinfo.UserInfoDto">
+        <id     property="seq"      column="userInfo_seq"/>    <!-- 연결용 PK -->
+        <result property="userName" column="userName"/>
+    </association>
+
+</resultMap>
+
+ 
+ 
+
+<select id="selectOneCount" resultType="Integer">
+	SELECT COUNT(*)
+	FROM
+		review
+	WHERE
+		userinfo_seq = #{userinfo_seq}
+ 	
+ </select>
+ 
+ <select id="selectList" resultMap="resultMapObj">
+ 
+ 		SELECT
+ 			a.starScore,
+		    a.reSeq,
+		    a.reTitle,
+		    a.reText,
+		    a.regDateTime,
+		    a.reDelNy,
+		    a.room_seq,
+		    a.userInfo_seq,
+		    b.seq,
+		    b.roomName,
+		    c.seq,
+		    c.userName 
+		FROM 
+		    review a
+		LEFT JOIN room b ON a.room_seq = b.seq
+		LEFT JOIN userinfo c ON a.userInfo_seq = c.seq
+		
+		WHERE 1=1
+			AND reDelNy = 0
+			AND a.userInfo_seq = #{seq}
+</select>
+ 
+ <insert id="insert">
+	INSERT INTO review (
+		starScore,
+		reTitle,
+		reText,
+		reDelNy,
+		userInfo_seq,
+		room_seq,
+		regDateTime,
+		modDateTime
+	)
+	VALUES (
+		#{starScore},
+		#{reTitle},
+		#{reText},
+		0,
+		18,
+		6,
+		now(),
+		now()
+	)
+</insert>
+
+
+
+ 
+ 
+	
+	
+	
+</mapper>

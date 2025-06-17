@@ -106,7 +106,7 @@
 																<!--end::Description-->
 															</div>
 															
-														<div class="fv-row col-sm-9 mt-n5">
+														<div class="fv-row col-sm-12 mt-n5">
 																	<!--begin::Label-->
 																	
 																	<!--end::Label-->
@@ -140,6 +140,16 @@
 															 <div class="invalid-feedback">주소가 검색되지 않았습니다.</div>
 															<!--end::Input-->
 														</div>
+														<div class="fv-row flex-row-fluid">
+															<!--begin::Label-->
+															<label class="form-label ms-3 required">등록 지역</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" name="reginCD" id="reginCD" th:value="${item?.reginCD}"  class="form-control" placeholder=""   />
+															<div class="invalid-feedback">등록된 지역을 입력해주세요.</div>
+															<!--end::Input-->
+														</div>
+														
 														
 														</div>
 																	<!--end::Input-->
@@ -560,6 +570,7 @@ window.onload = function () {
 		function Validation() {
 	        var isValid = true;
 			var roomIdCD = $("#roomIdCD").val();
+			var reginCD = $("#reginCD").val();
 	        var reservAvailableYN = $("#reservAvailableYN").val();
 	        var roomName = $("#roomName").val();
 	        var pricePerHour = $("#pricePerHour").val();
@@ -582,6 +593,15 @@ window.onload = function () {
 	        } else {
 	            $("#roomIdCD").removeClass("is-invalid");  
 	            $("#roomIdCD").css("border-color", "");  
+	        }
+	       	
+	       	if (roomIdCD === "") {
+	            $("#reginCD").addClass("is-invalid");  
+	            $("#reginCD").css("border-color", "#dc3545");
+	            isValid = false;
+	        } else {
+	            $("#reginCD").removeClass("is-invalid");  
+	            $("#reginCD").css("border-color", "");  
 	        }
 
 	        if (reservAvailableYN === "") {

@@ -9,11 +9,11 @@ public class CodeGroupDto {
 	
 	private String seq;
 	private Integer groupUsedNY;
-	private String codeGroupCode;
+	private Integer codeGroupCode;
 	private String cgName;
 	private String cgNameEng;
 	private Integer count;
-	private String cgOrder;
+	private Integer cgOrder;
 	private Date cgRegDate;
 	private Date cgCorrectDate;
 	private Integer cgDelNY;
@@ -77,17 +77,7 @@ public class CodeGroupDto {
 		this.groupUsedNY = groupUsedNY;
 	}
 	/**
-	 * @return the codeGroupCode
-	 */
-	public String getCodeGroupCode() {
-		return codeGroupCode;
-	}
-	/**
-	 * @param codeGroupCode the codeGroupCode to set
-	 */
-	public void setCodeGroupCode(String codeGroupCode) {
-		this.codeGroupCode = codeGroupCode;
-	}
+	 
 	/**
 	 * @return the cgNameEng
 	 */
@@ -101,17 +91,7 @@ public class CodeGroupDto {
 		this.cgNameEng = cgNameEng;
 	}
 	/**
-	 * @return the cgOrder
-	 */
-	public String getCgOrder() {
-		return cgOrder;
-	}
-	/**
-	 * @param cgOrder the cgOrder to set
-	 */
-	public void setCgOrder(String cgOrder) {
-		this.cgOrder = cgOrder;
-	}
+	 
 	
 	public Integer getCount() {
 		return count;
@@ -124,6 +104,24 @@ public class CodeGroupDto {
 	 */
 	public void setSeq(String seq) {
 		this.seq = seq;
+	}
+	public Integer getCodeGroupCode() {
+		return codeGroupCode;
+	}
+	public void setCodeGroupCode(Integer codeGroupCode) {
+		this.codeGroupCode = codeGroupCode;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	public Integer getCgOrder() {
+		return cgOrder;
+	}
+	public void setCgOrder(Integer cgOrder) {
+		this.cgOrder = cgOrder;
 	}
 	/**
 	 * @return the cgName

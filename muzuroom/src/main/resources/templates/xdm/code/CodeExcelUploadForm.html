@@ -189,6 +189,7 @@
                         <thead>
                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                 
+                                <th>codeDelNY</th>
                                 <th>codeUsedNY</th>
                                 <th>codeGroupCd</th>
                                 <th>codeGroupName</th>
@@ -202,9 +203,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr th:if="${#lists.isEmpty(previewList)}">
-						    <td colspan="10" class="text-center text-danger">미리보기할 데이터가 없습니다.</td>
-						<tr th:each="item : ${previewList}">
+                        <tr th:each="item : ${previewList}">
 <!-- 						    <td th:classappend="${item.cdDelNY == null} ? 'border border-danger'" th:text="${item.cdDelNY}"></td> -->
 						    <td th:classappend="${item.codeUsedNY == null} ? 'border border-danger'" th:text="${item.codeUsedNY}"></td>
 						    <td th:classappend="${item.codeGroupCd == null} ? 'border border-danger'" th:text="${item.codeGroupCd}"></td>

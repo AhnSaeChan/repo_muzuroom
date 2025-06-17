@@ -2,8 +2,9 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{usr/include/usrindex/head ::head}"></div>
 <link rel="stylesheet" type="text/css" href="/xdm/template/craft_html_v1.1.6/assets/css/jquery.datetimepicker.css"/>
-	<input type="hidden" id="roomSeq" name="roomSeq" th:value="${item?.seq}" />
-	<input type="hidden" id="roomPrice" name="roomPrice"th:value="${item?.pricePerHour}"/> 
+	<form id="reservationForm" method="post" action="/DetailedPageUser">
+    <input type="hidden" id="staySeq" th:value="${item.seq}" />
+    <input type="hidden" id="pricePerHour" th:value="${item.pricePerHour}" />
 	
 	<div class="container py-4">
 		<div class="row">
@@ -18,6 +19,7 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="roomInfo.seq" value="${room.seq}" />
 	<!--Breadcrumb end-->
 	<!--Product start-->
 	<section class="pb-lg-8">
@@ -137,12 +139,12 @@
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="d-flex align-items-center gap-3">
 									<p class="mb-0">
-										<span class="text-" th:text="${#numbers.formatDecimal((item.pricePerHour != null ? item.pricePerHour : 0) / 1000.0, 1, 3)} + '원'"></span>
+										<span class="text-" th:text="'￦'+${#numbers.formatDecimal((item.pricePerHour != null ? item.pricePerHour : 0) / 1000.0, 1, 3)} + ' /시간'"></span>
 
 									</p>
 									
 								</div>
-								<span class="" th:text="${item.roomRating}">
+								<span class="" >
 									4.3
 									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
 										class="bi bi-star-fill align-baseline text-primary" viewBox="0 0 16 16">
@@ -157,6 +159,16 @@
 								<h3 class="fs-5">예약 날짜</h3>
 							</div>
 							<input type="text" id="reservDate" name="reservDate" class="form-control" placeholder="예약 날짜를 선택해 주세요"/>
+							<hr class="my-3" />
+							<div class="d-flex align-items-center mt-5 mb-2 justify-content-between">
+								<h3 class="fs-5">예약자 성명</h3>
+							</div>
+							<input type="text" id="reservName" name="reservName" class="form-control" th:value="${session.sessNameUsr}"/>
+							<hr class="my-3" />
+							<div class="d-flex align-items-center mt-5 mb-2 justify-content-between">
+								<h3 class="fs-5">예약자 전화번호</h3>
+							</div>
+							<input type="text" id="reservTell" name="reservTell" class="form-control" th:value="${session.sessPhoneUsr}"/>
 								<hr class="my-3" />
 								<div class="mb-5">
 								  <div class="col-lg-10 col-12">
@@ -173,7 +185,7 @@
 								</div>
 							  <hr class="my-3" />
 							<div>
-								<a href="/usrProductCheckout" class="btn btn-dark my-3">예약</a>
+								<button type="button" id ="reservationSave" name="reservationSave" class="btn btn-dark my-3">예약</button>
 								<a href="#!" class="btn btn-outline-dark">
 									<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
 										class="bi bi-heart" viewBox="0 0 16 16">
@@ -183,6 +195,7 @@
 									즐겨찾기에 추가
 								</a>
 							</div>
+							</form>
 
 							<div class="accordion accordion-flush mt-3" id="accordionFlushExample">
 								
@@ -333,6 +346,7 @@
 				</div>
 			</div>
 			<!--Reviews-->
+			
 			<div class="row">
 				<div class="my-6">
 					<div class="mb-6">
@@ -341,173 +355,135 @@
 							<div class="row gy-4 gy-lg-0">
 								<div class="col-lg-6 col-md-10">
 									<!-- progress -->
-									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-										<div class="text-nowrap text-muted" style="width: 50px">
-											<span class="d-inline-block align-middle text-muted">5</span>
-											<i class="bi bi-star-fill ms-1 small text-primary"></i>
-										</div>
-										<div class="w-100">
-											<div class="progress" style="height: 6px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-										</div>
-										<span class="text-muted" style="width: 50px">22</span>
-									</div>
+									    <!-- 5점 -->
+									    
+									<div class="d-flex align-items-center mb-2" id="rating1">
+								        <div class="text-nowrap me-3 text-muted">
+								            <span class="d-inline-block align-middle text-muted">5</span>
+								            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+								        </div>
+								        <div class="w-100">
+								            <div class="progress" style="height: 6px">
+								                <div class="progress-bar bg-warning" role="progressbar" th:style="'width: ' + ${ratingPercentages[4]} + '%'" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+								            </div>
+								        </div>
+								        <span class="text-muted ms-3 percentage-text" th:text="${ratingPercentages[4]} + '%'">60%</span>
+								    </div>
 									<!-- progress -->
-									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-										<div class="text-nowrap text-muted" style="width: 50px">
-											<span class="d-inline-block align-middle text-muted">4</span>
-											<i class="bi bi-star-fill ms-1 small text-primary"></i>
-										</div>
-										<div class="w-100">
-											<div class="progress" style="height: 6px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-													aria-valuemax="50"></div>
-											</div>
-										</div>
-										<span class="text-muted" style="width: 50px">19</span>
-									</div>
+									<!-- 4점 -->
+								    <div class="d-flex align-items-center mb-2" id="rating2">
+								        <div class="text-nowrap me-3 text-muted">
+								            <span class="d-inline-block align-middle text-muted">4</span>
+								            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+								        </div>
+								        <div class="w-100">
+								            <div class="progress" style="height: 6px">
+								                <div class="progress-bar bg-warning" role="progressbar" th:style="'width: ' + ${ratingPercentages[3]} + '%'" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+								            </div>
+								        </div>
+								        <span class="text-muted ms-3 percentage-text" th:text="${ratingPercentages[3]} + '%'">22%</span>
+								    </div>
 									<!-- progress -->
-									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-										<div class="text-nowrap text-muted" style="width: 50px">
-											<span class="d-inline-block align-middle text-muted">3</span>
-											<i class="bi bi-star-fill ms-1 small text-primary"></i>
-										</div>
-										<div class="w-100">
-											<div class="progress" style="height: 6px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-													aria-valuemax="35"></div>
-											</div>
-										</div>
-										<span class="text-muted" style="width: 50px">15</span>
-									</div>
+									<!-- 3점 -->
+									<div class="d-flex align-items-center mb-2" id="rating3">
+								        <div class="text-nowrap me-3 text-muted">
+								            <span class="d-inline-block align-middle text-muted">3</span>
+								            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+								        </div>
+								        <div class="w-100">
+								            <div class="progress" style="height: 6px">
+								                <div class="progress-bar bg-warning" role="progressbar" th:style="'width: ' + ${ratingPercentages[2]} + '%'" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+								            </div>
+								        </div>
+								        <span class="text-muted ms-3 percentage-text" th:text="${ratingPercentages[2]} + '%'">14%</span>
+								    </div>
 									<!-- progress -->
-									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-										<div class="text-nowrap text-muted" style="width: 50px">
-											<span class="d-inline-block align-middle text-muted">2</span>
-											<i class="bi bi-star-fill ms-1 small text-primary"></i>
-										</div>
-										<div class="w-100">
-											<div class="progress" style="height: 6px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 22%" aria-valuenow="22" aria-valuemin="0"
-													aria-valuemax="22"></div>
-											</div>
-										</div>
-										<span class="text-muted" style="width: 50px">0</span>
-									</div>
+									<!-- 2점 -->
+								    <div class="d-flex align-items-center mb-2" id="rating4">
+								        <div class="text-nowrap me-3 text-muted">
+								            <span class="d-inline-block align-middle text-muted">2</span>
+								            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+								        </div>
+								        <div class="w-100">
+								            <div class="progress" style="height: 6px">
+								                <div class="progress-bar bg-warning" role="progressbar" th:style="'width: ' + ${ratingPercentages[1]} + '%'" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+								            </div>
+								        </div>
+								        <span class="text-muted ms-3 percentage-text" th:text="${ratingPercentages[1]} + '%'">5%</span>
+								    </div>
 									<!-- progress -->
-									<div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-										<div class="text-nowrap text-muted" style="width: 50px">
-											<span class="d-inline-block align-middle text-muted">1</span>
-											<i class="bi bi-star-fill ms-1 small text-primary"></i>
-										</div>
-										<div class="w-100">
-											<div class="progress" style="height: 6px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 14%" aria-valuenow="14" aria-valuemin="0"
-													aria-valuemax="14"></div>
-											</div>
-										</div>
-										<span class="text-muted" style="width: 50px">0</span>
-									</div>
+									<!-- 1점 -->
+								    <div class="d-flex align-items-center mb-2" id="rating5">
+								        <div class="text-nowrap me-3 text-muted">
+								            <span class="d-inline-block align-middle text-muted">1</span>
+								            <i class="bi bi-star-fill ms-1 small text-warning"></i>
+								        </div>
+								        <div class="w-100">
+								            <div class="progress" style="height: 6px">
+								                <div class="progress-bar bg-warning" role="progressbar" th:style="'width: ' + ${ratingPercentages[0]} + '%'" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100"></div>
+								            </div>
+								        </div>
+								        <span class="text-muted ms-3 percentage-text" th:text="${ratingPercentages[0]} + '%'">7%</span>
+								    </div>
 								</div>
 								<div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-center">
 									<div class="d-flex align-items-center gap-3">
-										<div class="fs-2 text-dark fw-bold ">5</div>
+									<form action="/reviewUdate" method="post" id="form">	
+									<input type="hidden" id="member_memSeq" name="member_memSeq" th:value="${session.sessSeqUsr}">
+									<input type="hidden" id="stay_staySeq" name="stay_staySeq" th:value="${item.seq}">
+									<input type="hidden" id="staySeq" name="staySeq" th:value="${item.seq}">
+										<div id="selectedStarScore" class="fs-2 text-dark fw-bold">
+												  <span id="starNumber">0</span>
+												</div>
 										<!-- rating -->
-										<div class="d-flex flex-column">
-											<small class="text-primary">
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</small>
-
-											<small>1개의 평가</small>
+										<div class="star-rating" id="starRating">
+										    <span class="star" data-value="1">&#9733;</span>
+										    <span class="star" data-value="2">&#9733;</span>
+										    <span class="star" data-value="3">&#9733;</span>
+										    <span class="star" data-value="4">&#9733;</span>
+										    <span class="star" data-value="5">&#9733;</span>
 										</div>
+										<div style="color: red;" id="starRatingError" name="starRatingError"></div>
+												<input type="hidden" id="starScore" name="starScore" />
 									</div>
 								</div>
 								<div>
-									<form id="form" name="form" method="post" enctype="multipart/form-data" class="row needs-validation" novalidate>
-<!-- 									<input type="file" name="uploadImg1" multiple="multiple"> -->
-									<input type="hidden" name="pseq" value="1" />
-										<div class="mb-3 col-12 py-5">
-											<h3 class="h6 pb-1">평가해주세요 *</h3>
-											<div class="rater"></div>
-										</div>
+<!-- 									<form id="form" name="form" method="post" enctype="multipart/form-data" class="row needs-validation" novalidate> -->
+									
+<!-- <!-- 									<input type="file" name="uploadImg1" multiple="multiple"> --> 
+<!-- 									<input type="hidden" name="pseq" value="1" /> -->
+										
 										<div class="mb-3 col-12">
-											<label for="writeReview" class="form-label">평가를 작성해주세요 *</label>
-											<textarea id="writeReview" class="form-control" rows="5"
-												placeholder="연습실에 대한 평가를 해주세요" required></textarea>
-											<div class="invalid-feedback">평가를 써주세요.</div>
-										</div>
-										<div class="mb-3 col-12">
-											<label for="headline" class="form-label">제목을 작성해주세요 *</label>
-											<input type="text" id="headline" class="form-control"
+											<label for="reTitle" class="form-label">제목을 작성해주세요 *</label>
+											<input type="text" id="reTitle" name="reTitle" class="form-control"
 												placeholder="연습장에 대한 짧은 평가를 해주세요" required />
-											<div class="invalid-feedback">제목을 입력해주세요.</div>
+											<div style="color: red;" id="reTitleError" name="reTitleError"></div>
 										</div>
-										<div class="mb-3 col-12 col-lg-6">
-											<label for="yourName" class="form-label">이름 *</label>
-											<input type="text" id="yourName" class="form-control" placeholder="" required />
-											<div class="invalid-feedback">이름을 입력해 주세요.</div>
+										<div class="mb-3 col-12">
+											<label for="reText" class="form-label">평가를 작성해주세요 *</label>
+											<textarea id="reText" name="reText" class="form-control" rows="5"
+												placeholder="연습실에 대한 평가를 해주세요" required></textarea>
+											<div style="color: red;" id="reTextError" name="reTextError"></div>
 										</div>
-										<div class="mb-3 col-12 col-lg-6">
-											<label for="email" class="form-label">Email *</label>
-											<input type="email" id="email" class="form-control mb-1" placeholder="" required />
-											<div class="invalid-feedback">Email을 입력해주세요.</div>
-											<span class="form-text">평가 확인을 위한 Email을 보내드리겠습니다. 
-												</span>
-										</div>
+										
 										<div class="mb-5 col-12">
 											<!-- Upload Button -->
-											<h3 class="h6 mb-3">업로드</h3>
-											<label class="btn btn-outline-primary d-inline-flex align-items-center gap-1"
-												for="fileInput">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-													class="bi bi-upload" viewBox="0 0 16 16">
-													<path
-														d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-													<path
-														d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-												</svg>
-												Upload
-											</label>
-											<input type="file" id="uploadImg1" name="uploadImg1"/>
-											<input type="hidden" id="uploadImg1Type" name="uploadImg1Type" value="1"/>
-											<input type="hidden" id="uploadImg1MaxNumber" name="uploadImg1MaxNumber" value="1"/>
-											<br />
-											<small class="mt-2 d-block">최대 10개의 이미지와 3개의 비디오를 업로드하세요 (최대 파일 크기 2GB)</small>
-			
-											<!-- Upload Status -->
-											<div id="uploadStatus"></div>
-			
-											<!-- Display Preview -->
-											<div id="previewContainer"></div>
+											
+											
+<!-- 											<input type="file" id="uploadImg1" name="uploadImg1"/> -->
+<!-- 											<input type="hidden" id="uploadImg1Type" name="uploadImg1Type" value="1"/> -->
+<!-- 											<input type="hidden" id="uploadImg1MaxNumber" name="uploadImg1MaxNumber" value="1"/> -->
+											
 											
 										</div>
 										<div class="mb-3 col-12">
-											<div class="form-check">
-												<input class="form-check-input" type="checkbox" id="gridCheck" required />
-												<label class="form-check-label" for="gridCheck">
-													<span>이용약관에 동의합니다 *</span>
-												</label>
-												<div class="invalid-feedback">
-													반드시 동의하셔야 합니다.
-												</div>
-											</div>
+											
 										</div>
 										<div class="mb-3 col-12">
 											<div class="d-flex align-items-center justify-content-between">
-												<div>*필수 작성</div>
+												<div></div>
 												<div class="">
-													<button type="button" id="bottonInput" class="btn btn-primary">평가 등록</button>
+													<button type="button" id="reviewSave" class="btn btn-primary">평가 등록</button>
 												</div>
 											</div>
 										</div>
@@ -517,70 +493,77 @@
 					</div>
 					<!--Search-->
 					<div class="mb-6">
-						<form>
-							<div class="row g-3">
-								<div class="col-lg-4 col-xl-3 col-md-6 py-2">
-									<div class="position-relative">
-										<label for="searchInput" class="visually-hidden"></label>
-										<input type="search" id="searchInput" class="form-control ps-6"
-											placeholder="평가 검색" />
-										<span class="position-absolute top-50 start-0 translate-middle ms-4">
-											<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-												<path
-													d="M16.1479 15.3519L12.6273 11.8321C13.6477 10.6071 14.1566 9.03577 14.048 7.44512C13.9394 5.85447 13.2217 4.36692 12.0443 3.29193C10.8668 2.21693 9.32029 1.63725 7.72635 1.67348C6.13241 1.7097 4.6138 2.35904 3.48642 3.48642C2.35904 4.6138 1.7097 6.13241 1.67348 7.72635C1.63725 9.32029 2.21693 10.8668 3.29193 12.0443C4.36692 13.2217 5.85447 13.9394 7.44512 14.048C9.03577 14.1566 10.6071 13.6477 11.8321 12.6273L15.3519 16.1479C15.4042 16.2001 15.4663 16.2416 15.5345 16.2699C15.6028 16.2982 15.676 16.3127 15.7499 16.3127C15.8238 16.3127 15.897 16.2982 15.9653 16.2699C16.0336 16.2416 16.0956 16.2001 16.1479 16.1479C16.2001 16.0956 16.2416 16.0336 16.2699 15.9653C16.2982 15.897 16.3127 15.8238 16.3127 15.7499C16.3127 15.676 16.2982 15.6028 16.2699 15.5345C16.2416 15.4663 16.2001 15.4042 16.1479 15.3519ZM2.81242 7.87492C2.81242 6.87365 3.10933 5.89487 3.6656 5.06234C4.22188 4.22982 5.01253 3.58094 5.93758 3.19778C6.86263 2.81461 7.88053 2.71435 8.86256 2.90969C9.84459 3.10503 10.7466 3.58718 11.4546 4.29519C12.1626 5.00319 12.6448 5.90524 12.8401 6.88727C13.0355 7.8693 12.9352 8.8872 12.5521 9.81225C12.1689 10.7373 11.52 11.528 10.6875 12.0842C9.85497 12.6405 8.87618 12.9374 7.87492 12.9374C6.53271 12.9359 5.24591 12.4021 4.29683 11.453C3.34775 10.5039 2.81391 9.21712 2.81242 7.87492Z"
-													fill="#B3ACA3" />
-											</svg>
-										</span>
-									</div>
-								</div>
-								<div class="col-lg-4 col-xl-2 col-md-6 py-2">
-									<label for="ratingInput" class="visually-hidden"></label>
+<!-- 						<form name="formList" id="formList" method="post" autocomplete="off"> -->
+<!-- <!-- 											<input type="hidden" id="thisPage"name="thisPage" th:value="${vo.thisPage}" default="1"/> --> 
+<!-- <!-- 											<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/> --> 
+<!-- 						<input type="hidden" id="seq" name="seq" th:value="${item?.seq}" /> -->
+<!-- 						<input type="hidden" name="seq" th:value="${session.sessSeqUsr}"> -->
+<!-- 							<div class="row g-3"> -->
+<!-- 								<div class="col-lg-4 col-xl-3 col-md-6 py-2"> -->
+<!-- 									<div class="position-relative"> -->
+<!-- 										<label for="searchInput" class="visually-hidden"></label> -->
+<!-- 										<input type="search" id="searchInput" class="form-control ps-6" -->
+<!-- 											placeholder="평가 검색" /> -->
+<!-- 										<span class="position-absolute top-50 start-0 translate-middle ms-4"> -->
+<!-- 											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" -->
+<!-- 												xmlns="http://www.w3.org/2000/svg"> -->
+<!-- 												<path -->
+<!-- 													d="M16.1479 15.3519L12.6273 11.8321C13.6477 10.6071 14.1566 9.03577 14.048 7.44512C13.9394 5.85447 13.2217 4.36692 12.0443 3.29193C10.8668 2.21693 9.32029 1.63725 7.72635 1.67348C6.13241 1.7097 4.6138 2.35904 3.48642 3.48642C2.35904 4.6138 1.7097 6.13241 1.67348 7.72635C1.63725 9.32029 2.21693 10.8668 3.29193 12.0443C4.36692 13.2217 5.85447 13.9394 7.44512 14.048C9.03577 14.1566 10.6071 13.6477 11.8321 12.6273L15.3519 16.1479C15.4042 16.2001 15.4663 16.2416 15.5345 16.2699C15.6028 16.2982 15.676 16.3127 15.7499 16.3127C15.8238 16.3127 15.897 16.2982 15.9653 16.2699C16.0336 16.2416 16.0956 16.2001 16.1479 16.1479C16.2001 16.0956 16.2416 16.0336 16.2699 15.9653C16.2982 15.897 16.3127 15.8238 16.3127 15.7499C16.3127 15.676 16.2982 15.6028 16.2699 15.5345C16.2416 15.4663 16.2001 15.4042 16.1479 15.3519ZM2.81242 7.87492C2.81242 6.87365 3.10933 5.89487 3.6656 5.06234C4.22188 4.22982 5.01253 3.58094 5.93758 3.19778C6.86263 2.81461 7.88053 2.71435 8.86256 2.90969C9.84459 3.10503 10.7466 3.58718 11.4546 4.29519C12.1626 5.00319 12.6448 5.90524 12.8401 6.88727C13.0355 7.8693 12.9352 8.8872 12.5521 9.81225C12.1689 10.7373 11.52 11.528 10.6875 12.0842C9.85497 12.6405 8.87618 12.9374 7.87492 12.9374C6.53271 12.9359 5.24591 12.4021 4.29683 11.453C3.34775 10.5039 2.81391 9.21712 2.81242 7.87492Z" -->
+<!-- 													fill="#B3ACA3" /> -->
+<!-- 											</svg> -->
+<!-- 										</span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-4 col-xl-2 col-md-6 py-2"> -->
+<!-- 									<label for="ratingInput" class="visually-hidden"></label> -->
 
-									<select id="ratingInput" class="" data-choices=""
-										data-choices-removeitembutton="true" aria-label="Default select example">
-										<option value="">모든 평점</option>
+<!-- 									<select id="ratingInput" class="" data-choices="" -->
+<!-- 										data-choices-removeitembutton="true" aria-label="Default select example"> -->
+<!-- 										<option value="">모든 평점</option> -->
 
-										<option value="Top">높은 평점</option>
-										<option value="Medium">보통 평점</option>
-										<option value="Low">낮은 평점</option>
-									</select>
-								</div>
-							</div>
-						</form>
+<!-- 										<option value="Top">높은 평점</option> -->
+<!-- 										<option value="Medium">보통 평점</option> -->
+<!-- 										<option value="Low">낮은 평점</option> -->
+<!-- 									</select> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</form> -->
 					</div>
 					<div class="mb-6">
+<!-- 					<form name="formList" id="formList" method="post" autocomplete="off"> -->
+<!-- 					<input type="hidden" id="thisPage"name="thisPage" th:value="${vo.thisPage}" default="1"/> -->
+<!-- 					<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/> -->
+<!-- 					<input type="hidden" id="seq" name="seq" th:value="${item?.seq}" /> -->
+<!-- 					<input type="hidden" name="seq" th:value="${session.sessSeqUsr}"> -->
 						<div class="d-flex align-items-center justify-content-between mb-4">
 							<h3 class="mb-0 fs-4">5개의 연습실 평가</h3>
-							<div class="col-lg-3">
-								<label for="mostRaing" class="visually-hidden"></label>
-								<select id="mostRaing" class="" data-choices="" data-choices-removeitembutton="true"
-									aria-label="Default select example">
-									<option value="">분류 기준 : 가장 최근 평점</option>
+<!-- 							<div class="col-lg-3"> -->
+<!-- 								<label for="mostRaing" class="visually-hidden"></label> -->
+<!-- 								<select id="mostRaing" class="" data-choices="" data-choices-removeitembutton="true" -->
+<!-- 									aria-label="Default select example"> -->
+<!-- 									<option value="">분류 기준 : 가장 최근 평점</option> -->
 
-									<option value="Highest Rating">높은 평점</option>
-									<option value="Lowest Rating">낮은 평점</option>
-									<option value="Verified Purchase">검증된 연습실</option>
-								</select>
-							</div>
+<!-- 									<option value="Highest Rating">높은 평점</option> -->
+<!-- 									<option value="Lowest Rating">낮은 평점</option> -->
+<!-- 									<option value="Verified Purchase">검증된 연습실</option> -->
+<!-- 								</select> -->
+<!-- 							</div> -->
 						</div>
-						<div class="row g-4 mb-4">
+						<div id="reviewContainer" class="row g-4 mb-4">
 							<!--Review-->
-							<div class="col-xl-4 col-md-6">
+							<div th:each="review : ${reviewList}" class="col-xl-4 col-md-6">
 								<div class="card h-100">
 									<div class="card-body p-5">
-										<small class="text-warning">
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-half"></i>
-										</small>
-										<h3 class="fs-4 my-3">괜찮은 연습실 만족스로운 평가</h3>
-										<p>피아노 상태 괜찮고 방음이 잘되어있어 연습할때 집중하기 좋았습니다. 하지만
+										<div class="mb-2">
+										    <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+										        <i th:class="${i <= review.starScore} ? 'bi bi-star-fill text-warning' : 'bi bi-star text-warning'"></i>
+										    </th:block>
+										</div>
+										<h3 th:text="${review.reTitle}" class="fs-4 my-3">괜찮은 연습실 만족스로운 평가</h3>
+										<p th:text="${review.reText}">피아노 상태 괜찮고 방음이 잘되어있어 연습할때 집중하기 좋았습니다. 하지만
 											한파라는 것을 감안하고 연습실이 너무 추워서 연습 내내 손이 얼어서 힘들었습니다
 										</p>
-										<p class="d-flex align-items-center gap-3">
+										<p th:text="${session.sessNameUsr}" class="d-flex align-items-center gap-3">
 											나평가
 											<span class="small text-success d-flex align-items-center gap-1">
 												<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -592,32 +575,13 @@
 														d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
 														fill="#15803D" />
 												</svg>
-												검증
+												
 											</span>
 										</p>
 										<div class="d-flex flex-row gap-3 align-items-center">
-											<span>이 평가가 도움이 되었습니까?</span>
+											<span th:text="${review.regDateTime}">이 평가가 도움이 되었습니까?</span>
 											<div class="d-flex flex-row gap-2">
-												<a href="#!" class="">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-														fill="currentColor" class="bi bi-hand-thumbs-up"
-														viewBox="0 0 16 16">
-														<path
-															d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
-														</path>
-													</svg>
-													2
-												</a>
-												<a href="#!" class="">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-														fill="currentColor" class="bi bi-hand-thumbs-down"
-														viewBox="0 0 16 16">
-														<path
-															d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
-														</path>
-													</svg>
-													0
-												</a>
+												
 											</div>
 										</div>
 									</div>
@@ -627,6 +591,8 @@
 						<!--More reviews-->
 						<div class="collapse" id="collapseContent">
 							<div class="row g-4 mb-4">
+								
+								
 								<div class="col-xl-4 col-lg-6">
 									<div class="card h-100">
 										<div class="card-body p-5">
@@ -638,121 +604,7 @@
 												<i class="bi bi-star-half"></i>
 											</small>
 											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
-											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
-												and looks elegant in
-												my home. Assembly was straightforward too!</p>
-											<p class="d-flex align-items-center gap-3">
-												Sandip Chauhan
-												<span class="small text-success d-flex align-items-center gap-1">
-													<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-														xmlns="http://www.w3.org/2000/svg">
-														<path opacity="0.2"
-															d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
-															fill="#15803D" />
-														<path
-															d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
-															fill="#15803D" />
-													</svg>
-													Verified
-												</span>
-											</p>
-											<div class="d-flex flex-row gap-3 align-items-center">
-												<span>Was this review helpful?</span>
-												<div class="d-flex flex-row gap-2">
-													<a href="#!" class="">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-															fill="currentColor" class="bi bi-hand-thumbs-up"
-															viewBox="0 0 16 16">
-															<path
-																d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
-															</path>
-														</svg>
-														1
-													</a>
-													<a href="#!" class="">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-															fill="currentColor" class="bi bi-hand-thumbs-down"
-															viewBox="0 0 16 16">
-															<path
-																d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
-															</path>
-														</svg>
-														0
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-lg-6">
-									<div class="card h-100">
-										<div class="card-body p-5">
-											<small class="text-warning">
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</small>
-											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
-											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
-												and looks elegant in
-												my home. Assembly was straightforward too!</p>
-											<p class="d-flex align-items-center gap-3">
-												Sandip Chauhan
-												<span class="small text-success d-flex align-items-center gap-1">
-													<svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-														xmlns="http://www.w3.org/2000/svg">
-														<path opacity="0.2"
-															d="M15.75 9C15.75 10.335 15.3541 11.6401 14.6124 12.7501C13.8707 13.8601 12.8165 14.7253 11.5831 15.2362C10.3497 15.7471 8.99252 15.8808 7.68314 15.6203C6.37377 15.3598 5.17104 14.717 4.22703 13.773C3.28303 12.829 2.64015 11.6262 2.3797 10.3169C2.11925 9.00749 2.25292 7.65029 2.76382 6.41689C3.27471 5.18349 4.13987 4.12928 5.2499 3.38758C6.35994 2.64588 7.66498 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z"
-															fill="#15803D" />
-														<path
-															d="M12.2105 6.91453C12.2628 6.96677 12.3043 7.02881 12.3326 7.0971C12.3609 7.16538 12.3754 7.23858 12.3754 7.3125C12.3754 7.38642 12.3609 7.45962 12.3326 7.5279C12.3043 7.59619 12.2628 7.65823 12.2105 7.71047L8.27297 11.648C8.22073 11.7003 8.15869 11.7418 8.09041 11.7701C8.02212 11.7984 7.94892 11.8129 7.875 11.8129C7.80108 11.8129 7.72789 11.7984 7.6596 11.7701C7.59131 11.7418 7.52928 11.7003 7.47703 11.648L5.78953 9.96047C5.68399 9.85492 5.62469 9.71177 5.62469 9.5625C5.62469 9.41323 5.68399 9.27008 5.78953 9.16453C5.89508 9.05898 6.03824 8.99969 6.1875 8.99969C6.33677 8.99969 6.47992 9.05898 6.58547 9.16453L7.875 10.4548L11.4145 6.91453C11.4668 6.86223 11.5288 6.82074 11.5971 6.79244C11.6654 6.76413 11.7386 6.74956 11.8125 6.74956C11.8864 6.74956 11.9596 6.76413 12.0279 6.79244C12.0962 6.82074 12.1582 6.86223 12.2105 6.91453ZM16.3125 9C16.3125 10.4463 15.8836 11.8601 15.0801 13.0626C14.2766 14.2651 13.1346 15.2024 11.7984 15.7559C10.4622 16.3093 8.99189 16.4541 7.57341 16.172C6.15492 15.8898 4.85196 15.1934 3.82928 14.1707C2.80661 13.148 2.11017 11.8451 1.82801 10.4266C1.54586 9.00811 1.69067 7.53781 2.24413 6.20163C2.7976 4.86544 3.73486 3.72339 4.9374 2.91988C6.13993 2.11637 7.55373 1.6875 9 1.6875C10.9388 1.68955 12.7975 2.46063 14.1685 3.83154C15.5394 5.20246 16.3105 7.06123 16.3125 9ZM15.1875 9C15.1875 7.77623 14.8246 6.57994 14.1447 5.56241C13.4648 4.54488 12.4985 3.75181 11.3679 3.2835C10.2372 2.81518 8.99314 2.69264 7.79288 2.93139C6.59262 3.17014 5.49012 3.75944 4.62478 4.62478C3.75944 5.49011 3.17014 6.59262 2.93139 7.79288C2.69265 8.99314 2.81518 10.2372 3.2835 11.3679C3.75182 12.4985 4.54488 13.4648 5.56241 14.1447C6.57994 14.8246 7.77623 15.1875 9 15.1875C10.6405 15.1856 12.2132 14.5331 13.3732 13.3732C14.5331 12.2132 15.1856 10.6405 15.1875 9Z"
-															fill="#15803D" />
-													</svg>
-													Verified
-												</span>
-											</p>
-											<div class="d-flex flex-row gap-3 align-items-center">
-												<span>Was this review helpful?</span>
-												<div class="d-flex flex-row gap-2">
-													<a href="#!" class="">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-															fill="currentColor" class="bi bi-hand-thumbs-up"
-															viewBox="0 0 16 16">
-															<path
-																d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z">
-															</path>
-														</svg>
-														1
-													</a>
-													<a href="#!" class="">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-															fill="currentColor" class="bi bi-hand-thumbs-down"
-															viewBox="0 0 16 16">
-															<path
-																d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1">
-															</path>
-														</svg>
-														0
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-lg-6">
-									<div class="card h-100">
-										<div class="card-body p-5">
-											<small class="text-warning">
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</small>
-											<h3 class="fs-4 my-3">Sturdy and Well-Made</h3>
-											<p>The dining table exceeded my expectations. It’s solid, well-constructed,
+											<p >The dining table exceeded my expectations. It’s solid, well-constructed,
 												and looks elegant in
 												my home. Assembly was straightforward too!</p>
 											<p class="d-flex align-items-center gap-3">
@@ -822,10 +674,55 @@
 			</div>
 		</div>
 	</section>
+	
+	<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">리뷰 등록 완료</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body">
+        리뷰가 성공적으로 저장되었습니다!
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<!--Product tabs end-->
 	<!--Product start-->
 	
 	<!--Product end-->
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/rater-js/index.js"></script>
+	
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/choice.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/flag.js"></script>
+
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/validation.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/qty-input.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/color-change.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/drift-zoom/dist/Drift.min.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/drift.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/file-input.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/swiper.js"></script>
+
+
+	<!-- Libs JS -->
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Swiper JS -->
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Theme JS -->
+	<script src="/user/template/FreshCart-1.4.0/assets/js/theme.min.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/btn-scrolltop.js"></script>
+	<script src="/user/template/FreshCart-1.4.0/assets/js/vendors/add-to-cart.js"></script>
+	
 	
 	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery-3.7.1.min.js"></script>
 	<script src="/xdm/template/craft_html_v1.1.6/assets/js/custom/jquery.datetimepicker.full.min.js"></script>
@@ -1012,4 +909,256 @@ document.addEventListener('DOMContentLoaded', function () {
 	  });
 	});
 </script>
-	
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    // 공통 벨리데이션 함수
+    function validateField(field, errorField, message) {
+        if (field.value.trim() === "") {
+            errorField.innerText = message;
+            field.classList.add("is-invalid");
+            field.classList.remove("is-valid");
+            return false;
+        } else {
+            errorField.innerText = "";
+            field.classList.remove("is-invalid");
+            field.classList.add("is-valid");
+            return true;
+        }
+    }
+
+    // 예약 버튼 클릭 시
+    $("#reservationSave").on("click", function () {
+
+//         let checkInDate = document.getElementById("reservDate");
+//         let checkOutDate = document.getElementById("reservTime");
+//         let checkInName = document.getElementById("checkInName");
+//         let checkInTel = document.getElementById("checkInTel");
+// //         let checkInPeoNum = document.getElementById("checkInPeoNum");
+
+//         let isCheckInDateValid = validateField(checkInDate, document.getElementById("reservDate"), "예약 날짜를 선택하세요");
+//         let isCheckOutDateValid = validateField(checkOutDate, document.getElementById("checkInName"), "예약자 성명을 입력해 주세요");
+//         let isNameValid = validateField(checkInName, document.getElementById("checkInTel"), "예약자 전화번호를 입력해 주세요");
+// //         let isTelValid = validateField(checkInTel, document.getElementById("checkInTelError"), "연락처를 입력하세요");
+
+//         // 인원 수 1 이상인지 확인
+//         let isPeopleValid = true;
+//         if (reservTime.value <= 0) {
+//             alert("1시간 이상이어야 합니다.");
+//             isPeopleValid = false;
+//         }
+
+//         if (!isCheckInDateValid || !isCheckOutDateValid || !isNameValid || !isTelValid || !isPeopleValid) {
+//             return false;
+//         }
+       
+        // 모든 유효성 검사 통과하면 AJAX 전송
+        $.ajax({
+            async: true,
+            cache: false,
+            type: "post",
+            url: "/DetailedPageUser",
+            data: {
+                "staySeq": $("#staySeq").val(),
+                "reservDate": $("#reservDate").val(),
+                "reservName": $("#reservName").val(),
+                "reservTell": $("#reservTell").val(),
+                "reservTime": $("#reservTime").val(),
+                "pricePerHour": $('#pricePerHour').val()
+            },
+            success: function (response) {
+               
+            	window.location.href = '/PayUserForm?staySeq=' + response.result;
+                
+            },
+           
+        });
+    });
+
+});
+
+</script>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll("#starRating .star");
+    const starScoreInput = document.getElementById("starScore");
+    const reviewSaveButton = document.getElementById("reviewSave");
+    const reviewContainer = document.getElementById("reviewContainer");
+    const userSeq = document.getElementById("member_memSeq")?.value;
+    const selectedStarScore = document.getElementById("selectedStarScore");
+    let currentScore = 0;
+
+    document.getElementById("starRating").style.whiteSpace = "nowrap";
+    stars.forEach(function (star) {
+        star.style.display = "inline-block";
+        star.style.fontSize = "30px";
+        star.style.cursor = "pointer";
+        star.style.color = "gray";
+    });
+
+    function updateStarRating(score) {
+        stars.forEach(function (star) {
+            const value = parseInt(star.getAttribute("data-value"));
+            star.style.color = value <= score ? "orange" : "gray";
+        });
+    }
+
+    function renderStars(score) {
+        let starsHtml = "";
+        for (let i = 1; i <= 5; i++) {
+            starsHtml += `<i class="bi ${i <= score ? 'bi-star-fill' : 'bi-star'} text-warning"></i>`;
+        }
+        return starsHtml;
+    }
+
+    stars.forEach(function (star) {
+        star.addEventListener("click", function () {
+            currentScore = parseInt(star.getAttribute("data-value"));
+            starScoreInput.value = currentScore;
+            selectedStarScore.textContent = currentScore;
+            updateStarRating(currentScore);
+            document.getElementById("starRatingError").textContent = "";
+        });
+
+        star.addEventListener("mouseover", function () {
+            updateStarRating(parseInt(star.getAttribute("data-value")));
+            selectedStarScore.textContent = star.getAttribute("data-value");
+        });
+
+        star.addEventListener("mouseout", function () {
+            updateStarRating(currentScore);
+            selectedStarScore.textContent = currentScore || "0";
+        });
+    });
+
+    reviewSaveButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (!userSeq || userSeq === "null" || userSeq === "") {
+            const loginModalEl = document.getElementById("loginModal");
+            const loginModal = new bootstrap.Modal(loginModalEl);
+            loginModal.show();
+            document.getElementById("goLoginBtn").addEventListener("click", function () {
+                window.location.href = "/SigninUser";
+            });
+            return;
+        }
+
+        const score = parseInt(starScoreInput.value);
+        const title = document.getElementById("reTitle").value.trim();
+        const text = document.getElementById("reText").value.trim();
+        const scoreError = document.getElementById("starRatingError");
+        const titleError = document.getElementById("reTitleError");
+        const textError = document.getElementById("reTextError");
+
+        let valid = true;
+
+        if (!score || score < 1 || score > 5) {
+            scoreError.textContent = "별점을 선택해주세요.";
+            valid = false;
+        } else {
+            scoreError.textContent = "";
+        }
+
+        if (title === "") {
+            titleError.textContent = "리뷰 제목을 입력해주세요.";
+            valid = false;
+        } else {
+            titleError.textContent = "";
+        }
+
+        if (text === "") {
+            textError.textContent = "리뷰 내용을 입력해주세요.";
+            valid = false;
+        } else {
+            textError.textContent = "";
+        }
+
+        if (!valid) return;
+
+        const formData = $("#form").serialize();
+
+        $.ajax({
+            url: "/reviewUdate",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+                if (response.status === "success") {
+                    const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+                    successModal.show();
+
+                    $("#form")[0].reset();
+                    updateStarRating(0);
+                    currentScore = 0;
+                    selectedStarScore.textContent = "0";
+
+                    // 리뷰 목록 및 별점 통계 다시 불러오기
+                    loadReviewList();
+                }
+            },
+        });
+    });
+
+    function loadReviewList() {
+        const staySeq = $("#staySeq").val();
+		
+        $.ajax({
+            url: "/reviewStats",
+            method: "GET",
+            data: { seq: staySeq },
+            success: function (data) {
+                // 평균 별점 갱신
+                $("#averageRating").text(data.averageRating.toFixed(1));
+
+                // 별점 퍼센트 바 갱신
+                data.ratingPercentages.forEach((percent, index) => {
+                    const rating = 5 - index;
+                    $(`#rating${rating} .progress-bar`).css("width", `${percent}%`);
+                    $(`#rating${rating} .percentage-text`).text(`${percent.toFixed(1)}%`);
+                });
+
+                // 리뷰 목록 HTML 생성 및 삽입
+                const reviewListHtml = data.reviewList.map(review => {
+                    const stars = [...Array(5).keys()].map(i =>
+                        `<i class="bi ${i < review.starScore ? 'bi-star-fill' : 'bi-star'} text-warning"></i>`
+                    ).join("");
+
+                    return `
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body p-5">
+                                    <div class="mb-2">${stars}</div>
+                                    <h3 class="fs-4 my-3">${review.reTitle}</h3>
+                                    <p>${review.reText}</p>
+                                    <p class="d-flex align-items-center gap-3">
+                                        ${review.userName || '익명'}
+                                        <span class="small text-success d-flex align-items-center gap-1">
+                                            <i class="bi bi-patch-check-fill text-success"></i> 검증
+                                        </span>
+                                    </p>
+                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                        <span>${review.regDateTime}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                }).join("");
+
+                $("#reviewContainer").html(reviewListHtml);
+            },
+            error: function () {
+                console.error("리뷰 목록 불러오기 실패");
+            }
+        });
+    }
+
+    // 초기 로드 시 리뷰 목록 및 별점 통계 로드
+    loadReviewList();
+});
+</script>
+
+
+

@@ -24,10 +24,11 @@
 			seq, 
 			roomPic,
 			roomIdCD,
+			reginCD,
 			reservAvailableYN,
 			roomName, 
 			pricePerHour,
-			roomRating,
+			
 			
 			roomZipCode,
 			roomStreetAddress,
@@ -36,7 +37,7 @@
 			roomAddress,
 			roomLatitude,
 			roomLongitude,
-			favoriteYN,
+			
 			roomDetail,
 			roomIntro,
 			roomGuideline,
@@ -66,10 +67,11 @@
 			seq, 
 			roomPic,
 			roomIdCD,
+			reginCD,
 			reservAvailableYN,
 			roomName, 
 			pricePerHour,
-			roomRating,
+			
 		
 			roomZipCode,
 			roomStreetAddress,
@@ -78,7 +80,7 @@
 			roomAddress,
 			roomLatitude,
 			roomLongitude,
-			favoriteYN,
+			
 			roomDetail,
 			roomIntro,
 			roomGuideline,
@@ -91,55 +93,56 @@
 		ORDER BY seq DESC
  </select>
  
- <insert id="insert">
-	 insert into room(
+<!--  <insert id="insert"> -->
+<!-- 	 insert into room( -->
         
-        roomPic,
-        roomIdCD,
-        reservAvailableYN,
-        roomName,
-        pricePerHour,
-        roomRating,
-        roomZipCode,
-        roomStreetAddress,
-        roomLotAddress,
-        roomAddressRef,
-        roomAddress,
-        roomLatitude,
-        roomLongitude,
-        favoriteYN,
-        roomDetail,
-        roomIntro,
-        roomGuideline,
-        roomRegTime,
-        roomModTime,
-        userInfo_seq
-        )VALUES(
-        #{roomPic},
-        #{roomIdCD},
-        #{reservAvailableYN},
-        #{roomName},
-        #{pricePerHour},
-        #{roomRating},
-        #{roomZipCode},
-        #{roomStreetAddress},
-        #{roomLotAddress},
-        #{roomAddressRef},
-        #{roomAddress},
-        #{roomLatitude},
-        #{roomLongitude},
-        #{favoriteYN},
-        #{roomDetail},
-        #{roomIntro},
-        #{roomGuideline},
-        now(),
-        now(),
-        #{userInfo_seq}
-        )
- 	<selectKey resultType="String" keyProperty="seq" order="AFTER">
-			SELECT last_insert_id()
-		</selectKey>
- 	</insert>
+<!--         roomPic, -->
+<!--         roomIdCD, -->
+<!--         reginCD, -->
+<!--         reservAvailableYN, -->
+<!--         roomName, -->
+<!--         pricePerHour, -->
+<!--         roomZipCode, -->
+<!--         roomStreetAddress, -->
+<!--         roomLotAddress, -->
+<!--         roomAddressRef, -->
+<!--         roomAddress, -->
+<!--         roomLatitude, -->
+<!--         roomLongitude, -->
+        
+<!--         roomDetail, -->
+<!--         roomIntro, -->
+<!--         roomGuideline, -->
+<!--         roomRegTime, -->
+<!--         roomModTime, -->
+<!--         userInfo_seq -->
+<!--         )VALUES( -->
+<!--         #{roomPic}, -->
+<!--         #{roomIdCD}, -->
+<!--         #{reginCD}, -->
+<!--         #{reservAvailableYN}, -->
+<!--         #{roomName}, -->
+<!--         #{pricePerHour}, -->
+        
+<!--         #{roomZipCode}, -->
+<!--         #{roomStreetAddress}, -->
+<!--         #{roomLotAddress}, -->
+<!--         #{roomAddressRef}, -->
+<!--         #{roomAddress}, -->
+<!--         #{roomLatitude}, -->
+<!--         #{roomLongitude}, -->
+        
+<!--         #{roomDetail}, -->
+<!--         #{roomIntro}, -->
+<!--         #{roomGuideline}, -->
+<!--         now(), -->
+<!--         now(), -->
+<!--         #{userInfo_seq} -->
+<!--         ) -->
+<!--  	<selectKey resultType="String" keyProperty="seq" order="AFTER"> -->
+<!-- 			SELECT last_insert_id() -->
+<!-- 		</selectKey> -->
+<!--  	</insert> -->
 
 <insert id="insertUploaded">
 		INSERT INTO ${tableName} (
@@ -211,6 +214,42 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<select id="reviewList" resultMap="resultMapObj">
+		SELECT
+		    a.reSeq,
+		    a.starScore,
+		    a.reTitle,
+		    a.reText,
+		    a.room_seq,
+		    a.userInfo_seq,
+		    a.regDateTime,
+		    a.reDelNy,
+		    b.seq,
+		    b.roomName,         
+		    c.seq,
+		    c.userName,
+		    c.userId
+		FROM 
+		    review a
+		    JOIN room b ON a.room_seq = b.seq
+		    JOIN userinfo c ON a.userInfo_seq = c.seq
+		WHERE 1=1
+		
+		   AND room_seq = #{seq}
+		   AND reDelNy = 0
+		   LIMIT #{startRnumForMysql},#{rowNumToShow}
+	
+	</select>
+	
+	<select id="reviewCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+			review
+		WHERE
+			room_seq=#{seq}
+		AND reDelNy = 0
+	</select>
  	
 	
  	

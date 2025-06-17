@@ -40,6 +40,10 @@ public class ContentService extends UploadedService {
 		return contentDao.selectOne(contentDto);
 	}
 	
+	public List<ContentDto>reviewList(ContentVo contentVo){
+		return contentDao.reviewList(contentVo);
+	}
+	
 //	public int insert(ContentDto dto) throws Exception { 
 ////		contentDao.insert(dto);
 //    	uploadFilesToS3(

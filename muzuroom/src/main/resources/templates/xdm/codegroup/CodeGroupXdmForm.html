@@ -95,7 +95,7 @@
 															<label class="required form-label ms-3">코드 이름</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cgName" id="cgName" class="form-control" placeholder="한글,영대소문자,숫자"  />
+															<input type="text" name="cgName" id="cgName" th:value="${item?.cgName}" class="form-control" placeholder="한글,영대소문자,숫자"  />
 															<div class="invalid-feedback">
 														     입력해 주세요
 														    </div>															<!--end::Input-->
@@ -105,7 +105,7 @@
 															<label class="form-label ms-3">코드 이름 (영문)</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="cgNameEng" id="cgNameEng" class="form-control" placeholder="영대소문자,숫자"  />
+															<input type="text" name="cgNameEng" id="cgNameEng" th:value="${item?.cgNameEng}" class="form-control" placeholder="영대소문자,숫자"  />
 															<!--end::Input-->
 														</div>
 													</div>
@@ -122,7 +122,7 @@
 														<div class="d-flex flex-wrap flex-sm-nowrap gap-3">
 															<div class="fv-row flex-row-fluid">
 															<!--begin::Label-->
-															<label class="required form-label  ms-3">사용 여부</label>
+															<label class="required form-label ms-3">사용 여부</label>
 															<!--end::Label-->
 															<!--begin::Input-->
 															<select class="  form-select" style="font-weight: bold; font-size:15px; width:290px; height:41px" aria-label="Default select example">선택하세요</span>
@@ -137,7 +137,7 @@
 															<label class="required form-label  ms-3">순서</label>
 															<!--end::Label-->
 															<!--begin::Input-->
-															<input type="text" name="count" id="count" style="width:290px; height:41px" class="form-control" placeholder=""  />
+															<input type="text" name="cgOrder" id="cgOrder" th:value="${item?.cgOrder}" style="width:290px; height:41px" class="form-control" placeholder=""  />
 															<!--end::Input-->
 															</div>
 														</div>
@@ -291,13 +291,13 @@
 		var modal = document.getElementById("myModal");
 		var close = document.getElementById("closebtn");
 		
-		(document.getElementById("btnForm"))
-		if(seq.value == "0" || seq.value == "") {
-			document.querySelector("#btnUelete").style.display = 'none';
-		}else{
+// 		(document.getElementById("btnForm"))
+// 		if(seq.value == "0" || seq.value == "") {
+// 			document.querySelector("#btnUelete").style.display = 'none';
+// 		}else{
 			
-			document.querySelector("#btnSubmit").style.display = 'none';	
-		}
+// 			document.querySelector("#btnSubmit").style.display = 'none';	
+// 		}
 		
 		if(document.getElementById("btnUelete")){
 			document.getElementById("btnUelete").onclick = function () {
